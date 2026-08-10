@@ -231,6 +231,34 @@ public:
 	 * pattern) -- safe to call more than once. */
 	void grantAllAbilitiesForTesting(CreatureObject* owner) const;
 
+	/** Companion System (2026-08-09, "dynamic mirroring" pass, v3 work
+	 * order -- Nick's explicit datapad-wide scope decision, see
+	 * docs/companion_system/NOTES.md). Recomputes the FULL set of
+	 * "companion_<ability>" macros the owner should currently hold --
+	 * the 16 always-on baseline order commands, plus the union, over
+	 * EVERY CompanionControlDevice in the owner's datapad (summoned OR
+	 * stored -- getCompanionObject() returns the same persisted object
+	 * either way, see CompanionControlDevice.idl), of every ability each
+	 * companion's currently-learned skills grant -- and diffs it against
+	 * what the owner's abilityList actually holds: grants what's missing,
+	 * revokes anything "companion_"-prefixed that's no longer desired.
+	 *
+	 * Replaces grantAllAbilitiesForTesting() at its three former live call
+	 * sites (companion summon, starter-profession choice, the manual
+	 * resync command) -- that method granted a fixed 61-ability list
+	 * unconditionally, regardless of what any companion had actually
+	 * trained; this recomputes the real answer every time instead. Also
+	 * call after any companion is added to or removed from the datapad,
+	 * and once at owner zone-in/login as a self-healing repair pass.
+	 *
+	 * Namespace guard: only ever touches abilities whose names start
+	 * "companion_" -- the owner's own profession abilities, which share
+	 * the same abilityList, are never read or written by this method.
+	 * Recompute-and-diff rather than incremental add/remove, so it's
+	 * idempotent and safe to call as often as the trigger points above
+	 * fire, including redundantly. @pre { owner locked } */
+	void syncOwnerMirrorAbilities(CreatureObject* owner) const;
+
 	/** Spec 2B: owner-only skill sheet (also reachable from spec 4D's dialogue
 	 * menu). */
 	void sendSkillSheet(CreatureObject* player, CompanionObject* companion);

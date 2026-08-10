@@ -517,12 +517,6 @@ bool PlayerCreationManager::createCharacter(ClientCreateCharacterCallback* callb
 
 				if (accountPermissionLevel > 0 && (accountPermissionLevel == 9 || accountPermissionLevel == 10 || accountPermissionLevel == 12 || accountPermissionLevel == 15)) {
 					playerManager->updatePermissionLevel(playerCreature, accountPermissionLevel);
-
-					// ADMIN_BUILDER_TERMINAL_2026_08_04 -- hooked here because the
-					// admin question is already answered on this line; asking it a
-					// second time somewhere else would just be another thing to keep
-					// in sync.
-					giveAdminBuilderTerminal(playerCreature);
 				}
 
 			} catch (Exception& e) {
@@ -530,10 +524,21 @@ bool PlayerCreationManager::createCharacter(ClientCreateCharacterCallback* callb
 			}
 		} else {
 			playerManager->updatePermissionLevel(playerCreature, PermissionLevelList::instance()->getLevelNumber("admin"));
-
-			// freeGodMode: everyone is an admin, so everyone gets one.
-			giveAdminBuilderTerminal(playerCreature);
 		}
+
+		// ALL_NEW_CHARS_BUILDER_TERMINAL_2026_08_08 -- per Nick: "make all
+		// new users spawn in with a character builder terminal". Previously
+		// only fired inside the two branches above (admin-tier accounts, or
+		// every account when the server-wide freeGodMode config flag is on)
+		// -- moved out to one unconditional call so it fires exactly once
+		// for every newly created character regardless of account
+		// permission level, without having to flip the much broader
+		// freeGodMode switch (which also makes every account a full admin,
+		// not just hand out this one item). giveAdminBuilderTerminal()
+		// itself is unchanged -- still just creates the terminal and drops
+		// it in the new character's inventory, no permission check inside
+		// it either way.
+		giveAdminBuilderTerminal(playerCreature);
 
 		if (doTutorial)
 			playerManager->createTutorialBuilding(playerCreature);

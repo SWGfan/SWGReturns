@@ -168,6 +168,25 @@ void SkillManager::loadClientData() {
 		}
 	}
 
+	// COMPANION_ABILITY_REGISTRATION_2026_08_09 (batch 32 follow-up) -- this
+	// array had drifted the exact same way three OTHER hand-copied mirrors of
+	// _COMPANION_ABILITY_NAMES/_STARTER_ABILITY_NAMES already had (see
+	// docs/companion_system/NOTES.md): it only ever had the original 61
+	// abilities (36 combat + 25 starter), never updated when the 2026-08-07
+	// "full combat tree" pass added 142 more. Any of those 142
+	// (actionShot1, aim, berserk2, bodyShot1, warcry2, etc.) granted to a
+	// player via CompanionSkillTrainer.cpp would silently vanish on their
+	// next relog/server restart -- see the COMPANION_ABILITY_REGISTRATION_
+	// HOTFIX_2026_07_31 comment above for why (AbilityList::loadFromNames()
+	// resolves persisted abilities through THIS map on reload; anything not
+	// registered here is dropped, not an error, just gone). Regenerated in
+	// full from build_ui_styles_patch.py's own _COMPANION_ABILITY_NAMES +
+	// _NEW_COMPANION_ABILITY_NAMES_2026_08_07 + _STARTER_ABILITY_NAMES
+	// (203 names, read_ability_names()'s same de-duped output patch_loose_
+	// ui_styles.iff already uses) rather than hand-copied again, to at
+	// least remove today's specific drift -- there's still no compile-time
+	// guarantee this won't go stale a 5th time if that Python list grows
+	// again without someone remembering to regenerate this array too.
 	static const char* companionRawAbilityNames[] = {
 		"applyDisease", "applyPoison", "bleedingShot", "concealShot",
 		"confusionShot", "eyeShot", "fastBlast", "fireAcidCone1",
@@ -178,13 +197,48 @@ void SkillManager::loadClientData() {
 		"healMind", "knockdownFire", "mindShot2", "sniperShot",
 		"sprayShot", "startleShot1", "startleShot2", "strafeShot1",
 		"strafeShot2", "surpriseShot", "torsoShot", "underHandShot",
-		"healDamage", "healWound", "tendWound", "tendDamage",
-		"diagnose", "medicalForage", "harvestCorpse", "startDance",
-		"stopDance", "startMusic", "stopMusic", "sample",
-		"survey", "warcry1", "intimidate1", "berserk1",
-		"taunt", "polearmLunge1", "unarmedLunge1", "melee1hLunge1",
-		"melee2hLunge1", "centerOfBeing", "pointBlankArea1", "pointBlankSingle1",
-		"overchargeShot1",
+		"actionShot1", "actionShot2", "aim", "berserk2",
+		"bodyShot1", "bodyShot2", "bodyShot3", "boostmorale",
+		"burstShot1", "burstShot2", "chargeShot1", "chargeShot2",
+		"cripplingShot", "cureDisease", "curePoison", "dazzle",
+		"disarmingShot1", "disarmingShot2", "diveShot", "doubleTap",
+		"dragIncapacitatedPlayer", "extinguishFire", "fanShot", "feignDeath",
+		"firstAid", "forage", "forceOfWill", "fullAutoArea1",
+		"fullAutoArea2", "fullAutoSingle1", "fullAutoSingle2", "headShot1",
+		"headShot2", "healEnhance", "healState", "healthShot1",
+		"healthShot2", "intimidate2", "kipUpShot", "lastDitch",
+		"legShot1", "legShot2", "legShot3", "lowBlow",
+		"maskscent", "meditate", "melee1hBlindHit1", "melee1hBlindHit2",
+		"melee1hBodyHit1", "melee1hBodyHit2", "melee1hBodyHit3", "melee1hDizzyHit1",
+		"melee1hDizzyHit2", "melee1hHealthHit1", "melee1hHealthHit2", "melee1hHit1",
+		"melee1hHit2", "melee1hHit3", "melee1hLunge2", "melee1hScatterHit1",
+		"melee1hScatterHit2", "melee1hSpinAttack1", "melee1hSpinAttack2", "melee2hArea1",
+		"melee2hArea2", "melee2hArea3", "melee2hHeadHit1", "melee2hHeadHit2",
+		"melee2hHeadHit3", "melee2hHit1", "melee2hHit2", "melee2hHit3",
+		"melee2hLunge2", "melee2hMindHit1", "melee2hMindHit2", "melee2hSpinAttack1",
+		"melee2hSpinAttack2", "melee2hSweep1", "melee2hSweep2", "mindShot1",
+		"multiTargetPistolShot", "overChargeShot2", "panicShot", "pistolMeleeDefense1",
+		"pistolMeleeDefense2", "pointBlankArea2", "pointBlankSingle2", "polearmActionHit1",
+		"polearmActionHit2", "polearmArea1", "polearmArea2", "polearmHit1",
+		"polearmHit2", "polearmHit3", "polearmLegHit1", "polearmLegHit2",
+		"polearmLegHit3", "polearmLunge2", "polearmSpinAttack1", "polearmSpinAttack2",
+		"polearmStun1", "polearmStun2", "polearmSweep1", "polearmSweep2",
+		"powerBoost", "quickHeal", "rally", "retreat",
+		"revivePlayer", "rollShot", "scatterShot1", "scatterShot2",
+		"steadyaim", "stoppingShot", "suppressionFire1", "suppressionFire2",
+		"takeCover", "threatenShot", "tumbleToKneeling", "tumbleToProne",
+		"tumbleToStanding", "unarmedBlind1", "unarmedBodyHit1", "unarmedCombo1",
+		"unarmedCombo2", "unarmedDizzy1", "unarmedHeadHit1", "unarmedHit1",
+		"unarmedHit2", "unarmedHit3", "unarmedKnockdown1", "unarmedKnockdown2",
+		"unarmedLegHit1", "unarmedLunge2", "unarmedSpinAttack1", "unarmedSpinAttack2",
+		"unarmedStun1", "volleyFire", "warcry2", "warningShot",
+		"wildShot1", "wildShot2", "healDamage", "healWound",
+		"tendWound", "tendDamage", "diagnose", "medicalForage",
+		"harvestCorpse", "startDance", "stopDance", "startMusic",
+		"stopMusic", "sample", "survey", "warcry1",
+		"intimidate1", "berserk1", "taunt", "polearmLunge1",
+		"unarmedLunge1", "melee1hLunge1", "melee2hLunge1", "centerOfBeing",
+		"pointBlankArea1", "pointBlankSingle1", "overchargeShot1",
 	};
 
 	for (int ci = 0; ci < (int) (sizeof(companionRawAbilityNames) / sizeof(companionRawAbilityNames[0])); ++ci) {

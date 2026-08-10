@@ -14,6 +14,7 @@
 #include "server/zone/managers/objectcontroller/ObjectController.h"
 #include "server/zone/ZoneServer.h"
 #include "server/zone/objects/scene/SceneObject.h"
+#include "server/zone/objects/scene/SceneObjectType.h" // 2026-08-10, seat-search: SceneObjectType::FURNITURE
 #include "server/zone/objects/scene/TransferErrorCode.h"
 #include "server/zone/objects/tangible/TangibleObject.h"
 #include "server/zone/objects/tangible/weapon/WeaponObject.h"
@@ -36,6 +37,10 @@
 #include "server/zone/managers/companion/CompanionGearExchangeManager.h"
 #include "server/zone/objects/cell/CellObject.h"
 #include "server/zone/Zone.h"
+// COMPANION_TAXI_CHAIN_2026_08_07 -- getWaypointListSize()/getWaypoint() and
+// the mission_bag scan below need these two; see collectOwnerPlanetWaypointIds().
+#include "server/zone/objects/waypoint/WaypointObject.h"
+#include "server/zone/objects/mission/MissionObject.h"
 #include "templates/params/creature/CreatureAttribute.h"
 #include "templates/params/creature/CreatureState.h"
 // genesis port: no PlayerArrangement enum on this base; MountCommand.h:89
@@ -150,6 +155,25 @@
 // tightened all four behaviors at once instead of just the live driving
 // catch-up pace below.
 #define COMPANION_TAXI_CATCHUP_TRIGGER_DISTANCE_SQ 400.0f // 20m, squared
+
+// Companion System (2026-08-10, per Nick: "my companion goes through
+// walls" when catching up at speed after taking a taxi into a city, plus
+// his follow-up "lets do [the tighter city leash] as well"). Both the taxi
+// driver's own leash/catch-up pacing AND the plain-FOLLOW keep-up boost
+// (see runKeepUpTick() below) now check isNearDenseBuildings() every tick
+// and swap to these tighter numbers only while near real building
+// clusters -- open-terrain pacing is completely untouched, since that's
+// not where the clipping was reported. Chosen deliberately smaller than
+// the existing 90m/50m taxi leash pair and the keep-up's 1.8x/25m/10m
+// triple, not replacing them outright, so a normal empty-terrain taxi
+// ride or open-desert follow keeps its existing proven pace.
+#define COMPANION_TAXI_CITY_LEASH_DISTANCE_SQ 900.0f // 30m, squared -- trips the crawl-and-wait sooner near buildings
+#define COMPANION_TAXI_CITY_RESUME_DISTANCE_SQ 225.0f // 15m, squared
+#define COMPANION_TAXI_CITY_CATCHUP_MULTIPLIER 1.05f // was COMPANION_TAXI_CATCHUP_MULTIPLIER's 1.2x
+#define COMPANION_KEEPUP_CITY_BOOST_MULTIPLIER 1.15f // was the plain-FOLLOW keep-up's flat 1.8x
+#define COMPANION_KEEPUP_CITY_LEASH_DISTANCE_SQ 900.0f // 30m, squared -- beyond this near buildings, CRAWL (don't rush) and wait
+#define COMPANION_KEEPUP_CITY_RESUME_DISTANCE_SQ 225.0f // 15m, squared
+#define COMPANION_KEEPUP_CITY_CRAWL_MULTIPLIER 0.6f // slow, deliberate pace instead of a boosted rush through tight geometry
 
 namespace {
 
@@ -1586,6 +1610,83 @@ void CompanionObjectImplementation::unequipItemToInventory(TangibleObject* item,
 	}, "CompanionManualUnequipLambda");
 }
 
+// COMPANION_TAXI_CHAIN_2026_08_07 -- shared by startTaxiRide() (snapshot at
+// departure) and updateTaxiTick() (rescan on arrival) so a newly-appeared
+// waypoint (e.g. a "Closest Group Mission" waypoint that only exists once
+// the owner gets near the first one) can be told apart from every waypoint
+// that already existed before the ride began. Per user request (2026-08-07):
+// "it needs to automatically pick it once it shows up and drive to it
+// without having the user pick the new closest group waypoint."
+//
+// Mirrors CompanionDialogMenuSuiCallback.h's taxi-picker scan exactly (same
+// two sources: the owner's personal datapad waypoints, plus each active
+// mission's own waypointToMission) so "what the picker would show" and
+// "what auto-chaining sees" never drift apart. Both waypoint kinds are
+// persisted objects (WaypointObject, and MissionObject::waypointToMission),
+// so their objectIDs are stable across calls and safe to snapshot/diff.
+// COMPANION_TAXI_CHAIN_TYPE_FIX_2026_08_07 -- takes Vector<uint64> (= Vector<unsigned
+// long long> on this engine, see platform.h), NOT Vector<unsigned long> -- a distinct
+// C++ type despite being the same size on this platform. Matters here specifically
+// because taxiSeenWaypointIds (the caller's storage, declared `unsigned long` in the
+// IDL) is codegen'd as Vector<unsigned long long> -- the IDL compiler's TypeInfo
+// primitive-serialization specializations are keyed to the fixed-width typedef, not
+// the bare type, so a same-named-but-different Vector<unsigned long> instantiation
+// (what this parameter used to be) doesn't share it and fails to compile the moment
+// any Vector<unsigned long> local variable is declared anywhere in this file (its
+// inherited toBinaryStream()/parseFromBinaryStream() are virtual-instantiated as
+// part of the class, and only the long-long specialization exists). First live build
+// after this feature landed failed with exactly that error.
+static void collectOwnerPlanetWaypoints(CreatureObject* owner, uint32 planetCRC, Vector<uint64>& objectIds, Vector<float>* outX, Vector<float>* outY) {
+	if (owner == nullptr) {
+		return;
+	}
+
+	PlayerObject* ghost = owner->getPlayerObject();
+
+	if (ghost != nullptr) {
+		for (int i = 0; i < ghost->getWaypointListSize(); ++i) {
+			WaypointObject* waypoint = ghost->getWaypoint(i);
+
+			if (waypoint == nullptr || waypoint->getPlanetCRC() != planetCRC) {
+				continue;
+			}
+
+			objectIds.add(waypoint->getObjectID());
+
+			if (outX != nullptr && outY != nullptr) {
+				outX->add(waypoint->getPositionX());
+				outY->add(waypoint->getPositionY());
+			}
+		}
+	}
+
+	ManagedReference<SceneObject*> missionBag = owner->getSlottedObject("mission_bag");
+
+	if (missionBag != nullptr) {
+		for (int i = 0; i < missionBag->getContainerObjectsSize(); ++i) {
+			ManagedReference<SceneObject*> obj = missionBag->getContainerObject(i);
+
+			if (obj == nullptr || !obj->isMissionObject()) {
+				continue;
+			}
+
+			MissionObject* mission = cast<MissionObject*>(obj.get());
+			WaypointObject* missionWaypoint = mission->getWaypointToMission();
+
+			if (missionWaypoint == nullptr || missionWaypoint->getPlanetCRC() != planetCRC) {
+				continue;
+			}
+
+			objectIds.add(missionWaypoint->getObjectID());
+
+			if (outX != nullptr && outY != nullptr) {
+				outX->add(missionWaypoint->getPositionX());
+				outY->add(missionWaypoint->getPositionY());
+			}
+		}
+	}
+}
+
 // Companion Taxi / Vehicle Mimicry (2026-07-15) -- see CompanionObject.idl's
 // method doc comments and NOTES.md's "vehicle mimicry redesign" entry for
 // the design and the reasoning behind reverting the real-mount experiment.
@@ -1947,6 +2048,17 @@ bool CompanionObjectImplementation::startTaxiRide(CreatureObject* owner, float d
 	taxiActive = true;
 	taxiHasDestination = hasDestination;
 	taxiOwnerWasMounted = owner->isRidingMount();
+
+	// COMPANION_TAXI_CHAIN_2026_08_07 -- snapshot the owner's CURRENT
+	// on-planet waypoints (personal datapad + active missions) so
+	// updateTaxiTick()'s arrival check can recognize a genuinely NEW one
+	// that appears mid-ride (see collectOwnerPlanetWaypoints()'s doc
+	// comment) and auto-chain to it instead of stopping. Escort rides
+	// (!hasDestination) never reach the chaining check, but the snapshot
+	// is cheap and harmless to take either way -- simpler than threading
+	// an extra branch through here.
+	taxiSeenWaypointIds.removeAll();
+	collectOwnerPlanetWaypoints(owner, zone->getZoneCRC(), taxiSeenWaypointIds, nullptr, nullptr);
 
 	// Auto-target the DRIVER the moment the ride starts (2026-07-16: was the
 	// companion, but the companion is a RIDER child now -- targeting the
@@ -2378,12 +2490,25 @@ void CompanionObjectImplementation::updateTaxiTick() {
 
 			bool driverAhead = driverDestSq <= ownerDestSq;
 
+			// Companion System (2026-08-10, per Nick: "my companion goes
+			// through walls" catching up in a city). Evaluated fresh every
+			// 200ms tick off the DRIVER's own position (it's the one doing
+			// the navigating) -- see isNearDenseBuildings()'s doc comment.
+			// A tighter leash/catch-up pair is swapped in below only while
+			// true; open terrain keeps the original 90m/50m/1.2x numbers.
+			bool nearCity = isNearDenseBuildings(zone, driverCreo->getPositionX(), driverCreo->getPositionY());
+			float leashDistSq = nearCity ? COMPANION_TAXI_CITY_LEASH_DISTANCE_SQ : COMPANION_TAXI_LEASH_DISTANCE_SQ;
+			float leashResumeDistSq = nearCity ? COMPANION_TAXI_CITY_RESUME_DISTANCE_SQ : COMPANION_TAXI_RESUME_DISTANCE_SQ;
+			float catchupMultiplier = nearCity ? COMPANION_TAXI_CITY_CATCHUP_MULTIPLIER : COMPANION_TAXI_CATCHUP_MULTIPLIER;
+
 			if (taxiThrottled) {
-				// Paused at the 85m leash -- wait for the owner.
-				if (ownerDistSq <= COMPANION_TAXI_RESUME_DISTANCE_SQ) {
-					// COMPANION_TAXI_PACING_2026_08_04 -- owner back inside 50m,
-					// so return to full speed. The driver never stopped and never
-					// went OBLIVIOUS, so this only has to undo the crawl.
+				// Paused at the leash (90m in the open, 30m near buildings) -- wait for the owner.
+				if (ownerDistSq <= leashResumeDistSq) {
+					// COMPANION_TAXI_PACING_2026_08_04 -- owner back inside the
+					// resume distance (50m open terrain, 15m near buildings, see
+					// nearCity above), so return to full speed. The driver never
+					// stopped and never went OBLIVIOUS, so this only has to undo
+					// the crawl.
 					taxiThrottled = false;
 
 					Locker driverLocker(driverCreo, _this.getReferenceUnsafeStaticCast());
@@ -2409,9 +2534,11 @@ void CompanionObjectImplementation::updateTaxiTick() {
 						rideOwner->sendSystemMessage("Your companion drives on.");
 					}
 				}
-			} else if (driverAhead && ownerDistSq > COMPANION_TAXI_LEASH_DISTANCE_SQ) {
-				// COMPANION_TAXI_PACING_2026_08_04 -- 90m leash tripped: SLOW
-				// DOWN, do not stop, until the owner is back inside 50m.
+			} else if (driverAhead && ownerDistSq > leashDistSq) {
+				// COMPANION_TAXI_PACING_2026_08_04 -- leash tripped (90m open
+				// terrain, 30m near buildings per nearCity above): SLOW DOWN,
+				// do not stop, until the owner is back inside the resume
+				// distance.
 				//
 				// This used to setCompanionState(STAY) + setOblivious(), and
 				// MovePetBase:checkConditions refuses to move at all while
@@ -2459,8 +2586,8 @@ void CompanionObjectImplementation::updateTaxiTick() {
 				float targetWalk = taxiBoostedWalkSpeed;
 
 				if (!driverAhead && ownerDistSq > COMPANION_TAXI_CATCHUP_TRIGGER_DISTANCE_SQ) {
-					targetRun *= COMPANION_TAXI_CATCHUP_MULTIPLIER;
-					targetWalk *= COMPANION_TAXI_CATCHUP_MULTIPLIER;
+					targetRun *= catchupMultiplier;
+					targetWalk *= catchupMultiplier;
 				}
 
 				if (targetRun > 0.f && driverCreo->getRunSpeed() != targetRun) {
@@ -2482,6 +2609,52 @@ void CompanionObjectImplementation::updateTaxiTick() {
 		float dy = driverCreo->getPositionY() - taxiDestY;
 
 		if ((dx * dx + dy * dy) <= COMPANION_TAXI_ARRIVAL_RADIUS_SQ) {
+			// COMPANION_TAXI_CHAIN_2026_08_07 -- per user request: "we need
+			// the taxi to be able to goto the mission waypoint, and then the
+			// nearest group mission all in one shot... it needs to
+			// automatically pick it once it shows up and drive to it
+			// without having the user pick the new closest group
+			// waypoint." Before settling into the normal arrival-wait
+			// below, rescan the owner's waypoints and diff against the
+			// snapshot taken at departure (startTaxiRide()). Exactly ONE
+			// new waypoint (e.g. a "Closest Group Mission" waypoint that
+			// only appears once the owner nears the first stop) means
+			// re-target and keep driving; zero or more than one is
+			// ambiguous and falls back to the existing stop-and-wait
+			// behavior below rather than guessing which one the player
+			// wants.
+			if (taxiHasDestination && rideOwner != nullptr) {
+				uint32 planetCRC = zone->getZoneCRC();
+				Vector<uint64> currentWaypointIds;
+				Vector<float> currentWaypointX;
+				Vector<float> currentWaypointY;
+
+				collectOwnerPlanetWaypoints(rideOwner, planetCRC, currentWaypointIds, &currentWaypointX, &currentWaypointY);
+
+				int newWaypointIndex = -1;
+				int newWaypointCount = 0;
+
+				for (int i = 0; i < currentWaypointIds.size(); ++i) {
+					if (!taxiSeenWaypointIds.contains(currentWaypointIds.get(i))) {
+						if (newWaypointCount == 0) {
+							newWaypointIndex = i;
+						}
+
+						++newWaypointCount;
+					}
+				}
+
+				if (newWaypointCount == 1 && addTaxiWaypoint(currentWaypointX.get(newWaypointIndex), currentWaypointY.get(newWaypointIndex))) {
+					taxiSeenWaypointIds.add(currentWaypointIds.get(newWaypointIndex));
+
+					rideOwner->sendSystemMessage("A new waypoint has appeared -- your companion is taking you there.");
+
+					scheduleCompanionTaxiTick(_this.getReferenceUnsafeStaticCast());
+					CompanionGearExchangeManager::scheduleGearCheckTick(_this.getReferenceUnsafeStaticCast());
+					return;
+				}
+			}
+
 			if (rideOwner != nullptr) {
 				rideOwner->sendSystemMessage("Your companion has arrived at the waypoint and is waiting for you.");
 			}
@@ -2893,7 +3066,24 @@ namespace {
 		ManagedReference<PlayerManager*> playerManager = zoneServer->getPlayerManager();
 
 		if (playerManager != nullptr) {
-			playerManager->awardExperience(owner, "scout", creature->getLevel() * 5 + 19, true);
+			int scoutXp = creature->getLevel() * 5 + 19;
+
+			playerManager->awardExperience(owner, "scout", scoutXp, true);
+
+			// COMPANION_HARVEST_XP_PARITY_2026_08_07 -- awardExperience() above
+			// only ever credits the OWNER: it looks up player->getPlayerObject()
+			// internally and silently returns 0 for a CompanionObject, which has
+			// no PlayerObject ghost (same root cause as the earlier
+			// COMPANION_XP_PARITY_2026_08_05 combat_general gap). The owner
+			// credit above is correct and intentional (see this function's own
+			// doc comment -- "credited to the OWNER"), but Scout is also a
+			// companion-trainable skill (CompanionSkillTrainer.cpp's
+			// outdoors_scout_novice and up), so the ranger companion doing the
+			// harvesting needs its OWN "scout" xp toward its own tier progress
+			// too. Live report: "my scout companion isnt getting scout xp when
+			// harvesting creatures." Same scaleXpForCompanion() + addExperience()
+			// pattern as the combat_general fix.
+			ranger->addExperience("scout", playerManager->scaleXpForCompanion("scout", scoutXp));
 		}
 
 		creature->addAlreadyHarvested(owner);
@@ -3098,36 +3288,26 @@ namespace {
 					}
 				}
 
-				// Corpse cash (2026-07-18 follow-up, per user request) --
-				// identical idiom to PlayerManagerImplementation::lootAll()
-				// (force_luck bonus, NPCLOOTCLAIM transaction, coin-loot
-				// prose message), credited STRAIGHT to the owner (credits
-				// are weightless -- no reason to make them ride in the
-				// companion's bag).
+				// Corpse cash (2026-07-18 follow-up, per user request).
+				// Deferred to delivery time (2026-08-10 follow-up) -- credits
+				// used to land in the owner's account immediately on kill,
+				// while items rode home in the companion's bag until it
+				// walked back. That mismatch is the bug: cash is now just
+				// tallied here and actually paid out in the Delivery phase
+				// below, at the exact same moment items are handed over, so
+				// both arrive together only once the companion is physically
+				// back with the owner.
 				int cashCredits = corpse->getCashCredits();
 
 				if (cashCredits > 0) {
-					Locker ownerLocker(owner, companion);
-
 					int luck = owner->getSkillMod("force_luck");
 
 					if (luck > 0) {
 						cashCredits += (cashCredits * luck) / 20;
 					}
 
-					{
-						TransactionLog trx(corpse, owner, TrxCode::NPCLOOTCLAIM, cashCredits, true);
-						trx.addState("srcDisplayedName", corpse->getDisplayedName());
-						owner->addCashCredits(cashCredits, true);
-						corpse->clearCashCredits();
-					}
-
+					corpse->clearCashCredits();
 					state->lootedCash += cashCredits;
-
-					StringIdChatParameter param("base_player", "prose_coin_loot"); // You loot %DI credits from %TT.
-					param.setDI(cashCredits);
-					param.setTT(corpse->getObjectID());
-					owner->sendSystemMessage(param);
 				}
 
 				corpse->notifyObservers(ObserverEventType::LOOTCREATURE, owner, 0);
@@ -3197,11 +3377,13 @@ namespace {
 		}
 
 		// ---- Delivery phase ----------------------------------------------
-		if (state->lootedItemIDs.size() == 0) {
-			if (state->lootedCash > 0) {
-				companionSweepSay(companion, "Picked up " + String::valueOf(state->lootedCash) + " credits for you!");
-			}
-
+		// 2026-08-10: cash no longer skips the walk-back -- it used to be
+		// credited on the spot at kill time (see corpse-cash block above),
+		// so a cash-only haul short-circuited straight to endSweep() here
+		// with just a chat line. Now cash rides along with items and isn't
+		// paid out until the companion is actually back in reach, so this
+		// early exit only fires when there is truly nothing to deliver.
+		if (state->lootedItemIDs.size() == 0 && state->lootedCash == 0) {
 			endSweep(true);
 			return;
 		}
@@ -3273,6 +3455,22 @@ namespace {
 					companion->broadcastObject(itemObj.castTo<TangibleObject*>(), true);
 				}
 			}
+		}
+
+		// Pay out the tallied cash now -- the companion is confirmed within
+		// LOOT_SWEEP_REACH of the owner at this point (see the distance
+		// check above), so this is the delivery-time equivalent of the old
+		// immediate-credit block that used to run back at the corpse.
+		if (state->lootedCash > 0) {
+			Locker ownerLocker(owner, companion);
+
+			TransactionLog trx(companion, owner, TrxCode::NPCLOOTCLAIM, state->lootedCash, true);
+			owner->addCashCredits(state->lootedCash, true);
+
+			StringIdChatParameter param("base_player", "prose_coin_loot"); // You loot %DI credits from %TT.
+			param.setDI(state->lootedCash);
+			param.setTT(companion->getObjectID());
+			owner->sendSystemMessage(param);
 		}
 
 		if (delivered > 0 || state->lootedCash > 0) {
@@ -4367,6 +4565,27 @@ namespace {
 		return map;
 	}
 
+	/** 2026-08-10, per Nick: "the companion never asked me to train him" --
+	 * companion objectID -> consecutive ~2s keep-up ticks the training
+	 * walkup was blocked SPECIFICALLY by isInCombat() while a skill was
+	 * genuinely 100%+ ready to offer. isInCombat() is the same
+	 * defenderList-driven bitmask that runPostCombatSweepCheck() already
+	 * documents getting stuck true forever for a bystander/stale-defender
+	 * companion (2026-07-29 fix, combatStuckPollCount) -- but that recovery
+	 * lives entirely inside the post-combat loot sweep, a SEPARATE poll
+	 * loop this walkup tick shares no state with. A companion stuck this
+	 * way had no recovery at all here: tryInitiateSkillTrainWalkup() just
+	 * bailed at isCompanionBusyForTraining() every single tick, forever,
+	 * with the ready skill sitting at 100% and never offered -- confirmed
+	 * live (Carbines II sat ready at have=10000/need=5000 and was never
+	 * offered after an earlier fight). Same ~40-poll threshold convention
+	 * as combatStuckPollCount (this tick is also ~2s, so ~80s) before
+	 * force-clearing via CombatManager::forcePeace() and proceeding. */
+	VectorMap<uint64, int>& trainingStuckCombatPolls() {
+		static VectorMap<uint64, int> map;
+		return map;
+	}
+
 	/**
 	 * Fires once, at (or after) this companion's reserved stagger slot.
 	 * Re-verifies EVERYTHING under lock at fire time (zone/dead, still
@@ -4484,6 +4703,14 @@ namespace {
 	 * (dx*dx+dy*dy <= 100.0f, i.e. 10m) as runIdleEmoteTick()'s arrival
 	 * greet -- not a shared function call (that tick is oriented
 	 * around emotes, not a walk state machine), but the identical
+	 * idiom, deliberately not reinvented.
+	 *
+	 * 2026-08-10: closed off this doc comment, which had never actually
+	 * been terminated before the next function's own "/**" opened right
+	 * inside it (harmless -Wcomment warning, pre-existing, unrelated to
+	 * this session's changes -- just cleaning it up while in the area).
+	 */
+
 	/**
 	 * Companion System (2026-08-07, per user request "as soon as the user
 	 * and companions are out of battle, they walk up to the owner and
@@ -4526,9 +4753,38 @@ namespace {
 			}
 		}
 
+		// Stuck-combat recovery -- see trainingStuckCombatPolls()'s doc
+		// comment just above findReadyUntrainedSkill() for the full
+		// rationale. Only probe/intervene when isInCombat() is the SOLE
+		// reason isCompanionBusyForTraining() would say busy (not dead,
+		// not entertaining, not fleeing, not craft-theater-busy) -- a
+		// companion genuinely busy for any other reason is left alone.
+		auto& stuckPolls = trainingStuckCombatPolls();
+
+		if (companion->getZone() != nullptr && !companion->isDead() && !companion->isIncapacitated()
+				&& companion->isInCombat() && !companion->isEntertaining() && companion->getFleeingUntil() == 0) {
+			String probeSkill;
+
+			if (findReadyUntrainedSkill(companion, owner, probeSkill)) {
+				int polls = stuckPolls.contains(companionID) ? stuckPolls.get(companionID) : 0;
+				++polls;
+
+				if (polls > 40) {
+					CombatManager::instance()->forcePeace(companion);
+					stuckPolls.drop(companionID);
+				} else {
+					stuckPolls.drop(companionID);
+					stuckPolls.put(companionID, polls);
+					return false;
+				}
+			}
+		}
+
 		if (isCompanionBusyForTraining(companion)) {
 			return false;
 		}
+
+		stuckPolls.drop(companionID);
 
 		String readySkill;
 
@@ -4613,6 +4869,239 @@ namespace {
 	 * (~20s) self-rescheduling task started alongside the keep-up monitor
 	 * (see startKeepUpMonitor() below), not from the 2000ms keep-up tick.
 	 */
+
+	/**
+	 * Companion System (2026-08-10, per Nick: "my companion goes through
+	 * walls" when catching up at a boosted speed after taking a taxi into
+	 * a city). Cheap proxy for "is this point on a city street, not open
+	 * terrain" -- 2+ real BuildingObjects within DENSE_BUILDING_SCAN_RANGE.
+	 * Deliberately does NOT use CityManager/CityRegion: that system tracks
+	 * player-FOUNDED cities via a mayor's CityRegion and would miss every
+	 * NPC-designed city (Coronet, Theed, Mos Eisley, ...) entirely. Reuses
+	 * the same Zone::getInRangeObjects() scan idiom as findNearbySeat()/
+	 * the loot sweep, just counting buildings instead of furniture/corpses.
+	 * Used by both the taxi driver's pacing tick and the plain-FOLLOW
+	 * keep-up boost below to cap catch-up speed (and, for keep-up, crawl
+	 * instead of rush) near dense geometry -- open-terrain pacing is
+	 * untouched, since that's not where the clipping was reported.
+	 */
+	bool isNearDenseBuildings(Zone* zone, float x, float y) const {
+		if (zone == nullptr) {
+			return false;
+		}
+
+		constexpr float DENSE_BUILDING_SCAN_RANGE = 25.f;
+		constexpr int DENSE_BUILDING_THRESHOLD = 2;
+
+		SortedVector<ManagedReference<QuadTreeEntry*>> nearbyObjects;
+		zone->getInRangeObjects(x, y, DENSE_BUILDING_SCAN_RANGE, &nearbyObjects, true, true);
+
+		int buildingCount = 0;
+
+		for (int i = 0; i < nearbyObjects.size(); ++i) {
+			SceneObject* scno = cast<SceneObject*>(nearbyObjects.get(i).get());
+
+			if (scno != nullptr && scno->isBuildingObject()) {
+				++buildingCount;
+
+				if (buildingCount >= DENSE_BUILDING_THRESHOLD) {
+					return true;
+				}
+			}
+		}
+
+		return false;
+	}
+
+	/**
+	 * Companion System (2026-08-10, per Nick: "have them find a seat if
+	 * there is one within 15 meters ... search for a seat instead of
+	 * sitting on the floor"). There is no dedicated "this is a chair"
+	 * flag on the shared object template -- confirmed against this
+	 * deployment's own furniture (Small/Large Cantina Seat, Lawn Chair
+	 * x3: all SceneObjectType::FURNITURE, all with "chair" or "seat" in
+	 * their template basename: shared_frn_tatt_chair_cantina_seat[_2].iff,
+	 * shared_camp_chair_s1/s2/s3.iff). Same "no clean data flag, match
+	 * the template naming convention instead" idiom
+	 * CompanionSkillTrainer::isAutoGrantable() already uses for an
+	 * analogous problem. Deliberately excludes non-seat furniture (tables,
+	 * lamps, shelves) that also carry SceneObjectType::FURNITURE but never
+	 * this naming pattern.
+	 */
+	bool isSeatFurniture(SceneObject* scno) const {
+		if (scno == nullptr || scno->getGameObjectType() != SceneObjectType::FURNITURE) {
+			return false;
+		}
+
+		SharedObjectTemplate* objTemplate = scno->getObjectTemplate();
+
+		if (objTemplate == nullptr) {
+			return false;
+		}
+
+		String path = objTemplate->getFullTemplateString().toLowerCase();
+
+		static const char* const seatKeywords[] = { "chair", "seat", "couch", "bench", "stool", "sofa", "settee" };
+
+		for (const char* keyword : seatKeywords) {
+			if (path.indexOf(keyword) >= 0) {
+				return true;
+			}
+		}
+
+		return false;
+	}
+
+	/** Nearest qualifying seat within 15m, if any -- same
+	 * Zone::getInRangeObjects() scan idiom the loot sweep already uses
+	 * for corpses (LOOT_SWEEP_SCAN_RANGE), just a tighter radius and a
+	 * furniture filter instead of a corpse filter. */
+	bool findNearbySeat(CompanionObject* companion, uint64& outObjectID) const {
+		if (companion == nullptr) {
+			return false;
+		}
+
+		Zone* zone = companion->getZone();
+
+		if (zone == nullptr) {
+			return false;
+		}
+
+		constexpr float SEAT_SEARCH_RANGE = 15.f;
+
+		SortedVector<ManagedReference<QuadTreeEntry*>> nearbyObjects;
+		zone->getInRangeObjects(companion->getPositionX(), companion->getPositionY(), SEAT_SEARCH_RANGE, &nearbyObjects, true, true);
+
+		SceneObject* nearestSeat = nullptr;
+		float nearestDistSq = 0.f;
+
+		for (int i = 0; i < nearbyObjects.size(); ++i) {
+			SceneObject* scno = cast<SceneObject*>(nearbyObjects.get(i).get());
+
+			if (!isSeatFurniture(scno)) {
+				continue;
+			}
+
+			float dx = scno->getPositionX() - companion->getPositionX();
+			float dy = scno->getPositionY() - companion->getPositionY();
+			float distSq = dx * dx + dy * dy;
+
+			if (nearestSeat == nullptr || distSq < nearestDistSq) {
+				nearestSeat = scno;
+				nearestDistSq = distSq;
+			}
+		}
+
+		if (nearestSeat == nullptr) {
+			return false;
+		}
+
+		outObjectID = nearestSeat->getObjectID();
+		return true;
+	}
+
+	/** Companion objectID -> chosen seat's objectID while walking over to
+	 * it (0/absent == not seat-walking). Set by runIdleEmoteTick()'s sit
+	 * roll, managed and cleared by runSeatWalkTick() every ~2s keep-up
+	 * tick -- same two-part initiate/manage split as
+	 * tryInitiateSkillTrainWalkup()/runSkillTrainWalkupTick(), and the
+	 * same reason: the ~20s idle-emote tick is too coarse to notice
+	 * arrival or a busy-abandon promptly. */
+	VectorMap<uint64, uint64>& seatWalkTargetID() {
+		static VectorMap<uint64, uint64> map;
+		return map;
+	}
+
+	/** Companion objectID -> 1 iff WE (the idle-emote/seat-walk logic)
+	 * are the reason this companion is currently sitting -- hoisted out
+	 * of runIdleEmoteTick() into a shared class-level accessor (same
+	 * pattern as seatWalkTargetID() just above) so BOTH runIdleEmoteTick()
+	 * (immediate floor-sit path, and the "stand back up when busy" check)
+	 * AND runSeatWalkTick() (walked-to-a-seat arrival path) mark/read the
+	 * exact same underlying state. Before this, runSeatWalkTick() had no
+	 * way to tell runIdleEmoteTick() "I just sat this companion down",
+	 * so a chair-seated companion was invisible to the stand-up-when-busy
+	 * logic. */
+	VectorMap<uint64, uint64>& idleSittingCompanionsMap() {
+		static VectorMap<uint64, uint64> map;
+		return map;
+	}
+
+	/**
+	 * Runs every ~2000ms keep-up tick. Only manages an already-chosen
+	 * seat walk (seatWalkTargetID() has an entry for this companion); the
+	 * choice itself is made in runIdleEmoteTick()'s sit roll. Abandons
+	 * cleanly (same idiom as runSkillTrainWalkupTick()'s busy-abandon) if
+	 * the companion becomes busy, the seat vanishes, or the walk drags on
+	 * too long -- never fights the AI combat/craft/dance system for
+	 * movement control.
+	 */
+	void runSeatWalkTick(CompanionObject* companion, CreatureObject* owner) {
+		if (companion == nullptr || owner == nullptr) {
+			return;
+		}
+
+		auto& targets = seatWalkTargetID();
+		uint64 companionID = companion->getObjectID();
+
+		if (!targets.contains(companionID)) {
+			return; // nothing pending
+		}
+
+		uint64 seatID = targets.get(companionID);
+
+		if (companion->getZone() == nullptr || companion->isDead() || companion->isIncapacitated()
+				|| companion->isInCombat() || companion->isEntertaining() || companion->isTaxiActive()
+				|| companion->isLootSweepActive() || isCraftTheaterBusy(owner, companion)) {
+			targets.drop(companionID);
+			companion->clearPatrolPoints();
+			restoreStandingPosture(companion, owner);
+			return;
+		}
+
+		ManagedReference<SceneObject*> seatObj = companion->getZoneServer()->getObject(seatID);
+		SceneObject* seat = seatObj.get();
+
+		if (seat == nullptr || seat->getZone() == nullptr) {
+			targets.drop(companionID);
+			companion->clearPatrolPoints();
+			restoreStandingPosture(companion, owner);
+			return;
+		}
+
+		constexpr float SEAT_ARRIVAL_REACH = 2.f;
+
+		if (companion->getDistanceTo(seat) > SEAT_ARRIVAL_REACH) {
+			companion->setCompanionState(CompanionObject::PATROL);
+			companion->setFollowObject(nullptr);
+
+			if (companion->getPatrolPointSize() == 0) {
+				PatrolPoint point(seat->getPositionX(), seat->getPositionZ(), seat->getPositionY());
+				// setFollowState() calls clearPatrolPoints(), so the state
+				// must be set BEFORE the point is queued -- same ordering
+				// as the loot sweep's own corpse-walk (runSweepStep()).
+				companion->setFollowState(AiAgent::PATROLLING);
+				companion->addPatrolPoint(point);
+			}
+
+			return; // still walking -- picked back up next tick
+		}
+
+		// Arrived, close enough -- sit. Approximate (no per-seat mesh slot
+		// data is available server-side the way the client resolves one
+		// when a player actually clicks a chair), but close enough to read
+		// as "found a seat" rather than sitting on open floor.
+		targets.drop(companionID);
+		companion->clearPatrolPoints();
+		companion->setPosture(CreaturePosture::SITTING, true);
+
+		// Shared with runIdleEmoteTick() via idleSittingCompanionsMap() (see
+		// that accessor's own doc comment) so its stand-up-when-busy check
+		// recognizes a companion WE just walked over to a seat, exactly as
+		// it already recognizes an immediate floor-sit.
+		idleSittingCompanionsMap().put(companionID, (uint64) 1);
+	}
+
 	void runIdleEmoteTick(CompanionObject* companion, CreatureObject* owner) {
 		if (companion == nullptr || owner == nullptr) {
 			return;
@@ -4637,7 +5126,11 @@ namespace {
 				|| movementState == AiAgent::FLEEING
 				|| movementState == AiAgent::PATROLLING;
 
-		static VectorMap<uint64, uint64> idleSittingCompanions; // present+nonzero == WE sat this companion down
+		// Shared class-level map (idleSittingCompanionsMap(), see its doc
+		// comment near seatWalkTargetID()) -- present+nonzero == WE sat this
+		// companion down, whether by an immediate floor-sit below or via a
+		// runSeatWalkTick() seat arrival.
+		auto& idleSittingCompanions = idleSittingCompanionsMap();
 
 		bool weSatItDown = idleSittingCompanions.contains(companionID) && idleSittingCompanions.get(companionID) != 0;
 
@@ -4684,6 +5177,24 @@ namespace {
 		}
 
 		if (System::random(3) == 0) { // 1-in-4 of successful rolls: sit instead of a standing emote
+			// Companion System (2026-08-10, per Nick: "search for a seat
+			// instead of sitting on the floor... if there is a seat, or
+			// couch or any other mountable object in range of 15 meters").
+			// Prefer walking to a real chair/couch/bench within 15m over
+			// sitting in place -- initiate the walk here (the CHOICE is
+			// made on this ~20s tick) and let runSeatWalkTick(), running
+			// every ~2s from the keep-up tick, manage arrival/abandon. Only
+			// fall back to the original immediate floor-sit if nothing
+			// qualifying is nearby.
+			uint64 seatObjectID = 0;
+
+			if (findNearbySeat(companion, seatObjectID)) {
+				companion->setCompanionState(CompanionObject::PATROL);
+				companion->setFollowObject(nullptr);
+				seatWalkTargetID().put(companionID, seatObjectID);
+				return; // runSeatWalkTick() picks up the walk next keep-up tick
+			}
+
 			companion->setPosture(CreaturePosture::SITTING, true);
 			// DEFERRED (genesis port): no equivalent for AiAgent::RESTING -- companion->setMovementState(AiAgent::RESTING);
 			idleSittingCompanions.put(companionID, (uint64) 1);
@@ -4884,6 +5395,14 @@ void CompanionObjectImplementation::runKeepUpTick() {
 	tryInitiateSkillTrainWalkup(companionRef.get(), owner);
 	runSkillTrainWalkupTick(companionRef.get(), owner);
 
+	// Seat-search (2026-08-10, per Nick) -- manages an already-chosen seat
+	// walk (the CHOICE itself is made in runIdleEmoteTick()'s ~20s sit
+	// roll via seatWalkTargetID()). Same "runs every 2s keep-up tick so it
+	// can notice arrival/busy-abandon promptly" rationale as the training
+	// walkup calls just above; a no-op most ticks (returns immediately
+	// when no seat walk is pending for this companion).
+	runSeatWalkTick(companionRef.get(), owner);
+
 	// Chase movement-speed throttle (2026-07-30, per Nick: companions
 	// chasing an attack target look like they "teleport 60 meters in 2
 	// seconds" -- use the owner's own WALK speed as the companion's chase
@@ -4968,8 +5487,9 @@ void CompanionObjectImplementation::runKeepUpTick() {
 			&& !taxiActive && !isInCombat();
 
 	if (!applicable) {
-		if (keepUpBoosted) {
+		if (keepUpBoosted || keepUpCityCrawling) {
 			keepUpBoosted = false;
+			keepUpCityCrawling = false;
 
 			if (keepUpBaseRunSpeed > 0.f) {
 				setRunSpeed(keepUpBaseRunSpeed, true);
@@ -4991,29 +5511,67 @@ void CompanionObjectImplementation::runKeepUpTick() {
 	float dy = getPositionY() - ownerWorld.getY();
 	float distSq = dx * dx + dy * dy;
 
-	if (!keepUpBoosted && distSq > 625.0f) { // fell >25m behind
-		keepUpBoosted = true;
-		keepUpBaseRunSpeed = getRunSpeed();
-		keepUpBaseWalkSpeed = getWalkSpeed();
+	// Companion System (2026-08-10, per Nick: "my companion goes through
+	// walls" catching up at speed in a city, then "lets do [the tighter
+	// city leash] as well"). isNearDenseBuildings() gates a capped boost
+	// (1.15x instead of the flat 1.8x) AND, once badly behind (30m+) near
+	// buildings, a genuine CRAWL -- the companion deliberately does NOT
+	// try to rush a corner-cutting line through city geometry; it waits
+	// for the owner to close the gap instead, matching the taxi driver's
+	// own established "crawl, never a hard OBLIVIOUS stop" pattern just
+	// above. Open terrain (isNearDenseBuildings() false) keeps the exact
+	// original 1.8x/25m/10m behavior untouched -- that's not where the
+	// clipping was reported.
+	bool nearCity = isNearDenseBuildings(getZone(), getPositionX(), getPositionY());
+	bool shouldCrawl = nearCity && distSq > COMPANION_KEEPUP_CITY_LEASH_DISTANCE_SQ;
 
-		setRunSpeed(keepUpBaseRunSpeed * 1.8f, true);
-		// genesis port: dropped setWalkSpeed((keepUpBaseWalkSpeed > 0.f ? keepUpBaseWalkSpeed : keepUpBaseRunSpeed) * 1.8f, true) -- genesis's
-		// CreatureObject.idl exposes walkSpeed READ-ONLY (field :100, getWalkSpeed()
-		// :1676); setRunSpeed() (:468) is the only speed setter, and it is already
-		// called on the line(s) directly above with the matching run-speed value, so
-		// the pace change still takes effect for RUN movement. DEFERRED: walk-mode
-		// pacing cannot be tuned on this base.
-	} else if (keepUpBoosted && distSq <= 100.0f) { // caught back up to 10m
-		keepUpBoosted = false;
+	if (keepUpCityCrawling && !shouldCrawl && distSq > COMPANION_KEEPUP_CITY_RESUME_DISTANCE_SQ) {
+		// Building-density scan flickered false (edge of the cluster) or
+		// the owner is still >30m but no longer past the trigger -- keep
+		// crawling until the tighter 15m resume distance, rather than
+		// snapping straight back to a rushing boost mid-recovery.
+		shouldCrawl = true;
+	}
+
+	if (shouldCrawl) {
+		if (!keepUpCityCrawling) {
+			keepUpCityCrawling = true;
+			keepUpBoosted = false;
+			keepUpBaseRunSpeed = getRunSpeed();
+			keepUpBaseWalkSpeed = getWalkSpeed();
+		}
+
+		setRunSpeed(keepUpBaseRunSpeed * COMPANION_KEEPUP_CITY_CRAWL_MULTIPLIER, true);
+	} else if (keepUpCityCrawling) {
+		// Back within the crawl's own 15m resume distance -- drop the
+		// crawl and fall through to the normal boosted/resumed logic
+		// below, using this tick's current distance.
+		keepUpCityCrawling = false;
 
 		if (keepUpBaseRunSpeed > 0.f) {
 			setRunSpeed(keepUpBaseRunSpeed, true);
-			// genesis port: dropped setWalkSpeed(keepUpBaseWalkSpeed > 0.f ? keepUpBaseWalkSpeed : keepUpBaseRunSpeed, true) -- genesis's
-			// CreatureObject.idl exposes walkSpeed READ-ONLY (field :100, getWalkSpeed()
-			// :1676); setRunSpeed() (:468) is the only speed setter, and it is already
-			// called on the line(s) directly above with the matching run-speed value, so
-			// the pace change still takes effect for RUN movement. DEFERRED: walk-mode
-			// pacing cannot be tuned on this base.
+		}
+	}
+
+	if (!keepUpCityCrawling) {
+		if (!keepUpBoosted && distSq > 625.0f) { // fell >25m behind
+			keepUpBoosted = true;
+			keepUpBaseRunSpeed = getRunSpeed();
+			keepUpBaseWalkSpeed = getWalkSpeed();
+
+			float boostMultiplier = nearCity ? COMPANION_KEEPUP_CITY_BOOST_MULTIPLIER : 1.8f;
+			setRunSpeed(keepUpBaseRunSpeed * boostMultiplier, true);
+			// genesis port: dropped setWalkSpeed(...) -- see the identical
+			// dropped-call comment on the crawl/resume branches above;
+			// walkSpeed is read-only on this base, setRunSpeed() is the
+			// only setter and already carries the pace change for RUN
+			// movement.
+		} else if (keepUpBoosted && distSq <= 100.0f) { // caught back up to 10m
+			keepUpBoosted = false;
+
+			if (keepUpBaseRunSpeed > 0.f) {
+				setRunSpeed(keepUpBaseRunSpeed, true);
+			}
 		}
 	}
 

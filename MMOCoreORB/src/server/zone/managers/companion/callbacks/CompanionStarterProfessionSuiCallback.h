@@ -167,16 +167,6 @@ public:
 		CompanionSkillTrainer::instance()->grantOwnerAbilitiesForSkill(player, chosenProfession);
 		CompanionSkillTrainer::instance()->grantBaselineOwnerOrderAbilities(player);
 
-		// Companion System (2026-07-15, "test everything from novice" pass
-		// -- see NOTES.md and CompanionSkillTrainer.h's doc comment on
-		// grantAllAbilitiesForTesting()). Unlocks all 60 companion ability
-		// macros immediately, bypassing the real profession-training
-		// pathway entirely (which is unreachable through any UI in this
-		// deployment today -- sendTrainList() never lists real profession
-		// skills as candidates). Deliberate dev/testing convenience, not a
-		// permanent design change to the intended slow per-skill unlock.
-		CompanionSkillTrainer::instance()->grantAllAbilitiesForTesting(player);
-
 		// Companion System (2026-07-15, "test 5 companions at once" pass --
 		// see NOTES.md and the user's own explicit choice of "same starter
 		// profession/loadout each" over answering this picker separately per
@@ -229,6 +219,17 @@ public:
 				PlayerCreationManager::instance()->grantStartingGearTo(otherCompanion, otherCompanion, resolveProfessionDefaultsKey(chosenProfession), "object/creature/player/shared_human_male.iff");
 			}
 		}
+
+		// Companion System (2026-08-09, v3 dynamic mirroring pass -- see
+		// NOTES.md and CompanionSkillTrainer.h's doc comment on
+		// syncOwnerMirrorAbilities()). Replaces the old
+		// grantAllAbilitiesForTesting() bench-testing shortcut with a real
+		// recompute of the owner's mirrored ability set, unioned across
+		// every companion in the datapad (summoned or stored). Placed here,
+		// AFTER the cascade loop above, so this one call captures both the
+		// primary companion answering this SUI and any other companions
+		// just cascaded into the same starting profession in a single pass.
+		CompanionSkillTrainer::instance()->syncOwnerMirrorAbilities(player);
 
 		player->sendSystemMessage("@companion:starter_profession_chosen"); // Your companion has chosen its starting profession.
 

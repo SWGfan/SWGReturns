@@ -31,8 +31,11 @@
 	endSweep() does automatically after a fight.
 
 	A companion whose standingOrder is plain FOLLOW (never given a Stay/
-	Guard order at all) has nothing to "return" to -- skipped, with a
-	message only if NONE of the resolved companions had anything to do.
+	Guard order at all) is force-recalled onto the owner (2026-08-10 --
+	see the inline comment at the FOLLOW branch below): manual escape
+	hatch for a FOLLOW companion stuck lagging behind (e.g. mid-recovery
+	from the post-combat loot sweep's own stuck-combat safety valve)
+	instead of leaving the owner with no way to reach for a fix.
 */
 
 #ifndef COMPANIONRETURNCOMMAND_H_
@@ -153,17 +156,46 @@ public:
 
 			int standing = companion->getStandingOrder();
 
-			if (standing != CompanionObject::STAY && standing != CompanionObject::GUARD) {
-				// Nothing ordered -- plain FOLLOW has no post to return to.
-				continue;
-			}
-
 			if (companion->isInCombat()) {
 				CombatManager::instance()->attemptPeace(companion);
 			}
 
 			if (companion->isTaxiActive()) {
 				companion->stopTaxiRide(false);
+			}
+
+			// Companion System (2026-08-10, per Nick: "companion did not come
+			// back"): plain FOLLOW used to be silently skipped here entirely
+			// -- "nothing ordered, nothing to return to" was true by design
+			// (a FOLLOW companion should already be walking with the owner
+			// at all times), but left the owner with NO manual recourse if a
+			// FOLLOW companion ever got stuck lagging behind -- e.g. a
+			// post-combat loot sweep whose stuck-combat safety valve
+			// (CompanionObjectImplementation::runPostCombatSweepCheck(),
+			// ~2 minute cap) hasn't tripped yet, or any other state that
+			// leaves followObject/followState stale. /companionreturn is
+			// the natural place for an owner to reach for in that moment,
+			// so it should actually do something instead of a no-op. Force-
+			// clears any stuck loot sweep and re-homes the companion onto
+			// the owner (or a standing /companionfollowother escort target,
+			// matching CompanionObjectImplementation.cpp's own endSweep()
+			// FOLLOW branch) immediately, rather than waiting on the
+			// automatic safety valve.
+			if (standing != CompanionObject::STAY && standing != CompanionObject::GUARD) {
+				companion->setLootSweepActive(false);
+				companion->setCompanionState(CompanionObject::FOLLOW);
+
+				CreatureObject* escortTarget = companion->getEscortTarget().get();
+
+				if (escortTarget != nullptr && escortTarget != creature && escortTarget->getZone() != nullptr) {
+					companion->setFollowObject(escortTarget);
+				} else {
+					companion->setFollowObject(creature);
+				}
+
+				companion->setFollowState(AiAgent::FOLLOWING); // genesis port: was setMovementState()
+				recalled.add(companion);
+				continue;
 			}
 
 			if (standing == CompanionObject::GUARD) {

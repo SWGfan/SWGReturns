@@ -283,6 +283,28 @@ String CompanionSkillTrainer::resolveProfessionToken(const String& skillName) co
 		return String("carbine");
 	} else if (skillName.beginsWith("combat_pistol_") || skillName.beginsWith("combat_marksman_pistol_")) {
 		return String("pistol");
+	} else if (skillName.beginsWith("combat_brawler_")) {
+		// Companion System (2026-08-08 FIX, "master brawler should be able
+		// to train companions in all the brawler boxes" -- see
+		// docs/companion_system/NOTES.md). The "brawler bridge" this
+		// function's own 2026-08-07 comment flagged as "not built here (not
+		// what was asked for today)" -- asked for now. Confirmed against
+		// this deployment's real skills.iff: the entire base Brawler tree
+		// (novice, master, and all 4 branches -- unarmed/1handmelee/
+		// 2handmelee/polearm, 4 tiers each) is uniformly named
+		// "combat_brawler_*", so one prefix match covers the whole tree
+		// under a single real mastery badge, same as every other profession
+		// below.
+		return String("brawler");
+	} else if (skillName.beginsWith("combat_unarmed_")) {
+		// Companion System (2026-08-08, same pass): combat_unarmed_* is a
+		// SEPARATE elite specialization tree (its own novice/master +
+		// accuracy/speed/ability/support branches), reached via
+		// combat_brawler_unarmed_04 the same way carbine/rifleman/pistol
+		// branch off Marksman above -- added proactively, same gap, same
+		// fix shape. Requires its OWN combat_unarmed_master badge; mastering
+		// base Brawler alone does not imply this one.
+		return String("unarmed");
 	}
 
 	// jedi_*, companion_master_*, and anything else unmapped.
@@ -378,6 +400,10 @@ bool CompanionSkillTrainer::ownerHasRequiredMasterBadge(CreatureObject* owner, c
 		realBadgeKey = "combat_carbine_master";
 	} else if (profession == "pistol") {
 		realBadgeKey = "combat_pistol_master";
+	} else if (profession == "brawler") {
+		realBadgeKey = "combat_brawler_master";
+	} else if (profession == "unarmed") {
+		realBadgeKey = "combat_unarmed_master";
 	}
 
 	if (realBadgeKey.isEmpty()) {
@@ -473,7 +499,32 @@ namespace {
 }
 
 bool CompanionSkillTrainer::canOwnerTeachSkill(CreatureObject* owner, const String& skillName) const {
-	return !isCombatProfessionSkill(skillName) || isAutoGrantable(skillName) || ownerHasRequiredMasterBadge(owner, skillName);
+	// Companion System (2026-08-08, "open training" pass -- explicit user
+	// request: "make it so a user can train their companion in any skill
+	// regardless if they have it or mastered... even if the user does not
+	// own the skill or has it mastered"). This REVERSES the combat-
+	// profession master-badge gate added 2026-08-07 after the "Carbines
+	// incident" (owner trained Carbines I/II on their companion without
+	// ever holding either box themselves -- "i shouldnt have been able to
+	// train the companion"). That gate is now explicitly unwanted: the only
+	// remaining check on what a companion can be taught is whether it has
+	// enough of its own XP to pay for the skill (trainSkill()'s per-skill
+	// cost check, just below this call, unchanged and still enforced) plus
+	// the normal prerequisite-chain recursion (also unchanged). Left the
+	// rest of this method's PRIOR body (isCombatProfessionSkill/
+	// ownerHasRequiredMasterBadge/the two starter-profession special cases)
+	// kept below as a comment, not live code -- unreachable-after-return
+	// live statements would just be dead-code-warning noise. If a future
+	// request re-restricts this, this is the exact prior gate logic to
+	// restore (delete the `return true;` above, un-comment the block
+	// below):
+	//
+	// if (skillName == "combat_brawler_novice" || skillName == "combat_marksman_novice") {
+	//     return true;
+	// }
+	//
+	// return !isCombatProfessionSkill(skillName) || isAutoGrantable(skillName) || ownerHasRequiredMasterBadge(owner, skillName);
+	return true;
 }
 
 bool CompanionSkillTrainer::trainSkill(CreatureObject* owner, CompanionObject* companion, const String& skillName) {
@@ -973,6 +1024,256 @@ void CompanionSkillTrainer::grantBaselineOwnerOrderAbilities(CreatureObject* own
 	}
 }
 
+// COMPANION_DYNAMIC_MIRRORING_2026_08_09 -- v3 work order, Nick's datapad-wide
+// scope decision. See CompanionSkillTrainer.h's doc comment on this method for
+// the full design. Verified before writing this: CompanionControlDevice.idl
+// documents that spawnObject()/storeObject() reuse the SAME companionObject
+// reference for the device's whole lifetime, so getCompanionObject() and its
+// learnedSkills are readable whether the companion is summoned or stored --
+// no zone/summon guard needed here.
+void CompanionSkillTrainer::syncOwnerMirrorAbilities(CreatureObject* owner) const {
+	if (owner == nullptr) {
+		return;
+	}
+
+	ManagedReference<PlayerObject*> ghost = owner->getPlayerObject();
+
+	if (ghost == nullptr) {
+		return;
+	}
+
+	// Baseline order commands -- always desired, owner-unconditional.
+	// Deliberately duplicated rather than shared with
+	// grantBaselineOwnerOrderAbilities()'s own local array (same
+	// precedent as grantAllAbilitiesForTesting()'s local lists elsewhere
+	// in this file) -- keep both in sync if this list ever changes.
+	static const char* baselineAbilities[] = {
+		"companion_follow", "companion_stay", "companion_patrol",
+		"companion_store", "companion_attack", "companion_formup",
+		"companion_guard", "companion_followother", "companion_rangedattack",
+		"companion_specialone", "companion_specialtwo", "companion_group",
+		"companion_friend", "companion_return", "companion_craft",
+		"companion_jenkins"
+	};
+
+	SortedVector<String> desired;
+	desired.setNoDuplicateInsertPlan();
+
+	for (int i = 0; i < 16; ++i) {
+		desired.put(String(baselineAbilities[i]));
+	}
+
+	// Datapad-wide union: every companion the owner has, summoned OR
+	// stored, contributes every ability its currently-learned skills grant.
+	//
+	// COMPANION_SYNC_RACE_GUARD_2026_08_09: track whether we actually found
+	// a companion device AND whether that device's companion resolved to
+	// anything with real learned-skill data. If a device exists in the
+	// datapad but never yields a single mirror ability, that's ambiguous --
+	// it could be a legitimately fresh companion, or it could be this
+	// exact object mid-load right after a cold server restart (the
+	// summon-time call site fires synchronously; getCompanionObject() /
+	// getLearnedSkillCount() have been observed to read back empty
+	// immediately post-restart even though the same companion had
+	// previously-granted abilities on record for the owner -- see
+	// NOTES.md batch 37). Since a false-empty read here feeds directly
+	// into the revoke pass below, treat "device present, nothing learned"
+	// as a signal to skip revocation entirely for this pass rather than
+	// stripping real grants on a possibly-stale read. The grant/add pass
+	// still runs either way, so this only ever risks a stray ability
+	// lingering one extra sync cycle -- never a false wipe.
+	// COMPANION_HIDDEN_GATING_SKILLS_2026_08_09 (batch 40): visible=2's
+	// "held ability" half turned out not to filter the Command Browser at
+	// all for these cloned rows -- box-membership alone is the real, sole
+	// gate (confirmed live: NOTES.md batch 39). desired (above) still
+	// drives the real server-side execution permission via the
+	// companion_-prefixed Ability objects, unchanged. desiredHiddenSkills
+	// is the new parallel set: one companion_hidden_<ability> skill per
+	// mirror ability (see build_companion_content.py), whose box-
+	// membership is what now actually drives Command Browser listing --
+	// granted/revoked below via SkillManager::awardSkill()/surrenderSkill()
+	// rather than the AbilityList used for execution gating.
+	SortedVector<String> desiredHiddenSkills;
+	desiredHiddenSkills.setNoDuplicateInsertPlan();
+
+	ManagedReference<SceneObject*> datapad = owner->getSlottedObject("datapad");
+	bool datapadHadCompanionDevice = false;
+	bool discoveredAnyMirrorAbility = false;
+
+	if (datapad != nullptr) {
+		for (int i = 0; i < datapad->getContainerObjectsSize(); ++i) {
+			ManagedReference<SceneObject*> obj = datapad->getContainerObject(i);
+
+			if (obj == nullptr || !obj->isCompanionControlDevice()) {
+				continue;
+			}
+
+			CompanionControlDevice* device = cast<CompanionControlDevice*>(obj.get());
+
+			if (device == nullptr) {
+				continue;
+			}
+
+			datapadHadCompanionDevice = true;
+
+			CompanionObject* companion = device->getCompanionObject();
+
+			if (companion == nullptr) {
+				continue;
+			}
+
+			for (int j = 0; j < companion->getLearnedSkillCount(); ++j) {
+				const String& skillName = companion->getLearnedSkill(j);
+
+				if (skillName.isEmpty()) {
+					continue;
+				}
+
+				Skill* skill = SkillManager::instance()->getSkill(skillName);
+
+				if (skill == nullptr) {
+					continue;
+				}
+
+				const Vector<String>* abilities = skill->getAbilities();
+
+				if (abilities == nullptr) {
+					continue;
+				}
+
+				for (int k = 0; k < abilities->size(); ++k) {
+					const String lowerAbility = abilities->get(k).toLowerCase();
+					desired.put("companion_" + lowerAbility);
+					desiredHiddenSkills.put("companion_hidden_" + lowerAbility);
+					discoveredAnyMirrorAbility = true;
+				}
+			}
+		}
+	}
+
+	bool skipRevokeThisPass = datapadHadCompanionDevice && !discoveredAnyMirrorAbility;
+
+	if (skipRevokeThisPass) {
+		warning("CompanionSystem: syncOwnerMirrorAbilities() found a companion "
+				"device for owner " + String::valueOf(owner->getObjectID()) + " but zero mirror "
+				"abilities from it -- skipping the revoke pass this cycle (grants still applied) "
+				"in case this is a post-restart load race rather than a genuinely empty companion.");
+	}
+
+	// Diff against what the owner currently holds. Namespace guard: only
+	// ever touch "companion_"-prefixed abilities -- the owner's own
+	// profession abilities share the same abilityList and must never be
+	// read or written here.
+	const AbilityList* current = ghost->getAbilityList();
+
+	if (current == nullptr) {
+		return;
+	}
+
+	Vector<Ability*> toRevoke;
+
+	if (!skipRevokeThisPass) {
+		for (int i = 0; i < current->size(); ++i) {
+			Ability* entry = const_cast<Ability*>(current->get(i));
+
+			if (entry == nullptr) {
+				continue;
+			}
+
+			const String& name = entry->getAbilityName();
+
+			if (!name.beginsWith("companion_")) {
+				continue;
+			}
+
+			if (!desired.contains(name.toLowerCase())) {
+				toRevoke.add(entry);
+			}
+		}
+	}
+
+	// Collect first, remove second -- removeAbility() mutates the same
+	// list we would otherwise be iterating (same discipline the
+	// COMPANION_ABILITYLIST_DEDUPE_FIX_2026_08_04 dupe-strip above uses).
+	for (int i = 0; i < toRevoke.size(); ++i) {
+		ghost->removeAbility(toRevoke.get(i));
+	}
+
+	for (int i = 0; i < desired.size(); ++i) {
+		const String& name = desired.get(i);
+
+		if (!ghost->hasAbility(name)) {
+			ghost->addAbility(new Ability(name));
+		}
+	}
+
+	// COMPANION_HIDDEN_GATING_SKILLS_2026_08_09 (batch 40, notifyClient
+	// fixed batch 41): same diff-and-apply shape as the Ability-based pass
+	// just above, but against the owner's actual SkillList (box-membership)
+	// instead of the ability list, using the companion_hidden_* skills
+	// build_companion_content.py now generates -- one per mirror ability,
+	// IS_HIDDEN=1, 0 points/xp, not god-only (see that file's comment for
+	// why not god-only: awardSkill() unconditionally system-messages every
+	// ability on a god-only skill, which would spam the owner on every
+	// sync of a datapad that can hold many abilities at once -- that
+	// message is gated purely on skill->isGodOnly(), independent of
+	// notifyClient, so GOD_ONLY=0 alone already prevents it).
+	//
+	// notifyClient=true on BOTH calls below -- batch 41 fix; originally
+	// shipped false, which required a relog to see any change. Confirmed
+	// by reading CreatureObjectImplementation::addSkill()/removeSkill(),
+	// notifyClient there is NOT a chat-message flag, it's whether a real
+	// CreatureObjectDeltaMessage1 packet gets sent to sync the client's own
+	// copy of the skill list at all -- false left the server-side grant
+	// correct but the client silently stale until its next full baseline
+	// (i.e. a relog). Since the only spam risk (the isGodOnly() message)
+	// is already blocked by GOD_ONLY=0 on these skills, there's no
+	// remaining reason to withhold the sync -- true is both safe and
+	// necessary for the Command Browser to update live. noXpRequired=true
+	// on award matches the 0 XP_COST/POINTS_REQUIRED already baked into
+	// the skill data itself (belt and suspenders, not a substitute for it).
+	const SkillList* currentSkills = owner->getSkillList();
+
+	if (currentSkills != nullptr) {
+		Vector<String> hiddenSkillsToRevoke;
+
+		if (!skipRevokeThisPass) {
+			for (int i = 0; i < currentSkills->size(); ++i) {
+				Skill* heldSkill = currentSkills->get(i);
+
+				if (heldSkill == nullptr) {
+					continue;
+				}
+
+				const String& skillName = heldSkill->getSkillName();
+
+				if (!skillName.beginsWith("companion_hidden_")) {
+					continue;
+				}
+
+				if (!desiredHiddenSkills.contains(skillName)) {
+					hiddenSkillsToRevoke.add(skillName);
+				}
+			}
+		}
+
+		// Collect first, surrender second -- same discipline as the
+		// Ability-based toRevoke pass above (surrenderSkill() mutates the
+		// same SkillList we would otherwise be iterating).
+		for (int i = 0; i < hiddenSkillsToRevoke.size(); ++i) {
+			SkillManager::instance()->surrenderSkill(hiddenSkillsToRevoke.get(i), owner, true, false);
+		}
+
+		for (int i = 0; i < desiredHiddenSkills.size(); ++i) {
+			const String& skillName = desiredHiddenSkills.get(i);
+
+			if (!owner->hasSkill(skillName)) {
+				SkillManager::instance()->awardSkill(skillName, owner, true, false, true);
+			}
+		}
+	}
+}
+
 // COMPANION_SKILLMOD_RESYNC_HOTFIX_2026_07_31 -- see CompanionSkillTrainer.h's doc comment on
 // resyncSkillMods() for the full rationale.
 void CompanionSkillTrainer::resyncSkillMods(CompanionObject* companion) const {
@@ -1263,6 +1564,24 @@ void CompanionSkillTrainer::sendSkillSheet(CreatureObject* player, CompanionObje
 		sui->addMenuItem(" ");
 	}
 
+	// COMPANION_SKILLSHEET_EMPTY_XP_FIX_2026_08_07 -- same gap as the Skill
+	// Tree fix just above: a companion with zero learned skills fell through
+	// this whole function to a near-blank window (just "Combat Level: X",
+	// no explanation, no XP). Live report: "i dont see the skills my
+	// companion has" -- for a companion that hasn't been trained into
+	// anything yet, there ARE no learned skills to show, but that fact
+	// itself was never stated, and the banked XP that got the player asking
+	// in the first place was nowhere on this sheet either.
+	if (professionNames.size() == 0) {
+		sui->addMenuItem("No skills trained yet -- use the \"Train\" option to pick a");
+		sui->addMenuItem("starting profession.");
+		sui->addMenuItem(" ");
+		sui->addMenuItem("========== Banked XP (not yet spent on any skill) ==========");
+		sui->addMenuItem("Companion Mastery XP: " + String::valueOf(companion->getExperience("companion_master_xp")));
+		sui->addMenuItem("Combat XP: " + String::valueOf(companion->getExperience("combat_general")));
+		sui->addMenuItem("Scout XP: " + String::valueOf(companion->getExperience("scout")));
+	}
+
 	ghost->addSuiBox(sui);
 	player->sendMessage(sui->generateMessage());
 }
@@ -1356,17 +1675,22 @@ void CompanionSkillTrainer::sendStatsSheet(CreatureObject* player, CompanionObje
 	sui->addMenuItem("Restraint (Lightsaber): " + String::valueOf((int)companion->getLightSaber()) + "%");
 	sui->addMenuItem(" ");
 
-	// Experience -- the one real, currently-used companion XP pool (see
-	// NOTES.md, "companion_master_xp cost" section). companion's
-	// experiencePools ledger isn't enumerable from outside CompanionObject
-	// (no IDL accessor exists for it, and this pass deliberately avoids
-	// hand-editing the autogen CompanionObject.h/.cpp pair for a new
-	// getter -- see the "Was idlc.jar actually available" reasoning
-	// earlier in NOTES.md for why that's treated as a bigger, separate
-	// undertaking), so only the one pool every companion actually accrues
-	// today is shown by direct lookup.
+	// Experience -- companion's experiencePools ledger still isn't
+	// enumerable from outside CompanionObject (no IDL accessor exists for
+	// it), so this is a direct per-xpType lookup rather than a generic dump.
+	// UPDATED 2026-08-07: this used to list only companion_master_xp,
+	// stale since that was genuinely the only pool any companion action fed
+	// at the time it was written. Two more are real now -- combat_general
+	// (COMPANION_XP_PARITY_2026_08_05, every kill) and scout
+	// (COMPANION_HARVEST_XP_PARITY_2026_08_07, ranger corpse-harvesting) --
+	// both listed here too so this sheet (the one companion window with no
+	// gating at all) is always a reliable place to check banked XP, per
+	// live report ("i should be able to see the window so i know how much
+	// xp they have").
 	sui->addMenuItem("========== Experience ==========");
 	sui->addMenuItem("Companion Mastery XP: " + String::valueOf(companion->getExperience("companion_master_xp")));
+	sui->addMenuItem("Combat XP: " + String::valueOf(companion->getExperience("combat_general")));
+	sui->addMenuItem("Scout XP: " + String::valueOf(companion->getExperience("scout")));
 	sui->addMenuItem(" ");
 
 	// Badges Earned -- Companion System (2026-07-12, "badge tracking" pass):
@@ -1843,9 +2167,33 @@ void CompanionSkillTrainer::sendSkillTree(CreatureObject* player, CompanionObjec
 		addRow(" ", "");
 	}
 
+	// COMPANION_SKILLTREE_EMPTY_XP_FIX_2026_08_07 -- this used to refuse the
+	// window entirely (a chat-only message, no SUI at all) the moment the
+	// companion had zero learned skills, which also meant zero banked-XP
+	// visibility -- live report: "it wont allow me to view my companion
+	// skill tree, because it says i dont hold any teachable profession
+	// skills yet, i should be able to see the window so i know how much xp
+	// they have." A companion earns real XP (combat_general from fighting,
+	// scout from ranger corpse-harvesting -- see COMPANION_XP_PARITY_2026_08_05
+	// and COMPANION_HARVEST_XP_PARITY_2026_08_07) well before it's ever been
+	// trained into a single skill box, so refusing the window entirely hid
+	// exactly the number the player was trying to check. Now: still no
+	// per-skill progress bars to show (there's nothing learned to branch
+	// from -- that part of the design from the 2026-07-28 pass above is
+	// unchanged, and starting a brand new profession is still the separate
+	// "Train" flow, sendTrainList()), but the window itself always opens,
+	// with a plain summary of every real xp type companions currently
+	// accrue. Rows use skill="" (addRow's existing no-op-safe convention,
+	// same as the "========" profession headers above), so clicking one is
+	// harmless.
 	if (rowSkills.size() == 0) {
-		player->sendSystemMessage("You don't hold any teachable profession skills yet.");
-		return;
+		addRow("This companion hasn't been trained into any skill yet -- use the", "");
+		addRow("\"Train\" option to pick a starting profession.", "");
+		addRow(" ", "");
+		addRow("========== Banked XP (not yet spent on any skill) ==========", "");
+		addRow("Companion Mastery XP: " + String::valueOf(companion->getExperience("companion_master_xp")), "");
+		addRow("Combat XP: " + String::valueOf(companion->getExperience("combat_general")), "");
+		addRow("Scout XP: " + String::valueOf(companion->getExperience("scout")), "");
 	}
 
 	sui->setCallback(new CompanionTrainSkillSuiCallback(player->getZoneServer(), companion, rowSkills, true));

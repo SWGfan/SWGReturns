@@ -428,22 +428,29 @@ const char* const VeteranRewardVendorSuiCallback::ARMOR_SET[VeteranRewardVendorS
 // call): companion_loadout_backpack, pocket_boy, jenkins_cloner,
 // master_survey_tool. UNCONFIRMED: the 10 obsidian pieces above.
 const VeteranRewardVendorSuiCallback::RewardEntry VeteranRewardVendorSuiCallback::CATALOG[VeteranRewardVendorSuiCallback::CATALOG_SIZE] = {
+	// TESTING_PRICE_2026_08_08 -- ALL 9 entries (including both Master Jedi
+	// Companions) dropped to 1 token per Nick: "make the companion reward
+	// vendor items set at 1 token each, we need to test again" -- this
+	// vendor was only just confirmed reachable in-game (it silently never
+	// spawned before, see NOTES.md "Veteran Reward Vendor never existed"),
+	// so every entry needs a real end-to-end purchase test. This
+	// intentionally overrides the deliberate 1,000,000-token
+	// JEDI_COMPANION_PRICE_2026_08_04 "difficult to obtain" pricing below --
+	// if that design decision should survive past this test pass, restore
+	// it (and the 10000 price on the other 7 entries, JEDI_COMPANION_PRICE_
+	// 2026_08_04's own sibling note) once testing is done.
 	// --- custom items ---
-	{ "Obsidian Vanguard Armor Set (10 pieces)", 10000, "", 0, false, false, true },
-	{ "Companion Loadout Backpack", 10000, "object/tangible/inventory/companion_loadout_backpack.iff", 0, false, false, false },
-	{ "Pocket Boy", 10000, "object/tangible/gambling/slot/pocket_boy.iff", 0, false, false, false },
-	{ "Jenkin's Survey Tool", 10000, "object/tangible/survey_tool/master_survey_tool.iff", 0, false, false, false },
-	{ "Jenkin's Cloner", 10000, "object/tangible/terminal/jenkins_cloner.iff", 0, false, false, false },
+	{ "Obsidian Vanguard Armor Set (10 pieces)", 1, "", 0, false, false, true },
+	{ "Companion Loadout Backpack", 1, "object/tangible/inventory/companion_loadout_backpack.iff", 0, false, false, false },
+	{ "Pocket Boy", 1, "object/tangible/gambling/slot/pocket_boy.iff", 0, false, false, false },
+	{ "Jenkin's Survey Tool", 1, "object/tangible/survey_tool/master_survey_tool.iff", 0, false, false, false },
+	{ "Jenkin's Cloner", 1, "object/tangible/terminal/jenkins_cloner.iff", 0, false, false, false },
 	// --- credits ---
-	{ "500 Credits", 10000, "", 500, false, false, false },
-	{ "5,000 Credits", 10000, "", 5000, false, false, false },
+	{ "500 Credits", 1, "", 500, false, false, false },
+	{ "5,000 Credits", 1, "", 5000, false, false, false },
 	// --- Master Jedi companions ---
-	// JEDI_COMPANION_PRICE_2026_08_04 -- 10000 -> 1000000 per Nick: "they need
-	// to be difficult to obtain". At 10000 the rarest reward in the list cost
-	// the same as a survey tool, which made it read as a sidegrade rather than
-	// a goal. Every other entry stays at 10000.
-	{ "Master Jedi Companion (Light Side)", 1000000, "", 0, true, false, false },
-	{ "Master Jedi Companion (Dark Side)", 1000000, "", 0, true, true, false },
+	{ "Master Jedi Companion (Light Side)", 1, "", 0, true, false, false },
+	{ "Master Jedi Companion (Dark Side)", 1, "", 0, true, true, false },
 };
 
 #endif // VETERANREWARDVENDORSUICALLBACK_H_

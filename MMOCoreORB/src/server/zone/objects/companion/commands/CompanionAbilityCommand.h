@@ -194,6 +194,23 @@ public:
 				}
 			}
 
+			// Companion System (2026-08-10, per Nick: "companion is not
+			// gathering loot if i dont attack"). Same gap CompanionAttackCommand.h
+			// already hit and fixed 2026-07-29 (see its identical comment for the
+			// full rationale), never propagated to this dispatcher: the
+			// post-combat loot sweep is normally armed by CompanionThreatObserver
+			// watching the OWNER's own combat events, which never fire if the
+			// owner only issues ability orders (companionlegshot1, etc.) without
+			// personally taking damage or attacking. Given every one of the 203
+			// companion mirror abilities routes through this one class, this was
+			// very likely THE primary way loot silently went ungathered --
+			// confirmed live: ordering ability attacks and never engaging
+			// personally left kills unlooted. Armed here, once per companion per
+			// order (idempotent no-op via CompanionObject::isLootSweepActive()
+			// if already armed/sweeping), same as CompanionAttackCommand.h's
+			// own placement.
+			companion->deferredStartPostCombatSweep();
+
 			// Reuses the engine's real, already-implemented per-ability combat
 			// pipeline (pool/HAM costs, cooldowns, damage, animation) for
 			// whatever object this hashed action name resolves to -- exactly the

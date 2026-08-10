@@ -139,6 +139,20 @@ public:
 			// and fires from position instead of charging the target.
 			companion->setFollowObject(creature);
 
+			// Companion System (2026-08-10, per Nick: "companion is not
+			// gathering loot if i dont attack"). Same gap CompanionAttackCommand.h
+			// already had and fixed 2026-07-29 -- see its identical comment for
+			// the full rationale -- just never propagated here: the post-combat
+			// loot sweep is normally armed by CompanionThreatObserver watching
+			// the OWNER's own combat events (DAMAGERECEIVED/STARTCOMBAT), which
+			// never fire if the owner orders covering fire without personally
+			// taking damage or attacking. Confirmed live: ordering the companion
+			// onto a target this way and never engaging personally left every
+			// kill unlooted, corpses just sitting there. Arming it directly here
+			// means this order gets the same auto-loot/FOLLOW-restore coverage
+			// /companionattack already has.
+			companion->deferredStartPostCombatSweep();
+
 			// COMPANION_ATTACK_SPEED_FIX_2026_08_04 -- was
 			// executeObjectControllerAction(), which calls
 			// ObjectController::activateCommand() DIRECTLY and so bypasses the

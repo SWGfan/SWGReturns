@@ -44,6 +44,14 @@ public:
 		Locker clocker(strongCompanion, player);
 
 		CompanionSkillTrainer::instance()->untrainSkill(player, strongCompanion, candidateSkills.get(menuSelection));
+
+		// Companion System (2026-08-09, v3 dynamic mirroring pass):
+		// recompute the owner's full datapad-wide mirrored ability set
+		// immediately after a real, interactive untrain -- this is what
+		// actually revokes a stale companion_* ability once nothing left
+		// in the datapad still grants it. See CompanionSkillTrainer.h's
+		// doc comment on syncOwnerMirrorAbilities().
+		CompanionSkillTrainer::instance()->syncOwnerMirrorAbilities(player);
 	}
 
 };

@@ -9641,3 +9641,1667 @@ mapped to the closest thematic real icon (warcry2/boostmorale/tumbleToProne
 respectively). Full build chain run and verified clean: ARCHIVE VERIFIED OK, no
 WARNING lines. Files: build_command_table_rows.py, build_ui_styles_patch.py,
 build_companion_content.py.
+
+## 2026-08-07 (batch 16) -- taxi rides now auto-chain to a newly-appeared waypoint (e.g. "Closest Group Mission")
+Live request, refined over three messages: "the companion needs to be able to taxi
+me to the mission waypoint... we need the taxi to be able to goto the mission
+waypoint, and then the nearest group mission all in one shot... it needs to
+automatically pick it once it shows up and drive to it without having the user pick
+the new closest group waypoint." The taxi-destination picker (case 9 in
+CompanionDialogMenuSuiCallback.h) already rescans the owner's full datapad + active
+mission waypoints every time it opens, so a "Closest Group Mission" waypoint that
+only appears once the owner nears the first stop was already showing up there --
+confirmed working before this batch. What was missing was automation: the owner
+still had to manually re-open the taxi menu and pick it.
+
+Design: snapshot-and-diff. New transient CompanionObject.idl field
+`Vector<unsigned long> taxiSeenWaypointIds` records the owner's on-planet waypoint
+objectIDs (personal datapad + each active mission's own waypointToMission) at
+startTaxiRide(). New shared helper collectOwnerPlanetWaypoints() in
+CompanionObjectImplementation.cpp (mirrors the picker's own two-source scan exactly
+so "what the picker would show" and "what auto-chaining sees" never drift apart) is
+called both there and again in updateTaxiTick()'s arrival check. On arrival, before
+the existing stop-and-wait branch runs, the current waypoint set is rescanned and
+diffed against the snapshot: exactly ONE new waypoint means retarget via the
+existing addTaxiWaypoint() (already used for the manual multi-stop-route feature)
+and keep driving, no popup, no re-pick; zero or more than one new waypoint falls
+back to the pre-existing stop-and-wait behavior rather than guessing which one the
+player wants. Both waypoint kinds are persisted objects (WaypointObject,
+MissionObject::waypointToMission) so their objectIDs are stable snapshot/diff keys.
+
+Caught during implementation, not yet compiled at the time: the IDL reset block
+initially had `taxiSeenWaypointIds = null;`, copy-pasted from the neighboring
+`taxiOwnerCarriage = null;` line -- invalid for a Vector value-type field (only
+reference-type fields like `SceneObject* taxiOwnerCarriage` support `= null`).
+Confirmed the correct idiom by grepping for existing precedent
+(`friends.removeAll()` in PetControlDeviceImplementation.cpp, same
+Vector<unsigned long> pattern as this field); fixed to `taxiSeenWaypointIds.removeAll();`
+before ever building. Files: CompanionObject.idl, CompanionObjectImplementation.cpp.
+
+## 2026-08-07 (batch 17) -- the 142 new companion abilities (batch 14/15) had icons but were never actually usable
+Live question: "are my companion commands now available for me to use from the
+command browser... if my companion has novice marksman i should be able to use
+those commands to my companion shoots off that certain ability." Investigated the
+full dispatch chain and found a 4th piece of wiring batch 14/15 never touched.
+Companion ability commands go through ONE generic class,
+CompanionAbilityCommand.h, registered under each "companion<Ability>" name via a
+STATIC list of commandFactory.registerCommand<CompanionAbilityCommand>(...) calls
+in CommandConfigManager2.cpp -- this list is separate from (and was not updated
+alongside) build_command_table_rows.py's _COMPANION_ABILITY_NAMES. Confirmed by
+diff: exactly 61 of the pre-08-07 abilities were registered; all 142 new ones from
+batch 14/15 were not. The other two gates were already fine and needed no change --
+grantOwnerAbilitiesForSkill() (CompanionSkillTrainer.cpp) is fully data-driven,
+pulling the real ability list straight from SkillManager::instance()->getSkill()
+per skill, so it already grants "companion_<ability>" for all 142 the moment the
+matching skill box is trained; and the command_table.iff rows/icons already existed
+from batch 14/15. Net effect before this fix: a newly-trained ability like Novice
+Marksman's actionShot1 would show its icon and be draggable, but issuing it did
+nothing -- unregistered command name. Fixed by adding the missing 142
+registerCommand<CompanionAbilityCommand>(...) lines (generated straight from
+build_command_table_rows.py's own _NEW_COMPANION_ABILITY_NAMES_2026_08_07 list, so
+the two lists can't drift). File: CommandConfigManager2.cpp.
+
+## 2026-08-07 (batch 17) -- ranger companion corpse-harvest scout XP only ever credited the owner, never the companion's own ledger
+Live report: "my scout companion isnt getting scout xp when harvesting creatures."
+Same root cause class as COMPANION_XP_PARITY_2026_08_05's combat_general gap:
+companionHarvestCorpse() (CompanionObjectImplementation.cpp, the ranger-companion
+re-host of CreatureManagerImplementation::harvest()) calls
+playerManager->awardExperience(owner, "scout", ...) -- and awardExperience()
+internally does `player->getPlayerObject(); if (playerObject == nullptr) return 0;`,
+which is always null for a CompanionObject, so it silently no-ops for anyone but
+the real owner. That owner credit is correct and intentional (this function's own
+doc comment says so explicitly -- "credited to the OWNER"), but Scout is also a
+companion-trainable skill (CompanionSkillTrainer.cpp's outdoors_scout_novice tier
+and up), so the ranger doing the harvesting needs its own "scout" xp toward its own
+tier progress too, same as combat_general. Fixed: added a second award alongside
+the existing owner credit, ranger->addExperience("scout",
+playerManager->scaleXpForCompanion("scout", scoutXp)) -- same
+scale-then-companion-ledger pattern the combat_general fix established. File:
+CompanionObjectImplementation.cpp.
+
+## 2026-08-07 (batch 16 follow-up) -- first build attempt after the taxi-chain feature failed: new transient Vector<unsigned long> IDL fields need @dereferenced
+The rebuild after batch 16 landed failed with a wall of template errors ending in
+"request for member 'parseFromBinaryStream' in '*address', which is of non-class
+type 'long unsigned int'" on CompanionObjectImplementation.cpp.o. Root cause,
+confirmed by reproducing the idlc.jar codegen directly (it's a small Java tool --
+`java -cp .../idlc.jar org.sr.idlc.compiler.Compiler -outdir <dir> -cp
+.../MMOEngine/src -nomocks -rbcpp -sd src <file>.idl`, fast enough to iterate on in
+seconds instead of a full hour-long make): the new `taxiSeenWaypointIds` field was
+missing an `@dereferenced` annotation. EVERY other working `Vector<unsigned long>`
+field in this codebase has one immediately above it (friends in
+PetControlDevice.idl, friendIds/visitors, yesVotes/noVotes in
+ChallengeVoteData.idl) -- confirmed this isn't idlc.jar version drift by
+regenerating PetControlDevice.idl with the SAME current jar and getting the same
+correct plain-value output it always has. Without @dereferenced, a Vector<T> field
+codegens as a lazily-allocated `Reference<Vector<T>*>` (never actually allocated
+anywhere in this case) instead of a plain inline `Vector<T>` value -- and
+separately, the IDL's `unsigned long` maps to C++ `unsigned long long`, NOT literal
+`unsigned long` (a distinct type on this platform despite matching size) -- so
+hand-written code declaring `Vector<unsigned long>` locals to interoperate with the
+field doesn't share the primitive TypeInfo serialization specialization the real
+generated type has, and fails to compile the moment ANY such Vector is declared
+anywhere in the file (its inherited toBinaryStream()/parseFromBinaryStream() are
+virtual and get instantiated as part of the class regardless of whether they're
+ever called). Fixed: added `@dereferenced` above the field declaration, changed the
+hand-written helper's Vector<unsigned long> locals to Vector<uint64>. TAKEAWAY for
+next time a new Vector<T> field gets added to any .idl: always add @dereferenced
+unless you specifically want pointer/lazy-allocation semantics, and always match
+hand-written C++ container element types to the engine's fixed-width typedefs
+(uint64/int64/etc.), never the platform's bare `long`/`unsigned long`. Files:
+CompanionObject.idl, CompanionObjectImplementation.cpp. Rebuild confirmed clean
+(BUILD OK) after the fix.
+
+## 2026-08-07 (batch 18) -- companion windows refused to open / stayed near-blank for a companion with zero trained skills, hiding banked XP
+Live report: "it wont allow me to view my companion skill tree, because it says i
+dont hold any teachable profession skills yet, i should be able to see the window
+so i know how much xp they have" -- then, on the Skill Sheet too: "i dont see the
+skills my companion has." Three related gaps, all from the same root state (a
+companion with companion->getLearnedSkillCount() == 0):
+  1. sendSkillTree() (dialog option 13, colored tree/progress view) refused the
+     window ENTIRELY -- a chat-only message and a bare return, no SUI sent at all --
+     the instant rowSkills came back empty. Design intent (2026-07-28 pass, see the
+     comment above it) for NOT showing empty profession boxes to an untrained
+     companion is still correct and untouched; the bug was refusing the window
+     itself rather than opening it with a "nothing trained yet" explanation.
+  2. sendSkillSheet() (dialog option 3, plain learned-skills list) had no such
+     refusal, but fell through to a near-blank window (just "Combat Level: X") with
+     no explanation and no XP shown, for the same zero-skills case.
+  3. sendStatsSheet() (dialog option 7, always-ungated) already showed an
+     Experience section, but it was stale from before today's XP work -- listed
+     only companion_master_xp, missing the two pools companions actually earn now
+     (combat_general since COMPANION_XP_PARITY_2026_08_05, scout since
+     COMPANION_HARVEST_XP_PARITY_2026_08_07 earlier today).
+Fixed all three: (1) and (2) now open/complete with a plain "no skills trained yet
+-- use Train" note plus the same banked-XP summary (companion_master_xp,
+combat_general, scout) instead of refusing or going blank; (3) lists all three real
+xp types. The new rows in (1)/(2) use skill="" (same no-op-safe convention as the
+existing "========" profession header rows -- confirmed against
+CompanionTrainSkillSuiCallback.h: an empty-string candidate trains nothing and just
+re-opens the tree in treeMode). File: CompanionSkillTrainer.cpp. No IDL touched,
+straight recompile only.
+
+## 2026-08-08 (batch 19) -- starter-profession picker silently failed to train Brawler/Marksman onto the companion's own skill ledger for owners who didn't personally hold that skill
+Live report: "i made a new character and got novice companion, and i also trained
+in marksman, then i made my companion a brawler, and i do not have any brawler
+abilities." Root cause: the combat-profession training gate (canOwnerTeachSkill()
+-> isCombatProfessionSkill()/ownerHasRequiredMasterBadge(), re-added earlier
+2026-08-07 at Nick's own request after the Carbines incident, to stop a companion
+being trained PAST novice into a specialization the owner never personally
+mastered) was never scoped to exclude the STARTER PROFESSION PICKER's own one-time
+initial pick -- and CompanionStarterProfessionSuiCallback.h's own doc comment is
+explicit that all 6 starter options are meant to be choosable "regardless of what
+the owner personally holds," same as a fresh character's own starting profession
+in real chargen requires no mastery of anything. combat_brawler_novice and
+combat_marksman_novice are the only 2 of the 6 starter options that matched
+isCombatProfessionSkill()'s "combat_" prefix (the other 4 -- artisan/medic/
+scout/entertainer -- were never gated at all), and resolveProfessionToken()
+doesn't map either of them to any badge key at all, so ownerHasRequiredMasterBadge()
+failed closed for any owner who hadn't personally already trained that EXACT skill
+box. trainSkill() then returned false and the companion's own learnedSkills ledger
+never actually gained the profession -- Nick's Marksman pick only "worked" by
+accident, via the same function's "owner already holds this exact skill" fallback
+(he'd personally trained Marksman); Brawler had no such luck. This is what made the
+symptom so confusing to debug: every OTHER call in the starter-picker's run()
+(starting gear via PlayerCreationManager, and critically
+grantAllAbilitiesForTesting()'s hardcoded owner-side ability-macro grants) still
+fires completely unconditionally regardless of trainSkill()'s return value, so the
+owner's hotbar/command-browser macros for Brawler abilities were, in fact, present
+-- but the companion's own Skill Tree/Sheet (see batch 18, same session) correctly
+showed nothing trained, and anything keyed off the companion's own
+hasLearnedSkill() (e.g. any future autonomous-AI ability selection) had nothing to
+work with. Also separately confirmed while chasing this: the per-command
+characterAbility gate in ObjectControllerImplementation::activateCommand() only
+applies when the object EXECUTING the queued action isPlayerCreature() -- and
+CompanionObject spawns from a plain mobile/NPC template (object/mobile/
+companion_actor.lua), never a real PlayerCreatureTemplate, so that gate never
+actually applied to companion-dispatched ability commands at all (isPlayerCreature()
+is false for every companion) -- a real gap on paper, but not the cause of this
+particular bug and not touched here.
+Fix: canOwnerTeachSkill() now explicitly exempts combat_brawler_novice and
+combat_marksman_novice by exact name, returning true before falling through to the
+existing gate logic -- scoped to exactly the 2 starter-picker options that needed
+it, leaving the gate fully intact for every other combat skill (including any
+future real per-skill Train UI, which per this file's own earlier notes remains
+unreachable through any UI in this deployment today anyway). File:
+CompanionSkillTrainer.cpp (canOwnerTeachSkill()). No IDL touched, straight
+recompile only. Brace/paren balance reverified after edit (delta from this edit:
++1 brace pair, +1 paren pair, both balanced; pre-existing +1 file-wide imbalance
+noted in batch 18 is untouched and confirmed NOT introduced by this edit either).
+
+ALTERNATIVE CONSIDERED, not taken: broadening the exemption to any skill name
+ending in "_novice" (matching real chargen's "your first box in any tree is always
+free" semantics generally) instead of naming these 2 skills explicitly. Rejected
+for now as broader than the confirmed bug needs -- would also silently exempt
+combat_rifleman_novice/combat_carbine_novice/etc. the moment any future pathway
+ever calls trainSkill() with those names directly (today none does). Revisit if a
+real per-skill Train UI for base combat trees ever becomes reachable and the same
+"free novice pick" expectation applies there too.
+
+## 2026-08-08 (batch 20) -- "brawler bridge": historical Brawler/Unarmed mastery now recognized for companion training, closing a gap the 2026-08-07 pass deliberately deferred
+Follow-up to batch 19, same live thread. Nick: "since i was a master brawler, should
+i be able to train my companions in all the brawler boxes now" -- he no longer
+currently holds Brawler (respecced away since mastering it), so `owner->hasSkill()`
+fails, and resolveProfessionToken() had NO mapping at all for combat_brawler_* --
+its own 2026-08-07 comment explicitly flagged this ("a parallel 'brawler bridge'
+would be the analogous fix if ever wanted, not built here (not what was asked for
+today)") and deferred it. Asked for now. Confirmed against this deployment's real
+skills.iff: the entire base Brawler tree is uniformly "combat_brawler_*" (novice,
+master, and 4 branches -- unarmed/1handmelee/2handmelee/polearm, 4 tiers each, 18
+rows total) -- one prefix bridge covers the whole tree. Also found and bridged
+combat_unarmed_* while here: a SEPARATE elite specialization tree (its own
+novice/master + accuracy/speed/ability/support branches) reached via
+combat_brawler_unarmed_04, structurally identical to how carbine/rifleman/pistol
+already branch off Marksman -- same gap, same fix, needs its own separate
+combat_unarmed_master mastery (owning Brawler master does not imply it).
+Fix: resolveProfessionToken() now maps combat_brawler_* -> "brawler" and
+combat_unarmed_* -> "unarmed"; ownerHasRequiredMasterBadge() maps those tokens to
+the real badge keys combat_brawler_master / combat_unarmed_master, following the
+exact same "historical master badge, not currently-held skill" pattern already
+proven for the 11 other professions (per Spec 3A: "The owner does NOT need to
+currently hold the profession, just the historical master badge flag"). No new
+badge_map.iff row needed -- unlike the unrelated, still-unbuilt "Master Jedi
+Companion" design spec elsewhere in this file (which needs a brand NEW,
+project-invented badge), combat_brawler_master/combat_unarmed_master are real
+stock vanilla profession-master badges that get awarded automatically the moment a
+real player masters them, via SkillManager::awardSkill()'s generic "any *master*
+skill name looks itself up in BadgeList and awards it" mechanism (already firing
+today, confirmed via the 2026-07-14 research entry above) -- so this fix is pure
+lookup-table wiring, same shape as the 2026-08-07 badge-key-string fix for the
+original 11. Once trained, ability macro grants (grantOwnerAbilitiesForSkill(),
+called internally by trainSkill()) and command dispatch behave identically to
+every other already-working profession -- no separate work needed for "will my
+companion actually fire the ability", including combat_brawler_master's own
+berserk2 (already in the batch 14/15 142-command registration set). File:
+CompanionSkillTrainer.cpp (resolveProfessionToken(), ownerHasRequiredMasterBadge()).
+No IDL touched, straight recompile only. Brace/paren balance reverified clean
+(delta from this edit: +4 brace pairs, +13 paren pairs, both balanced; pre-existing
++1 file-wide imbalance noted in batch 18/19 untouched).
+
+## 2026-08-08 (batch 21) -- Veteran Reward Vendor catalog dropped to 1 token each for testing; character builder terminal now given to every new character, not just admins
+Two small live requests in the same testing pass, now that the Veteran Reward
+Vendor is confirmed actually reachable in-game (see batch 2/the "never existed"
+find) and Nick is walking through it end to end for the first time.
+
+1. **Vendor pricing**: "make the companion reward vendor items set at 1 token
+   each, we need to test again." All 9 CATALOG entries in
+   VeteranRewardVendorSuiCallback.h dropped from 10000 (or 1000000 for the two
+   Master Jedi Companion entries -- JEDI_COMPANION_PRICE_2026_08_04's
+   deliberate "difficult to obtain" pricing) to 1. Flagged inline as a
+   TESTING_PRICE override of that specific prior design decision -- restore
+   10000/1000000 once the purchase flow is confirmed working end to end, if
+   the "hard to get" intent for the Jedi companions should survive past this
+   test pass. File: VeteranRewardVendorSuiCallback.h. No IDL touched.
+
+2. **Character builder terminal for all new characters**: "make all new users
+   spawn in with a character builder terminal." This engine feature already
+   existed (PlayerCreationManager::giveAdminBuilderTerminal(), added
+   2026-08-04 per its own ADMIN_BUILDER_TERMINAL_2026_08_04 comment) but was
+   only ever called for admin-tier accounts (accountPermissionLevel in
+   {9,10,12,15}), or for every account when the server-wide `freeGodMode`
+   config flag is enabled (which also promotes every account to full admin --
+   a much bigger switch than just handing out one item). Moved the call out
+   of both conditional branches to one unconditional call in createCharacter(),
+   so every newly created character gets the terminal regardless of account
+   permission level, without touching freeGodMode. giveAdminBuilderTerminal()
+   itself is unchanged -- it has no in-code privilege check of its own either
+   way, so nothing else needed to change to make this work for non-admins.
+   File: PlayerCreationManager.cpp. No IDL touched, straight recompile only.
+   Brace/paren balance reverified clean on both files.
+
+Note: neither change is retroactive -- existing characters won't get the
+terminal, and existing token balances/prices already shown to a player mid-SUI
+aren't affected until the vendor is re-opened after rebuild.
+
+## 2026-08-08 (batch 22) -- SWGGenesisControlPanel.ahk: 5-theme system (Dark default + Theme... picker), gold text on the 3 dark themes
+Not a core3/server change -- this is the Windows AutoHotkey v2 control panel
+(SWGGenesisControlPanel.ahk, D:\SWGGenesis, shells out to swggenesis_menu.py).
+Nick: "can we edit our server app to make a dark themed version, can i get an
+option menu with different themes i can choose for our app, make 5 different
+themes we can pick from" -- then, mid-implementation: "lets make the black
+text on the dark themes yellow gold color."
+
+Added 5 selectable themes (Light/Dark/Midnight Blue/Solarized Dark/High
+Contrast), a new "Theme..." button next to Help opening a small radio-button
+picker dialog, and persistence to a new panel_settings.ini beside the script
+(defaults to Dark on first run with nothing saved yet). Dark/Midnight/
+Solarized all use gold (FFD700) text per the follow-up ask; High Contrast
+stays pure yellow (FFFF00) on purpose -- that one's the max-contrast
+accessibility option, a different job than the other three's aesthetic gold.
+
+HOW FAR THIS ACTUALLY GOES, and why: native Win32 push buttons, checkboxes,
+and GroupBox borders are all really the same "Button" window class under the
+hood (distinguished only by style bits) and render themselves under the OS
+visual style, ignoring font/background color without full owner-draw --
+adding that would mean new WM_CTLCOLOR*/NM_CUSTOMDRAW message handling
+across all 6 windows in a script whose own revision history (20+ .bak files)
+is mostly fighting exactly this kind of timing/redraw fragility, so it
+wasn't attempted. What IS themed -- window backgrounds, every plain text
+label, every Edit box (Log/Console/Activity/etc.), and all 3 ListViews
+(Players, Chars, Planets) via LVM_SETBKCOLOR/LVM_SETTEXTCOLOR/
+LVM_SETTEXTBKCOLOR -- covers the large majority of what's actually on
+screen. Buttons/checkboxes/groupbox borders stay native chrome in every
+theme, including Dark.
+
+Implementation: EnumChildWindows (DllCall) + GuiCtrlFromHwnd + GetClassName
+per control, applied to a window on first build (all 6 windows already
+follow a "build once, Show()/Hide() to reuse" global pattern in this file)
+and again live to every currently-open window the instant a new theme is
+picked. StatusText/BuildText/TargetLabel/RemoteLabel keep their OWN existing
+dynamic status coloring (green=up/orange=starting/red=down) via an explicit
+skip-list passed into the applier, so a theme switch can never stomp on live
+status colors.
+
+REAL BUG CAUGHT AND FIXED BEFORE DELIVERY: AHK v2 requires an explicit
+`global` declaration inside a function for BOTH reading and writing an
+outer-scope variable (unlike v1's implicit-global-for-reads default) --
+first draft had 8 missing declarations (MyGui inside ApplyThemeEverywhere/
+OpenThemeDialog; ThemeGui entirely missing from ApplyPickedTheme;
+CurrentTheme missing from all 5 secondary-window builder functions) that
+would have thrown "variable not assigned" the moment those code paths ran.
+Caught by re-auditing every new/touched function's `global` line against
+what it actually reads/writes before delivery, not by trial and error.
+
+File: SWGGenesisControlPanel.ahk. PANEL_UPDATE_NOTE footer string updated to
+match. No server rebuild needed -- this is a client-side script, not core3;
+just close and re-run it (#SingleInstance Force means a second launch
+replaces the running one automatically).
+
+## 2026-08-08 (batch 23) -- companion ability commands worked server-side but never showed in the Command Browser: live TrePath had a stale companion_patch.tre, and the panel has no button that deploys one
+Live report: after batches 19-20 landed (starter-picker gate fix), Nick's new
+Brawler companion showed correctly trained in the Skill Tree, but none of its
+9 novice abilities (Polearm Lunge 1, Warcry 1, Taunt, etc.) appeared in his
+Command Browser. Root-caused with two cheap tests instead of guessing at more
+C++ changes:
+  1. Typed `/companionpolearmlunge1` directly into chat -- Braw performed it.
+     This proves the SERVER side (ability grant, C++ command registration,
+     dispatch) is completely correct; nothing more to fix there.
+  2. Ran the panel's existing `tre_check` action: the live TrePath
+     (D:\Launcher\newreturnbenserver, genesis's TrePath, shared with the
+     SWGReturn launcher's own install) had a companion_patch.tre of
+     3,071,267 bytes, while the actual current build (docs/companion_system/
+     tools/companion_patch.tre, matching the repo's published tre/ copy) is
+     3,220,412 bytes -- a ~149 KB gap, plausibly the icon/display-name data
+     (cmd_n.stf, ui_styles.inc) for however many companion ability commands
+     were added after that stale copy was last deployed. The client was
+     rendering its Command Browser from that stale file, which is why it had
+     no icon/label to show even though the command itself dispatches fine.
+
+REAL GAP FOUND: neither existing TRE panel action actually deploys the built
+archive to the live TrePath. `tre_sync` (swggenesis_menu.py) only rewrites
+config-local.lua's TreFiles load order and explicitly REFUSES to run if
+companion_patch.tre isn't already sitting in TrePath ("Copy the patch into
+TrePath first, then run tre_sync again."). `tre_publish` copies the built
+archive to <repo>/tre/ for other players/GitHub, not to TrePath. Deploying a
+freshly-built companion_patch.tre to the actual live TrePath has always been
+a manual `cp` step with nothing enforcing it happens after every rebuild --
+this is exactly what got missed here. Fixed live with:
+    cp /mnt/d/SWGGenesis/docs/companion_system/tools/companion_patch.tre \
+       /mnt/d/Launcher/newreturnbenserver/companion_patch.tre
+Re-ran tre_check: deployed file now matches the build exactly (3,220,412
+bytes). Offered Nick a "Deploy TRE to TrePath" panel button (copy + verify
+size match) so this doesn't silently recur after every future content
+change -- his call whether to build it, not done yet as of this entry.
+
+TAKEAWAY for next time an ability/command/icon "doesn't show up" despite
+correct server-side logic: bisect FIRST with a directly-typed slash command
+before touching any C++ -- if it works, the bug is client-side (TRE staleness
+or client cache, needs a full close+relaunch, never just relog) and no code
+change is warranted at all.
+
+## Batch 24 (2026-08-08) -- Deploy TRE to TrePath button
+
+Follow-up to batch 23. That entry root-caused the stale-Command-Browser bug
+to a genuine gap: neither `tre_sync` (rewrites config-local.lua's load
+order only) nor `tre_publish` (copies to `<repo>/tre/` for other
+players/GitHub only) has ever deployed the built `.tre` to the live
+TrePath the running server/client actually reads from -- that step was
+always a manual, unenforced `cp`. Nick confirmed the fix
+(3,220,412 = 3,220,412 bytes) and asked for a one-click button so this
+class of bug can't recur after a future rebuild.
+
+**Added:**
+- `swggenesis_menu.py`: new `act_tre_deploy()` action (and `tre_deploy` CLI
+  verb, wired into `ACTIONS` help text + `main()` dispatch). Resolves
+  TrePath the same way `act_tre_check()` does (`_tre_path()`, local
+  override beats config.lua -- NOT the hardcoded `CLIENT` constant, since
+  that's a stale assumption about the drive path), refuses if the built
+  TRE doesn't exist or TrePath doesn't resolve/exist, skips the copy if
+  the destination is already byte-identical, otherwise `shutil.copy2()`s
+  and re-reads the destination's size to verify it matches the source
+  before declaring success. Prints a "fully close and relaunch" reminder
+  on success, matching the TRE-caching Iron Rule.
+- `SWGGenesisControlPanel.ahk`: new "Deploy TRE" button next to Publish
+  TRE/TRE Sync/TRE Check, with a confirm dialog explaining what it does
+  and why it was added, then runs `tre_deploy` followed by `tre_check` in
+  the log pane (same pattern as the existing TRE Sync button).
+
+**Verification done this batch:**
+- `python3 -c "import ast; ast.parse(...)"` on `swggenesis_menu.py` --
+  syntax OK.
+- String/comment-aware paren/brace/bracket balance checker (not naive
+  `.count()`, which false-positives on parens inside string literals --
+  see batch 22/23's notes) run against the full `.ahk` file after the
+  edit: paren/brace/bracket depth all end at exactly 0. Confirms the file
+  is genuinely balanced, not just "matches a known baseline drift" like
+  earlier batches had to reason about.
+- Did NOT verify in-game / via the actual panel UI this batch (no local
+  Windows session to click the button in) -- Nick should confirm the
+  button appears, the confirm dialog reads correctly, and a real deploy +
+  `tre_check` run in the log pane looks right.
+
+**Known pre-existing issue noticed while placing the button (NOT fixed,
+NOT introduced by this batch):** the "Database, Admin, Planets, TRE &&
+Tuning" GroupBox's button row (Backup Database ... Deploy TRE) sums to
+roughly 1450px of control width+gaps starting at x=30, while the window
+is hard-capped at `wantW := 1010` (see the `MonitorGetWorkArea`/`wantW`/
+`maxW` block near the bottom of the script). That means this row already
+ran off the right edge of the window before this batch's button was
+added -- Publish TRE, and likely Planets/TRE Sync/TRE Check too, may
+already be unreachable by mouse in the live panel depending on where
+Windows clips it. This looks like a real, separate bug, not something
+introduced here. Flagged to Nick; not touched this batch since a layout
+fix is a different, riskier change than a one-button addition and this
+script already has a fragile edit history (20+ `.bak` files).
+
+## 2026-08-08 (batch 25) -- companion ability commands (Novice Brawler set) work correctly but don't list in the native Command Browser; confirmed cosmetic, not functional
+
+Live report: after batch 23/24's TRE redeploy + full client relaunch, companion
+still showed 0 of Novice Brawler's 9 abilities (warcry1, intimidate1, berserk1,
+taunt, polearmLunge1, unarmedLunge1, melee1hLunge1, melee2hLunge1, centerOfBeing)
+in the Command Browser's "other" tab, even though the baseline order commands
+(Attack/Follow/Guard/etc.) showed fine from the same TRE build.
+
+**Investigated and ruled out, in order:**
+1. Stale TRE / client cache -- ruled out. `tre_check` confirmed the deployed
+   archive matched the build byte-for-byte with zero drift, and this was after
+   a genuinely full client close+relaunch.
+2. cmd_n.stf display-name case mismatch -- chased this as a live lead (the
+   source dict in `build_companion_content.py`'s `CMD_N_ENTRIES` writes
+   `"companionpolearmLunge1"` with a capital L, which looked like a typo
+   against what I assumed was an all-lowercase command name), but a direct
+   extraction of the ACTUAL command_table.iff row from the built TRE showed
+   the row's own `commandName` is ALSO stored as `"companionpolearmLunge1"`
+   (same mixed case) -- they match exactly. No mismatch. Retracted before
+   reporting it as a fix; recorded here so this exact false lead isn't
+   re-chased next time.
+3. Missing/incorrect command_table.iff row data -- ruled out. Diffed every
+   column of `companionwarcry1` (not shown) against `companionattack` (shown)
+   and `companionsample` (shown): `visible=2`, `disabled=0`, `godLevel=0` are
+   identical across all three. The only differences are the per-ability
+   L:/S: locomotion/state masks and defaultPriority/defaultTime/targetType,
+   which gate WHEN a command can be issued, not whether it's listed.
+4. Owner not actually holding the ability -- ruled out (on paper).
+   `grantAllAbilitiesForTesting()` (CompanionSkillTrainer.cpp:1079) grants a
+   hardcoded 60-ability list unconditionally the moment a companion's starter
+   profession is picked, independent of any skill training -- all 9 Novice
+   Brawler abilities are in that list (`starterAbilities[]`), so the owner
+   should already hold `companion_warcry1` etc. regardless of the
+   `combat_brawler_novice` training path.
+
+**Confirmed NOT a functional bug**: asked Nick to type `/companionwarcry1`
+directly as a decisive test. Combat log confirmed it fired correctly
+("brawler (Sqi's -=COMPANION=-)'s ferocious warcry freezes Toveki Ico...").
+Ability grant, gate, and dispatch are all working. This is a **Command
+Browser listing bug only** -- the command is real, gated correctly, and
+usable; the native client browser simply isn't rendering these specific rows
+in its list.
+
+**Workaround given to Nick**: `/hpet help` opens the companion's own SUI
+command reference sheet (`sendHelpSheet()`, spec 4D -- see the "Design
+decision: reuse the real ability-list mechanism, don't invent a new tab enum"
+entry above), which was already built specifically as a
+guaranteed-correct-rendering substitute for exactly this class of native-UI
+uncertainty. It does not depend on the same rendering path as the native
+Command Browser, so it's the reliable way to confirm what a companion can
+currently do regardless of this bug.
+
+**STILL OPEN, not yet root-caused**: why the native Command Browser omits
+these specific rows while listing structurally-identical baseline rows from
+the same build. Candidates not yet ruled out: something in how the client
+associates an icon/UI style with a command row before deciding to list it (a
+missing icon lookup could plausibly cause a silent skip, distinct from the
+already-known "wrong icon" failure mode documented in the TRE README); some
+other per-row data column not yet diffed; or a client-side list length/tab
+cap. Low priority given it's confirmed cosmetic -- revisit only if Nick wants
+the native browser fixed for polish, otherwise `/hpet help` is the standing
+answer.
+
+TAKEAWAY: when "a granted ability doesn't show in the UI" turns out to still
+WORK when typed directly, stop chasing data/grant theories and reach for
+`/hpet help` immediately -- it's the fast, low-cost way to separate "not
+granted" from "granted but not listed" before spending more time diffing
+command_table.iff columns.
+
+## 2026-08-08 (batch 26) -- EXPERIMENTAL fix attempt for batch 25's Command Browser listing bug: force visible=3 on every companion<Ability> row
+
+Nick marked batch 25's finding a MUST-fix (not acceptable to leave abilities
+working-but-invisible long term). Went back in looking for any real,
+reproducible difference between a listed row (companionattack, companionsample)
+and an unlisted one (companionwarcry1 and the rest of the per-skill ability
+set) beyond what batch 25 already ruled out.
+
+**The one real lead**: `companionsample`/`companionsurvey` are the only two
+companion<Ability> rows that use `visible=3` (inherited from their real stock
+source rows) instead of `visible=2` -- and they are the ONLY companion
+ability commands confirmed to show in the Command Browser, including for a
+brand-new character holding zero companion abilities at all (i.e. shown
+unconditionally). Every other diffed column (disabled, godLevel,
+commandGroup, displayGroup) was identical between showing and non-showing
+rows, so this is the only data point with any real signal.
+
+**Change made**: `build_command_table_rows.py`'s `make_companion_ability_command()`
+now force-sets `visible=3` unconditionally on every companion<Ability> row
+(previously: only rows that cloned in as visible=0 were bumped, to 2 --
+sample/survey's 3 was passed through untouched, everything else stayed
+whatever its real stock ability's own visible value was, mostly 2). Rebuilt
+via `build_command_table_rows.py` -> `build_companion_content.py` ->
+`build_tre_patch.py` (ARCHIVE VERIFIED OK, same 3,220,412 bytes -- visible is
+a fixed 4-byte slot regardless of value, so size doesn't change). Verified
+directly against the rebuilt archive: companionwarcry1/companionberserk1/
+companiontaunt/companionpolearmLunge1 etc. now read visible=3;
+companionattack (a baseline order command, untouched, already working) still
+reads visible=2, confirmed unchanged.
+
+**Explicitly flagged as an EXPERIMENT, not a proven fix** -- this is the best
+lead found, not a confirmed root cause. If abilities still don't list in the
+Command Browser after this + a full TRE rebuild/redeploy/full client
+relaunch, the cause is very likely inside the closed-source client
+executable's own list-population logic, which this project has no visibility
+into (same category of hard limit as the previously-documented "client can't
+transmit aim direction" finding) -- in that case this visible=3 override
+should be reverted since it would have no benefit and 3 vs 2 may carry other
+UI semantics not yet understood.
+
+Built but NOT YET deployed/tested by Nick as of this entry -- his own
+`swggenesis_menu.py`'s REPO path only resolves from his own WSL terminal, so
+the deploy step has to run there, not from this session's device_bash mount.
+
+## 2026-08-08 (batch 27) -- batch 26's visible=3 fix WORKED (confirmed in-game); found and fixed the real cmd_n.stf case-sensitivity bug batch 25 went looking for and couldn't prove
+
+Nick confirmed after the batch 26 deploy + reloadstrings restart + full client
+relaunch: every companion<Ability> command now lists in the native Command
+Browser's "other" tab, including the full Brawler set (Warcry 1/2, Berserk
+1/2, Intimidate 1/2, Taunt, etc.) and the wider combat-ability set. The
+`visible=3` override is the confirmed, real fix for batch 25's listing bug --
+no longer just a lead.
+
+**New bug surfaced by having them visible at all**: many entries rendered as
+literal unresolved text, e.g. `cmd_n:[companionapplydisease]`,
+`cmd_n:[companionbodyshot1]`, `cmd_n:[companioncenterofbeing]` -- the exact
+"cmd_n:[key]" fallback-on-miss pattern already documented elsewhere in this
+file for stat_n/stat_d/cmd_n. This is direct, in-game proof (not inference)
+that **the client's cmd_n.stf lookup key is the all-lowercase command name**
+-- and it exactly matches the false lead chased (then correctly retracted) in
+batch 25: `CMD_N_ENTRIES` in `build_companion_content.py` had 184 entries
+keyed with the ability's original camelCase (`companionapplyDisease`,
+`companionbodyShot1`, `companioncenterOfBeing`, ...) instead of the
+all-lowercase form the client actually looks up by. Batch 25 checked whether
+the command_table.iff ROW's commandName matched the STF key (it did -- both
+were the same camelCase, so that specific check passed) but never checked
+whether the CLIENT's own runtime lookup key is lowercase regardless of the
+row's stored case. It is.
+
+**Fix**: mechanically lowercased all 184 affected `CMD_N_ENTRIES` keys (kept
+the value text/casing -- "Companion Command: Apply Disease" etc. -- untouched,
+only the lookup key changed). Verified zero key collisions before writing.
+Rebuilt via `build_companion_content.py` -> `build_command_table_rows.py` ->
+`build_tre_patch.py` (ARCHIVE VERIFIED OK). Post-build verification: extracted
+cmd_n.stf + command_table.iff from the freshly-built archive and confirmed
+217 of 219 companion command_table.iff rows now resolve a display name via a
+case-insensitive match (up from whatever the case-sensitive-broken state was
+before).
+
+**2 rows still have NO cmd_n.stf entry at all, any case** (not a case bug,
+genuinely absent): `companioncraft`, `companionrequestarmor`. Not part of
+this pass's changes -- pre-existing, likely from the Field Crafting
+Droid/Companion Gear Exchange features. Flagged, not fixed this batch (out of
+scope of the listing-bug investigation); worth a follow-up pass if Nick wants
+those two specifically fixed.
+
+**Built, not yet deployed by Nick as of this entry** -- same as batch 26,
+`swggenesis_menu.py`'s REPO path only resolves from Nick's own WSL terminal.
+
+**Separately reported, NOT yet addressed**: "symbols are weird" -- generic/
+wrong icons on these same commands. This is the ALREADY-DOCUMENTED,
+already-understood loose-file issue (see this file's README_TRE section,
+"The icons need a second step") -- SWG Returns ships a loose
+`ui/ui_styles.inc` in the client folder, and a loose file always beats a TRE
+archive, so `companion_patch.tre`'s icon styles are never read regardless of
+this batch's fixes. The existing fix is `docs/companion_system/tools/
+patch_loose_ui_styles.py`, which patches that loose file directly -- this is
+a CLIENT-machine operation (Nick's own PC), not something a TRE
+rebuild/redeploy touches. Not run this batch; needs Nick to run it himself.
+
+TAKEAWAY: "does the STF key on the data row match the dict key" is NOT the
+same check as "does the client's lookup key match the dict key" -- the
+client normalizes to lowercase before lookup regardless of what case
+anything is stored in. Any future STF key dict (cmd_n/cmd_d/stat_n/stat_d/
+etc.) should be written all-lowercase from the start, or verified in-game
+before trusting a same-case-so-it-must-be-fine check like batch 25's.
+
+## 2026-08-08 (batch 28) -- reverted batch 26's visible=3 fix: correctness over guaranteed listing, per Nick's explicit decision
+
+Live report on a brand-new character with zero companion progress: the full
+~200-ability companion command list was showing in the native Command
+Browser (from batch 26's visible=3 override) despite owning none of them.
+Confirmed this is exactly the same complaint Nick raised much earlier about
+companionsample/companionsurvey (the only two rows that were already
+visible=3 before batch 26) -- visible=3 means "always shown, ability
+ownership irrelevant," not "reliably shown." Also confirmed via a controlled
+comparison (companionattack, visible=2, correctly hidden for a fresh
+non-owning character and shown for an owning one) that visible=2 IS the
+value that respects ownership -- batch 25/26's investigation never disputed
+this, it only showed visible=2 was unreliable for SOME owned abilities
+(companionwarcry1 specifically, pre-fix), for a reason still not fully
+root-caused.
+
+**Important clarification given to Nick and worth keeping in mind for any
+future work on this**: this was never a permission/security issue. Listing
+(what shows in the browser) and execution gating (whether a command actually
+runs) are separate mechanisms -- a non-owner seeing a command they can't
+use is cosmetic clutter only, not an exploit.
+
+**Decision** (asked Nick directly, since visible=2 vs 3 could not satisfy
+both "always lists when owned" and "never lists when not owned" with what's
+been found so far): **revert to visible=2**, unconditionally, on every
+companion<Ability> row -- including companionsample/companionsurvey, which
+had never been forced before (they inherited real stock visible=3 from their
+base commands untouched since day one). This is a behavior change for those
+two specifically: they will now also be hidden from non-owners, closing the
+original complaint at its root instead of just for the newly-added
+abilities.
+
+**Consequence explicitly accepted**: batch 25's original symptom (some
+abilities that ARE owned still don't reliably show in the native browser)
+can recur, root cause not fully found. `/hpet help` remains the standing,
+reliable, ownership-correct alternative -- point players there if this comes
+up again rather than re-chasing the native browser.
+
+Rebuilt via the full pipeline (build_companion_content.py ->
+build_command_table_rows.py -> build_tre_patch.py, ARCHIVE VERIFIED OK, same
+3,220,412 bytes). Verified directly against the rebuilt archive: every
+companion<Ability> row now reads visible=2, no exceptions.
+
+## 2026-08-08 (batch 28, icons) -- fixed a real, separate icon-coverage gap: patch_loose_ui_styles.py had its own stale ability list
+
+Live report alongside the above: many companion ability commands showed
+completely BLANK icons (not wrong-but-present, actually empty) -- Action
+Shot 1/2, Aim, Berserk 2, Body Shot 1, etc. Root cause: `patch_loose_ui_
+styles.py` (the script that patches the client's loose `ui/ui_styles.inc`,
+which always wins over the TRE archive -- see this file's README_TRE
+section) had its OWN hardcoded `ABILITY_NAMES` list, a second, separately
+hand-maintained copy of `build_ui_styles_patch.py`'s ability lists. The
+2026-08-07 "full combat tree ability coverage" pass added 142 new ability
+names to `build_ui_styles_patch.py` but nobody updated this file's separate
+list, so those 142 commands never got an icon-style clone written to the
+loose file at all -- confirmed by the blank icons matching exactly the
+142-list membership (companionsample/survey and the original 61 abilities,
+which WERE in the stale list, had icons; the 142 new ones didn't).
+
+**Fix**: replaced the hardcoded `ABILITY_NAMES` list with a `read_ability_
+names()` function that parses `_COMPANION_ABILITY_NAMES` (both the base list
+and the `_NEW_COMPANION_ABILITY_NAMES_2026_08_07` addition) and `_STARTER_
+ABILITY_NAMES` directly out of `build_ui_styles_patch.py` at runtime -- same
+pattern this file already used for `read_mapping()`'s 16 baseline-command
+mappings, just extended to cover ability names too. This makes
+`build_ui_styles_patch.py` the single source of truth for "which companion
+abilities exist" everywhere in the tooling; this specific class of drift
+(two hand-maintained copies of the same list silently diverging) cannot
+recur for icons again. Verified by calling `read_ability_names()` directly:
+203 names returned (up from the old hardcoded 60), confirmed `actionShot1`/
+`aim`/`berserk2`/`bodyShot1`/`warcry1`/`warcry2` all present, zero
+duplicates.
+
+Not yet run against the real loose file by Nick as of this entry -- needs
+`python3 patch_loose_ui_styles.py` from his own WSL terminal (writes to
+`/mnt/d/Launcher/newreturnbenserver/ui/ui_styles.inc`, a path that only
+resolves from his machine).
+
+TAKEAWAY: this is the SAME class of bug as batch 27's cmd_n.stf case
+mismatch -- a second hand-maintained copy of a list drifting out of sync
+with the source of truth. Worth a standing rule: any new "list of every
+companion ability" needed anywhere in the tooling should be read from
+build_command_table_rows.py's or build_ui_styles_patch.py's own lists at
+build/run time, never re-typed by hand.
+
+## 2026-08-08 (batch 29) -- open companion training: any skill, XP cost only, no ownership/mastery requirement
+
+Explicit request: "make it so a user can train their companion in any skill
+regardless if they have it or mastered. allow a user to train their
+companion in any skill they have xp for, even if the user does not own the
+skill or has it mastered."
+
+**Note for whoever reads this next**: this directly REVERSES the
+2026-08-07 "Carbines incident" fix, which was ALSO an explicit user request
+("i shouldnt have been able to train the companion [in Carbines without
+holding the box myself]") that added the master-badge/ownership gate for
+combat professions in the first place. Both requests are real, on-record,
+just made on different days with the opposite intent -- flagging this
+plainly so a future session doesn't assume one or the other is "the"
+correct permanent design; check the date of whichever request is more
+recent if this changes again.
+
+**Change**: `CompanionSkillTrainer::canOwnerTeachSkill()` now unconditionally
+`return true;` as its first line. The prior gate logic (isCombatProfessionSkill/
+ownerHasRequiredMasterBadge check, and the combat_brawler_novice/
+combat_marksman_novice special-case that predated it) is left in the method
+body as a comment (not deleted) specifically so a future re-restriction
+doesn't have to be reconstructed from scratch -- just delete the early
+return and uncomment the block.
+
+**What still gates training** (unchanged, still fully enforced):
+- The skill's own prerequisite chain (`trainSkill()`'s recursive
+  `getSkillsRequired()` walk -- lowest box first, same as before).
+- Per-skill XP cost out of the COMPANION's own isolated XP ledger
+  (`companion->getExperience(xpType)` vs `skill->getXpCost()`) -- unchanged.
+  A companion still needs to have actually earned enough of the right XP
+  type; this request only removed the OWNER-side ownership/mastery check,
+  not the companion's own cost gate.
+- `jedi_` skills still require `isJediEligible()` (all baseline combat
+  professions mastered) -- untouched, this request didn't mention Jedi and
+  that gate is a different mechanism than canOwnerTeachSkill().
+- `companion_master_elite` still requires `companion_master_master` already
+  learned -- also untouched, same reasoning.
+
+Verified brace/paren balance unchanged from the pre-existing +1/+1 baseline
+already documented in this file for this same file across batches 19/20 --
+no new imbalance introduced.
+
+**NOT yet compiled or restarted** -- this is a C++ source change, needs
+`rebuild` + a server restart to take effect (see command below). Nick has
+the exact commands.
+
+### 2026-08-08 (batch 30) -- patch_loose_ui_styles.py crashed with KeyError on Nick's real run; fixed, verified safe
+Nick ran the icon-drift fix from batch 28 for real and hit:
+`KeyError: 'companionactionshot1'` inside the per-variant loop.
+
+ROOT CAUSE: the loop tracks two parallel structures, `have` (a set of known
+lowercase style names) and `blocks` (name -> source block/real-name). The
+"clone a brand new name" branch only updated `have`, never `blocks`. When a
+single ability produces multiple variant names that lowercase to the SAME
+key (e.g. `companionactionShot1` and `companionactionshot1` both fold to
+`companionactionshot1`), the first variant clones successfully and marks it
+present in `have`; the second variant then takes the "already present, check
+staleness" branch, which reads `blocks[vlow]` -- never populated. KeyError.
+
+Confirmed this was a **pure logic bug**, not a data problem: the script
+never reached its backup/write step (that happens only after the loop
+completes), so `ui_styles.inc` was never touched by the failed run --
+nothing to repair, safe to just fix and re-run.
+
+FIX: the new-clone branch now also writes `blocks[vlow] = (new_block, v)`
+alongside `have.add(vlow)`, so every later variant lookup within the same
+or a later `wanted` entry finds a real block instead of KeyError'ing.
+Verified with a synthetic loose-file + fake ability list reproducing the
+exact multi-variant-collapse case (`actionShot1` -> `companionactionShot1`
+/ `companionactionshot1` / `companion_actionshot1`): now exits 0, reports
+"1 already present" for the collapsed duplicate instead of crashing.
+
+TAKEAWAY: any dict used as a lookup cache inside a loop needs every branch
+that adds to the "seen" set to also add to the lookup dict in the same
+breath -- partial updates like this only surface once real data produces a
+collision the test data didn't.
+
+### 2026-08-08 (batch 31) -- patch_loose_ui_styles.py silently dropped the 4 "no real icon" overrides (berserk1/berserk2/rally/takeCover)
+Nick's real run of the batch-30-fixed script succeeded (278 added, 335
+already present) but reported 4 SKIPPED as "no base style in this file":
+companionberserk1, companionberserk2, companionrally, companiontakeCover.
+
+These 4 abilities genuinely have no ImageStyle anywhere in the palette --
+already discovered and handled in build_ui_styles_patch.py's
+`_NO_REAL_ICON_OVERRIDES_2026_08_07` (berserk1->warcry1, berserk2->warcry2,
+rally->boostmorale, takeCover->tumbleToProne), applied via a small loop
+that runs AFTER the static `MAPPING = {...}` literal.
+
+ROOT CAUSE (two compounding bugs in patch_loose_ui_styles.py):
+1. `read_mapping()` extracted MAPPING by regex-slicing the literal
+   `MAPPING = {...}` text block only -- it never saw entries added by the
+   runtime `for a in ...: MAPPING["companion"+a] = ...get(a, a)` loop that
+   comes after, so the 4 overrides were invisible to it.
+2. Even if read_mapping() HAD seen them, main()'s `wanted` dict was built
+   by running the MAPPING loop first, then an ABILITY_NAMES loop SECOND
+   that unconditionally set `wanted["companion"+ab] = ab` -- silently
+   clobbering any override with the ability's own (nonexistent) name.
+
+FIX: `read_mapping()` now imports build_ui_styles_patch.py as a real module
+via importlib and reads its fully-computed `MAPPING` dict directly, instead
+of regex-slicing static source text. main()'s wanted-building loops were
+also reordered so MAPPING entries are applied AFTER (and so win over) the
+ability-name defaults. Verified with a synthetic MAPPING+override fixture:
+`read_mapping()["companionberserk1"]` now correctly returns `"warcry1"`.
+
+TAKEAWAY: regex-scraping a sibling script's source text for its computed
+config is fragile the moment that config involves ANY runtime logic (loops,
+dict comprehensions, conditionals) -- prefer importing the module directly
+and reading the real post-execution value, same fix class as batch 28's
+ABILITY_NAMES drift but one level deeper (that one drifted because of a
+hand-copied list; this one drifted because the reader couldn't see past a
+static literal at all).
+
+### 2026-08-09 (batch 32) -- visible=2 re-tested against a real trainSkill()-granted ability, still didn't list; re-reverted to visible=3, Nick's call
+Live case: Snisro's companion has Novice Brawler trained ([X] in the real
+Skill Tree UI). Confirmed by direct command execution that Snisro (owner)
+actually holds "companion_warcry1" -- typing /companionwarcry1 worked --
+yet it never appeared in the native Command Browser under visible=2, same
+symptom batch 25 first found and never root-caused.
+
+Pulled all 75 command_table.iff columns for companionattack (lists
+correctly under visible=2) vs companionwarcry1 (doesn't list) side-by-side
+from the actual DEPLOYED companion_patch.tre, not the stock base file.
+visible/commandGroup/displayGroup -- the only columns that plausibly gate
+native listing -- are byte-identical between them. Ruled out again: this is
+not a row-data bug on our end. Whatever's actually gating native-browser
+listing for these specific cloned rows under visible=2 is client-side logic
+we cannot inspect or fix from the server/data side.
+
+DECISION (Nick, 2026-08-09): stop chasing visible=2. Re-reverted
+make_companion_ability_command() to visible=3 (unconditional listing).
+Accepting the visible=3 downside -- ability names show in the Command
+Browser to characters who haven't earned them yet -- as purely cosmetic:
+execution is gated entirely separately and correctly, via
+characterAbility/hasAbility() in
+ObjectControllerImplementation::activateCommand() on the SERVER, so a
+listed-but-unowned command still fails when actually used. /hpet help
+(sendHelpSheet()) remains the accurate, ownership-correct reference.
+
+VERIFICATION PLAN (not yet run): once redeployed, Nick will (1) confirm
+companion-owned abilities now list AND execute, and (2) try triggering an
+ability his companion has NOT trained to confirm the server-side block
+still holds (should fail cleanly, not execute) -- this is the one case that
+would actually matter if it went wrong, so worth the extra 30 seconds to
+check rather than assuming.
+
+TAKEAWAY: two independent, careful investigations (batch 25 and this one)
+both concluded visible=2's unreliability for these rows isn't explainable
+from server-side data -- worth not re-litigating a third time without new
+evidence (e.g. actual client source/decompile access) if this comes up again.
+
+### 2026-08-09 (batch 32, follow-up) -- checked real-player ability mechanism vs companion mechanism, found + fixed a 4th list-drift bug
+Nick asked how a REAL player's ability display works when they learn a
+profession skill, so companion abilities could be made to match. Traced it:
+
+REAL PLAYER PATH: SkillManager::awardSkill() calls
+addAbilities(ghost, *skill->getAbilities(), notifyClient), which looks each
+ability name up in a server-side `abilityMap` (populated at startup from
+skills.iff's own COMMANDS column) and only grants a pre-registered Ability*
+object if found there.
+
+COMPANION PATH: CompanionSkillTrainer::grantOwnerAbilitiesForSkill() /
+grantAllAbilitiesForTesting() construct `new Ability(name)` directly and
+addAbility() it -- bypassing abilityMap entirely. Ability itself (Ability.h)
+is a trivial name-only wrapper, so this does NOT explain any LIVE listing
+difference (confirmed executable abilities prove the live grant works fine
+either way) -- but it does matter for RELOAD: AbilityList::loadFromNames()
+re-resolves a player's persisted abilities through abilityMap on every
+relog/server restart (see the existing 2026-07-31 hotfix comment in
+SkillManager.cpp), so anything CompanionSkillTrainer.cpp can grant that
+ISN'T registered in abilityMap silently vanishes the next time the server
+restarts -- not an error, just gone.
+
+Found: SkillManager.cpp's `companionRawAbilityNames[]` (the array that
+registers companion ability twins into abilityMap) was STILL the original
+61-name list (36 combat + 25 starter) from before the 2026-08-07 "full
+combat tree" pass added 142 more abilities -- the exact same drift bug
+already found and fixed 3 times this week in 3 OTHER hand-copied mirrors
+(build_companion_content.py's CMD_N_ENTRIES, patch_loose_ui_styles.py's old
+ABILITY_NAMES, CompanionSkillTrainer.cpp's own
+grantAllAbilitiesForTesting() combat/starterAbilities arrays -- that one
+NOT yet fixed, flagged below). Any of the 142 newer abilities a player was
+granted would silently drop off their ability list on their next relog or
+server restart.
+
+FIX: regenerated companionRawAbilityNames[] in full (61 -> 203 names) from
+build_ui_styles_patch.py's own ability lists via patch_loose_ui_styles.py's
+read_ability_names(), instead of hand-copying again. Verified brace/paren
+balance unchanged (164/164, 791/791) after the edit. NOT yet compiled.
+
+STILL OPEN, not fixed this pass: grantAllAbilitiesForTesting()'s own
+combatAbilities[]/starterAbilities[] arrays (CompanionSkillTrainer.cpp,
+~line 1090) are the SAME 61-name-only list, same drift, same silent-gap
+risk for anyone using the "grant everything for testing" path on the 142
+newer abilities. Lower urgency (testing convenience only, not the normal
+player-facing grant path) but same fix would apply -- flagging for a
+future pass rather than doing it now mid-investigation.
+
+TAKEAWAY (now the 4th occurrence of this exact bug class in one week): every
+one of these hardcoded C++ mirrors should ideally be generated, not
+hand-maintained -- there is no compiler check catching "this list is
+supposed to match that Python list." Worth a follow-up pass to either
+generate SkillManager.cpp's companion registration block directly from
+build_ui_styles_patch.py at build time, or at minimum leave a single
+comment pointing at the canonical source next to EVERY copy so future
+edits know to check the others.
+
+### 2026-08-09 (batch 33) -- v3 dynamic companion-ability mirroring built (datapad-wide, live grant/revoke, no relog needed)
+Root cause of "owner sees all 61 companion abilities regardless of what any
+companion actually trained": CompanionSkillTrainer::grantAllAbilitiesForTesting()
+(a "testing convenience," justified when real profession training was
+unreachable through any UI -- no longer true since the 2026-08-07
+real-professions work shipped) fired unconditionally at 3 live call sites in
+normal play: companion summon, starter-profession choice, and the manual
+/companionresync command.
+
+FIX: added CompanionSkillTrainer::syncOwnerMirrorAbilities(CreatureObject*
+owner) -- a full recompute-and-diff. Unions abilities from every companion in
+the owner's datapad (summoned OR stored -- reads CompanionObject::
+getLearnedSkill() via CompanionControlDevice::getCompanionObject(), which
+stays valid and persisted regardless of spawn state per that class's own doc
+comments), plus the 16 always-on baseline order commands, diffs against the
+owner's current companion_-prefixed abilities (strict beginsWith("companion_")
+namespace guard -- never touches real profession abilities sharing the same
+list), grants what's missing, revokes what's stale. Storing a companion no
+longer revokes its granted abilities; only actually losing it from the
+datapad or the companion losing the skill does (once the skill-change trigger
+points below fire).
+
+Replaced grantAllAbilitiesForTesting() at all 3 former live call sites:
+  - CompanionControlDeviceImplementation.cpp (companion summon, ~line 713)
+  - CompanionStarterProfessionSuiCallback.h (moved to end of function, after
+    the multi-companion cascade loop, so one call covers the primary
+    companion + any cascaded ones in a single recompute)
+  - CompanionResyncAbilitiesCommand.h (replaced the old 3-part
+    grantBaselineOwnerOrderAbilities() + grantAllAbilitiesForTesting() +
+    per-SUMMONED-companion-per-skill loop -- this also fixes /companionresync's
+    old summoned-only blind spot as a side effect, since syncOwnerMirrorAbilities()
+    doesn't filter on getZone() != nullptr the way resolveActiveCompanions() did)
+
+Also added syncOwnerMirrorAbilities() calls (supplementing, not replacing,
+the existing narrower grantOwnerAbilitiesForSkill()/
+revokeOwnerAbilitiesForSkillIfUnused() calls) at the two REAL interactive
+trigger points:
+  - CompanionTrainSkillSuiCallback.h, right after trainSkill()
+  - CompanionUntrainSkillSuiCallback.h, right after untrainSkill() -- this is
+    what actually revokes a stale ability once nothing left in the datapad
+    grants it anymore
+
+grantAllAbilitiesForTesting() itself was left defined but is now unreferenced
+anywhere in the tree (grep-confirmed) -- kept for bench testing per its own
+doc comment, not deleted.
+
+NOT done this pass (scoped out, no clean existing hook found): a
+companion-added/removed-from-datapad trigger (no trade/release/destroy
+companion system exists yet in this codebase to hang it off), and an owner
+login/zone-in self-heal pass (no existing player-login hook found in
+managers/player/ to attach to safely without risking every player's login,
+not just companion owners -- would need a deliberate new hook, not
+retrofitted into an unverified location). The 5 call sites above cover every
+currently-implemented way a companion's abilities can change. Flagging both
+as a future pass if Nick wants full self-healing coverage.
+
+Brace/paren balance verified on every touched file after every edit
+(CompanionSkillTrainer.h 13/13 141/141; CompanionSkillTrainer.cpp
+387/386 1714/1713 -- matches this file's known pre-existing +1/+1 comment-text
+baseline, not a new imbalance; CompanionControlDeviceImplementation.cpp,
+CompanionStarterProfessionSuiCallback.h, CompanionResyncAbilitiesCommand.h,
+CompanionTrainSkillSuiCallback.h, CompanionUntrainSkillSuiCallback.h all
+clean). NOT yet compiled -- Nick to rebuild and verify in-game.
+
+### 2026-08-09 (batch 34) -- root-caused + fixed: companion solo kills generated ZERO loot/credits/faction (ThreatMap never credited companion damage to the owner)
+Nick, live-testing the v3 mirroring build: "if i send my companion out to kill an npc, and the user doesnt hit the npc, they dont collect the loot/credits."
+
+ROOT CAUSE, found in stock (non-companion) code: `ThreatMap::getHighestDamagePlayer()` and
+`ThreatMap::getHighestDamageGroupLeader()` (`MMOCoreORB/src/server/zone/objects/tangible/threat/ThreatMap.cpp`)
+only know how to attribute damage to (a) a real player directly, or (b) a stock SWG *pet*
+(`creature->isPet()`), crediting the pet's damage to `creature->getLinkedCreature()` if that
+owner is a real player. `CompanionObject` is a wholly separate custom class -- neither
+`isPlayerCreature()` nor `isPet()` -- so a companion's damage was invisible to both functions.
+When the companion did 100% of a kill's damage (owner never landed a hit), `getHighestDamageGroupLeader()`
+fell through to its generic `else` branch and credited the COMPANION ITSELF as `leaderCreature`.
+Back in `CreatureManagerImplementation::notifyDestruction()`, that non-null-but-non-player `player`
+sets `ownerID` to the companion's own object ID, and the very next gate --
+`if (creatureInventory != nullptr && player != nullptr && player->isPlayerCreature())` -- fails,
+skipping cash credit generation, item loot generation, AND the loot bag's owner assignment
+entirely. Not a companion-side bug at all; the companion feature just exposed a real gap in the
+stock kill-credit system (it was written assuming only players and pets can kill things).
+
+FIX: added an `else if (creature->isCompanionObject())` branch to BOTH functions, placed right
+after the existing `isPet()` branch and mirroring its logic verbatim -- credits a companion's
+damage to `companion->getLinkedCreature()` (the owner) exactly like a pet's damage credits its
+owner. Fixed at the ThreatMap source rather than patching `notifyDestruction()` directly, so
+every other consumer of these two functions (not just the loot path) gets the same correction
+for free. No change needed to `CreatureManagerImplementation::notifyDestruction()` itself --
+once `player` correctly resolves to the real owner, its existing `isPlayerCreature()` gates for
+cash/loot/ownerID, faction standing, and observer notification all just work.
+
+Brace/paren balance verified clean before/after (76/76, 344/344 -> 91/91, 407/407 -- the delta
+matches the two duplicated isPet()-shaped blocks added, no stray imbalance). NOT yet compiled.
+NOT yet in-game verified -- ask Nick to specifically test a companion solo-kill (owner never
+attacks) both unsummoned-owner-nearby and owner-far-away, confirm credits/loot/faction land, then
+confirm a normal owner-participates kill still works unchanged (regression check on the isGrouped()
+and isPlayerCreature() branches, untouched by this edit).
+
+### 2026-08-09 -- OPEN, not investigated yet: companion's "ready to train next skill" nudge doesn't refire after the first box
+Nick, same live test session: companion correctly walked up and asked to train its first skill
+(Novice Brawler), but never came back to prompt training again after banking 100% XP toward the
+next box (Unarmed II: Stunning Attack, confirmed sitting at 100% in the skill tree SUI, still
+untrained/grey). Not yet looked into -- likely a one-shot timer/behavior-tree trigger that isn't
+re-arming, separate from tonight's mirroring or loot-crediting work. Flagged for a follow-up pass.
+
+### 2026-08-09 (batch 35) -- visible=2 decisive experiment PROBE DEPLOYED (not yet observed)
+SWGReturnFable's theory (see claude/notes-to-swgreturn.md): the Command Browser's listing
+universe is the CLIENT's own skills.iff COMMANDS column per TRAINED skill box, not the
+server-granted ability list -- confirmed consistent with the ALREADY-FIXED 2026-07-25 "jenkins
+doesn't show up anywhere" bug (same root cause, same fix: add the command name to
+companion_master_novice's COMMANDS). That precedent only proves the baseline-always-granted
+case though -- it doesn't tell us whether a REAL per-skill mirror command additionally needs to
+be actually HELD to list (visible=2's AND check), or whether box-membership alone is enough
+regardless of holding state.
+
+PROBE: added `companionwarcry1` to `companion_master_novice`'s COMMANDS in
+build_companion_content.py (TEMPORARY, test-only -- flagged in the script's own comment to
+revert once read). Regenerated via the standard pipeline (build_companion_content.py ->
+build_tre_patch.py), ARCHIVE VERIFIED OK, 16/16 records match. companionwarcry1's command_table
+row is already visible=2 in the live deployed TRE (confirmed by SWGReturnFable's byte read
+tonight), so no command-table change needed for the probe itself.
+
+NEXT: Nick deploys the regenerated companion_patch.tre, restarts server with reloadstrings,
+FULLY EXITS AND RELAUNCHES THE CLIENT (command_table.iff is not hot-reloadable), and observes
+with Pin's companion (which already has Unarmed I: Street Fighting / warcry trained):
+  (a) lists now, and disappears after untraining warcry -> cheap full fix confirmed: list all
+      61 mirror commands in companion_master_novice's COMMANDS, done, syncOwnerMirrorAbilities()
+      already drives it dynamically.
+  (b) lists regardless of trained state -> box-membership alone controls listing -> needs
+      SWGReturnFable's heavier hidden-mirror-skill-box design instead.
+Whatever the result, revert this single COMMANDS addition (it's a probe, not the fix) before
+shipping either path for real.
+
+### 2026-08-09 (batch 35, continued) -- visible=2 fix SHIPPED (full version), pending final in-game confirmation
+Probe result from Nick: companionwarcry1 (trained, held) now LISTS correctly in the Command
+Browser after the single-name probe -- confirms the "trained -> lists" half of SWGReturnFable's
+theory. The "untrained -> disappears" half was NOT tested before Nick stepped away, so this is
+shipped on strong-but-not-fully-closed evidence (matches the already-proven 2026-07-25 jenkins
+precedent + tonight's positive result; the only residual risk is outcome (b), box-membership
+alone controls listing regardless of held state).
+
+SHIPPED (not yet deployed to the live server -- TRE regenerated and sitting in
+docs/companion_system/tools/companion_patch.tre, ready for Nick to copy over):
+1. `build_companion_content.py`: companion_master_novice's COMMANDS now lists all 203 companion
+   mirror ability commands (generated programmatically from
+   _COMPANION_ABILITY_NAMES + _NEW_COMPANION_ABILITY_NAMES_2026_08_07 + _STARTER_ABILITY_NAMES
+   in build_command_table_rows.py, not hand-typed -- zero duplicates confirmed). Every owner
+   trains this box first, so box-membership is now satisfied universally; the real gate is
+   visible=2's AND-with-held-ability check.
+2. `build_command_table_rows.py`: make_companion_ability_command()'s visible column restored
+   from the batch-32 workaround (3, unconditional) back to 2 (AND-gated), with the comment
+   corrected to record the real root cause for future readers. NOTE: this script was NOT
+   re-run tonight -- the currently deployed/patched command_table.iff already has visible=2
+   baked in from an earlier run, which is what tonight's probe actually tested against. This
+   edit only prevents a FUTURE accidental revert if someone re-runs build_command_table_rows.py
+   without knowing why it was 3.
+3. Regenerated via the standard pipeline (build_companion_content.py -> build_tre_patch.py),
+   ARCHIVE VERIFIED OK, 16/16 records match, companion_patch.tre now 3,224,914 bytes.
+
+STILL NEEDED before this is fully confirmed and safe to commit:
+- Deploy + restart (Nick, when back): copy the regenerated companion_patch.tre to
+  D:\Launcher\newreturnbenserver, restart core3 with `r reloadstrings`, FULLY EXIT AND RELAUNCH
+  the client (command_table.iff/skills.iff are not hot-reloadable).
+- The untrain check: with a companion that has warcry (or any real per-skill ability) trained,
+  confirm it lists; untrain that skill (or use a companion that never trained it); confirm it
+  disappears. This is the one piece of evidence that closes outcome (a) vs (b) for good.
+- If it disappears correctly: this is done, ready to commit/push. If it does NOT disappear
+  (lists regardless of held state): REVERT both edits above (git checkout the two tools/ scripts
+  and companion_patch.tre, or ask me to do it) and this becomes SWGReturnFable's heavier
+  hidden-mirror-skill-box design instead.
+
+Also re companion-solo-loot (ThreatMap.cpp fix, batch 34): that fix compiled into the SAME
+binary that's been running all night (confirmed -- no rebuild happened between the loot fix
+build and now, only server restarts for data/string reloads). Nothing further needs "patching
+in" -- it's live. What's still unverified is the in-game test itself: a kill where the owner
+lands zero damage, confirming credits/loot/faction all land correctly and a normal mixed-damage
+kill still works unchanged.
+
+### 2026-08-09 (batch 35, deploy update) -- new companion_patch.tre copied to D:\Launcher\newreturnbenserver
+Deployed the full 203-mirror-command TRE (3,224,914 bytes) to the live server's TrePath via
+direct file copy (device bridge reaches this folder). Server restart (screen -S genesis -X quit
++ relaunch with `r reloadstrings`) and full client exit/relaunch still require Nick's own
+terminal/desktop -- no tool available can drive those. Untrain check + solo-loot check both
+still pending his return.
+
+### 2026-08-09 (batch 36) -- regression WAS NOT a truncation bug: stale client-side template cache
+Nick reported "no longer have warcry, nothing else added" after deploying the full 203-command
+COMMANDS field to companion_master_novice. Investigated Python/pipeline layer first (iff_datatable.py
+direct parse of patched/skills.iff): COMMANDS field confirmed 4752 chars, contains both
+'companionwarcry1' and 'jenkins' intact, no corruption. iff_datatable.py's DTII codec uses
+null-terminated VARIABLE-length strings for string columns (read in full) -- no format-level length
+cap exists, ruling out a serialization bug. build_tre_patch.py's own verify step also matched on
+repack. So the data reaching the TRE was correct all along.
+
+Root cause instead: Nick tested his EXISTING character without a true full exit of the game client
+(only relogged to character select, or similar), so command_table.iff/skills.iff stayed cached in
+that still-running client process from before the deploy. Confirmed by his own follow-up: rolling a
+BRAND NEW character (forces a fresh client-side load) showed the FULL new command list correctly
+(Point Blank Area 1/2, Polearm Action/Area Hit 1/2, Overcharge Shot 1/2, Panic Shot, Patrol, One-Hand
+Spin Attack 1/2, Scatter Hit 2, etc. -- confirmed these are from the 203-name mirror list, not the
+16-command baseline). This proves the full fix (all 203 names in companion_master_novice's COMMANDS,
+visible=2) works exactly as designed. No code or data change made in response to this batch --
+recommended Nick do a genuine full exit+relaunch (not just relog) and retest on his existing
+character before we call this closed. Untrain-side of SWGReturnFable's original experiment (does the
+command disappear from the Browser when untrained) still unverified.
+
+### 2026-08-09 (batch 37) -- REAL BUG FOUND: syncOwnerMirrorAbilities() revoke race, not a client cache issue
+The "regression" chased in batch 36 wasn't a client cache problem after all. Nick did a genuine full
+exit+relaunch and logged into his EXISTING character (post the full 203-command deploy) -- warcry1
+was still gone, and so was everything else except the 16 baseline order commands. New-character
+testing (batch 36) had masked the real bug because a freshly-created companion goes through the
+starter-profession flow, which naturally produces a populated learned-skill set before
+syncOwnerMirrorAbilities() ever runs against it.
+
+Root cause: syncOwnerMirrorAbilities() (CompanionSkillTrainer.cpp, ~line 1034) is called
+synchronously at summon (CompanionControlDeviceImplementation.cpp spawnObject()). It walks the
+owner's datapad, reads each CompanionControlDevice's CompanionObject::getLearnedSkillCount()/
+getLearnedSkill(), unions their granted abilities into a "desired" set, then REVOKES any
+"companion_"-prefixed ability the owner currently holds that isn't in that set. Immediately after a
+genuine cold server restart (screen -X quit + relaunch, not just reloadstrings), the very first
+summon of an existing companion appears to read back 0 learned skills from a companion object that
+DOES have them on record (the doc comment above the function claims "no zone/summon guard needed
+here" since spawnObject()/storeObject() supposedly reuse the same companionObject reference for the
+device's whole lifetime -- that assumption doesn't hold immediately post cold-restart). Result:
+desired collapses to the 16 baseline-only abilities, and the revoke pass strips every real mirror
+ability the owner had -- including companion_warcry1, which had been correctly granted and working
+minutes earlier in the same testing session, pre-restart.
+
+Fix shipped (CompanionSkillTrainer.cpp, function unchanged in signature/behavior except this guard):
+track whether the datapad walk found at least one CompanionControlDevice (datapadHadCompanionDevice)
+and whether it yielded at least one real mirror ability (discoveredAnyMirrorAbility). If a device was
+found but zero abilities were discovered, skip the REVOKE pass entirely this cycle (grant/add pass
+still runs unconditionally) and log a warning via warning(...). This trades "a stray ability might
+linger one extra sync cycle in a genuinely-empty-companion edge case" for "never silently wipe real
+grants on a load race" -- the right tradeoff given revoke is destructive and grant is not.
+Brace/paren check: 389/388 braces, 1724/1723 parens both after edit -- matches the file's known
+pre-existing +1/+1 comment-text imbalance, no new imbalance introduced.
+
+Workaround given to Nick to test immediately without a rebuild: train (or untrain+retrain) any single
+companion skill -- CompanionTrainSkillSuiCallback.h's sync call happens well after the companion is
+guaranteed fully loaded/interactive, so it should correctly recompute and restore everything,
+including warcry1, on the CURRENTLY RUNNING (unpatched) binary. The C++ fix above is for the next
+build so the summon-time race can't cause this again. NOT yet compiled -- needs the standard
+cmake/make cycle before it's live. Companion-solo-loot ThreatMap.cpp check and the untrain-Command-
+Browser check from batch 35/36 are all still pending too -- this build should confirm all three at
+once when it's up.
+
+### 2026-08-09 (batch 38) -- CORRECTED: the real run directory is MMOCoreORB/bin, not build/unix
+Wasted several round-trips tonight chasing "No such file or directory" / missing log / missing conf
+errors while trying to restart genesis from `MMOCoreORB/build/unix`. Root cause of the confusion: that
+is the CMAKE BUILD directory, not the run directory. The actual freshly-linked binary lands at
+`MMOCoreORB/build/unix/src/core3` (not `build/unix/core3` directly), and `build/unix` itself has no
+`conf/`, no `log/`, none of the runtime assets a live server needs.
+
+The REAL, established run directory is `MMOCoreORB/bin` -- confirmed it already has `conf/config.lua`
+(257 lines, real content), a populated `log/` (core3.log etc. from tonight's actual testing session),
+`scripts/`, `databases/`, `navmeshes/`, `terrain/`, and helper launch scripts (ccore3/dcore3/hcore3/
+vcore3 -- all valgrind wrappers around `./core3` run from this same directory). Critically:
+`MMOCoreORB/bin/core3` is NOT a symlink -- it's a real 972MB copy, and its timestamp (08:46) is ~1
+minute AFTER `build/unix/src/core3`'s link time (08:44:58), confirming the Makefile already has a
+post-build step that copies the freshly linked binary into `bin/core3` automatically. No manual copy
+step needed -- `make` alone (from build/unix) is sufficient; the restart should always point at
+`MMOCoreORB/bin`, never `build/unix`.
+
+CORRECTED standard restart procedure going forward:
+    cd /mnt/d/SWGGenesis/MMOCoreORB/bin
+    screen -S genesis -X quit
+    screen -wipe
+    screen -S genesis gdb ./core3
+    (gdb) r
+    [Ctrl-A then D to detach]
+Build (unchanged, still from build/unix):
+    cd /mnt/d/SWGGenesis/MMOCoreORB/build/unix
+    make -j$(nproc) core3
+Anyone (including future me) reading old notes in this project that say "build dir: .../build/unix"
+for RUNNING the server -- that was wrong/stale. build/unix is BUILD-ONLY. bin/ is RUN-ONLY.
+
+### 2026-08-09 (batch 39) -- visible=2 theory REOPENED: Command Browser lists abilities the companion never learned
+After batches 36-38's build/run-directory saga finally got a clean rebuild deployed with the full
+203-command COMMANDS field live, Nick reports the opposite problem from before: "im still seeing all
+the skills my companion doesnt have." Not missing -- extra. This contradicts the working theory
+(visible=2 = box-trained AND held-ability) on the held-ability half specifically.
+
+In hindsight the earlier "new character shows everything correctly" result (batch 36) should have
+been a bigger red flag than it was treated as: a companion that had JUST picked its starter
+profession showing Point Blank, Polearm, Overcharge Shot, Panic Shot, One-Hand Spin Attack, Scatter
+Hit etc. all at once is not plausible if those are genuinely gated on held ability -- a fresh
+companion wouldn't hold that spread of advanced, cross-weapon-type combat skills yet. More consistent
+explanation: box-training alone (companion_master_novice, which every owner has) is sufficient to
+list every command in its COMMANDS field, and the visible=2 held-ability AND-check may not be doing
+anything for these cloned rows at all -- possibly never did, and the single-name probe / jenkins
+precedent both "worked" for reasons compatible with pure box-membership gating, not because the
+held-ability check was real.
+
+Not yet known: whether this is purely cosmetic (over-listed but still un-executable, server-side
+ability gate holds) or an actual capability leak (companion/player can invoke abilities never
+trained). Asked Nick to test clicking a command he knows the companion hasn't learned and report
+whether it does anything -- that determines severity.
+
+Escalated back to SWGReturnFable (`claude/notes-to-swgreturnfable.md`) with the specific ask: dig into
+whether the held-ability half of visible=2 is real at all in this client/server combo. If it turns out
+box-membership is genuinely all visible=2 checks, the current single-COMMANDS-field design cannot work
+as originally intended and needs to fall back to their previously-flagged alternative: server grants/
+revokes a set of HIDDEN per-tier skill boxes on the owner (so box-*membership itself*, driven by
+syncOwnerMirrorAbilities()'s existing grant/revoke logic, becomes the real gate instead of a
+held-ability check inside a single always-trained box). No code changes made this batch -- pure
+diagnosis, pending Nick's click-test result and SWGReturnFable's read.
+
+### 2026-08-09 (batch 40) -- REAL FIX for the visible=2 over-listing: 203 per-ability hidden gating skills
+Nick confirmed batch 39's suspicion directly: "every single command is in novice companion handler,
+which is why im seeing them." Box-membership alone is the Command Browser's real and only gate for
+these cloned rows -- the visible=2 "held ability" AND-check never filtered anything. Good news
+confirmed alongside this: using an unheld listed command is still correctly blocked server-side
+("You do not have sufficient abilities to Companion Command: Charge Shot 2") -- this was always
+cosmetic over-listing, never a capability leak.
+
+Real fix, replacing the reverted "cram all 203 into companion_master_novice" approach:
+
+1. New shared module `companion_ability_names.py` -- the 203-name list (36 original + 142 from the
+   2026-08-07 pass + 25 starter) now lives in exactly one place. build_command_table_rows.py imports
+   it instead of defining it inline (output unchanged, verified byte-identical row count: still 221
+   companion rows in command_table.iff). Prevents a 5th occurrence of the hand-copied-list-drift bug
+   class (NOTES.md batch 32).
+2. build_companion_content.py: companion_master_novice's COMMANDS reverted to just the 16 baseline
+   order commands + jenkins (17 total) -- these don't need per-ability gating, they're always desired.
+   Added `_build...` loop generating 203 new hidden skill rows, one per mirror ability: NAME=
+   "companion_hidden_<ability lowercased>", COMMANDS="companion<ability>" (single command each),
+   IS_HIDDEN=1, GOD_ONLY=0 (deliberately NOT god-only -- SkillManager::awardSkill() unconditionally
+   system-messages every ability on a god-only skill regardless of notifyClient, which would spam on
+   every sync), POINTS_REQUIRED=0/XP_COST=0/XP_CAP=0 (real zeros in the data, not merely bypassed by
+   the existing "companion_master_" prefix special-case in SkillManager.cpp -- deliberately used a
+   different prefix, "companion_hidden_", to avoid colliding with the several other places in this
+   codebase that pattern-match "companion_master_" for unrelated reasons -- see grep in this batch's
+   research). Verified post-regen: 203 hidden rows present, correct COMMANDS/flags on spot-checked
+   rows, companion_master_novice COMMANDS confirmed back to baseline-only.
+3. CompanionSkillTrainer.cpp's syncOwnerMirrorAbilities(): added a parallel desiredHiddenSkills
+   SortedVector, populated alongside `desired` (the existing Ability-name set) in the same datapad-
+   walk loop. After the existing Ability-based grant/revoke pass (unchanged -- stays the real
+   server-side execution gate), added a second pass that diffs the owner's actual SkillList for
+   "companion_hidden_"-prefixed skills against desiredHiddenSkills and calls
+   SkillManager::instance()->surrenderSkill(...)/awardSkill(...) (notifyClient=false both ways,
+   noXpRequired=true on award) to bring box-membership in line. Reuses the existing
+   skipRevokeThisPass race-guard (batch 37) for the same post-restart-load-race protection, applied
+   to both the ability revoke pass AND this new skill revoke pass identically.
+Brace/paren check clean (same pre-existing +1/+1 comment imbalance, no new drift).
+
+Regenerated via the standard pipeline: build_companion_content.py -> build_command_table_rows.py ->
+build_tre_patch.py, ARCHIVE VERIFIED OK, 16/16 records match. Deployed companion_patch.tre to
+D:\Launcher\newreturnbenserver via direct file copy. Needs: rebuild core3 (CompanionSkillTrainer.cpp
+changed), restart from MMOCoreORB/bin per batch 38's corrected procedure, full client exit+relaunch.
+Once up: re-check the Command Browser only shows what's actually learned, untrain-makes-it-disappear,
+and re-confirm summon doesn't wipe anything (batch 37's race guard should still hold, now covering
+both grant paths).
+
+### 2026-08-09 (batch 41) -- fixed notifyClient=false requiring a relog to see hidden-skill changes
+Batch 40's fix worked correctly (Nick confirmed the Command Browser now only shows what's actually
+learned) but required logging the character out and back in to see any change -- not acceptable for
+live gameplay (train a skill mid-fight, expect the command to show up without a relog).
+
+Root cause: syncOwnerMirrorAbilities()'s new hidden-skill grant/revoke pass called
+SkillManager::instance()->awardSkill()/surrenderSkill() with notifyClient=false, on the mistaken
+assumption that notifyClient only gates a chat/system message (which was the real concern -- did not
+want 203-ability spam). Read CreatureObjectImplementation::addSkill()/removeSkill() directly:
+notifyClient is NOT a message flag at all -- it's whether a real CreatureObjectDeltaMessage1 packet
+gets sent to sync the client's own copy of the skill list. false left the server-side grant/revoke
+correct (hasSkill() etc. all worked) but the CLIENT never found out, so its own local Command Browser
+computation kept using stale data until the next full baseline sync (a relog).
+
+The actual spam risk (awardSkill()'s per-ability "you have gained the command..." system message) is
+gated purely on skill->isGodOnly(), completely independent of notifyClient -- and these hidden skills
+already have GOD_ONLY=0 (deliberately, per batch 40), so that message path is already unreachable
+regardless of notifyClient's value. There was never a real reason to withhold the sync.
+
+Fix: both calls changed to notifyClient=true. Brace/paren check clean after fixing one unbalanced
+paren introduced in this batch's own doc comment (caught before rebuild, not a functional bug -- just
+comment prose). Needs one more rebuild+restart+full client relaunch cycle to verify live updates now
+work without a relog.
+
+## Batch 42 (2026-08-10) -- Companion loot: defer cash crediting to delivery time
+
+**Symptom (Nick):** "if there are credits, the companion will loot the
+credits and items, but the credits are going in to my account right away,
+where as the item does not show up until my companion comes back to me" --
+credits and items had different arrival timing during the post-combat loot
+sweep, which read as inconsistent/broken even though both mechanisms were
+individually working as designed.
+
+**Root cause:** `runSweepStep()` in `CompanionObjectImplementation.cpp` had
+two independently-timed payout paths built at different times (items:
+2026-08-XX sweep/delivery system; cash: 2026-07-18 follow-up).  The cash
+block ran at CORPSE-LOOT time and called `owner->addCashCredits()`
+immediately, regardless of the companion's distance from the owner. The
+item block only transferred items into the owner's inventory later, in the
+Delivery phase, once the companion physically closed to within
+`LOOT_SWEEP_REACH` (6m). Cash was also exempt from the old "cash-only haul
+skips the walk-back" early exit, so a cash-only kill paid out on the spot
+with just a chat line and no walk home at all.
+
+**Fix:** Corpse-loot phase now only tallies cash (`state->lootedCash +=`,
+force_luck bonus still applied there) and clears the corpse's cash --  no
+`addCashCredits()`, no `TransactionLog`, no system message at that point.
+The Delivery-phase early exit changed from
+`if (state->lootedItemIDs.size() == 0)` to
+`if (state->lootedItemIDs.size() == 0 && state->lootedCash == 0)` so a
+cash-only haul now also requires the walk-back. The actual
+`owner->addCashCredits()` call (with its own `TransactionLog` and
+`prose_coin_loot` message, referencing the companion instead of a single
+corpse since cash can now be aggregated across multiple corpses in one
+trip) moved into the Delivery phase, gated on the same distance check that
+already gates item delivery -- so cash and items now arrive together, only
+once the companion is back within reach of the owner.
+
+File: `MMOCoreORB/src/server/zone/objects/companion/CompanionObjectImplementation.cpp`
+(`runSweepStep()`, corpse-loot cash block ~line 3256 and Delivery phase
+~line 3354-3445). Brace/paren balance reconfirmed clean after edit
+(658/658 braces, 3161/3161 parens).
+
+**Open item logged same day:** Nick reports companion and player abilities
+share one cooldown/GCD -- firing an ability makes the companion wait for
+the player's animation to finish and vice versa. Companions should run
+their own independent cooldown timer. Needs the combat/command-queue code
+read before touching anything -- investigation starting now.
+
+## Batch 43 (2026-08-10, same day) -- Companion abilities shared the owner's action-queue timer
+
+**Symptom (Nick):** "my companion and i are on the same attack cool down
+timer, when i fire an ability my companion is waiting for my ability to
+finish before its ability fires, than i need to wait for my ability to
+fire while my companion is using a special. companions should be on their
+own independent timer."
+
+**Root cause, fully confirmed by reading the execution path:**
+`CreatureObjectImplementation::activateQueueAction()` gates each creature's
+OWN `nextAction` timer by the return value of
+`ObjectControllerImplementation::activateCommand()`, which is
+`queueCommand->getCommandDuration(object, arguments)`. Real combat ability
+commands (bodyShot1, chargeShot1, warcry2, meditate, all 203) are
+`CombatQueueCommand` subclasses, whose `getCommandDuration()` override
+IGNORES the command's own `defaultTime` column and instead computes actual
+duration from `CombatManager::calculateWeaponAttackSpeed()` against the
+ACTOR's own weapon -- so `defaultTime` in command_table.iff is dead,
+uncomputed data for these rows (verified: every one of them ships
+`defaultTime=1.5` in the client's own extracted table, regardless of the
+specific ability -- clearly a legacy/unused authoring value).
+
+But `CompanionAbilityCommand` (registered under every generated
+"companion<Ability>" name, `build_command_table_rows.py`'s
+`make_companion_ability_command()`) is a plain `QueueCommand`, not a
+`CombatQueueCommand` -- it never overrides `getCommandDuration()`, so it
+falls through to the base implementation, which DOES return `defaultTime`
+literally. Because `make_companion_ability_command()` clones the real
+ability's row wholesale and never touched that column, every "order the
+companion to use ability X" command was blocking the OWNER's own action
+queue (`nextAction`) for a real 1.5 seconds -- exactly as if the OWNER had
+personally performed the ability -- while the companion's own copy of the
+real ability (fired via `companion->executeObjectControllerAction()`
+inside `CompanionAbilityCommand::doQueueCommand()`) correctly and
+separately timed itself off the COMPANION's own weapon speed on the
+COMPANION's own `nextAction`. Two genuinely independent per-object timers,
+but the owner-side "issue the order" timer was needlessly borrowing the
+real ability's combat duration instead of being a flat instant order --
+so firing a companion ability stalled the owner's own hotbar, and using
+your own ability first left the owner's queue busy enough that the
+companion order command itself had to wait to be processed. That
+serialization is what read as "sharing a cooldown."
+
+**Fix:** `make_companion_ability_command()` in
+`docs/companion_system/tools/build_command_table_rows.py` now explicitly
+overrides `defaultTime` to `1.0` for all 203 generated rows (178 + 25
+starter), matching the flat "order acknowledged" delay already used for
+every baseline order command (`/hpet`, `/companionattack`,
+`/companionfollow`, etc. -- `set_col(row, "defaultTime", 1.0) # matches
+tellpet`). Issuing any companion order -- baseline or skill-granted
+ability -- now costs the owner the same flat 1s and nothing more; the
+companion's own execution timing is untouched and was never the problem.
+
+**This is a CLIENT data-table fix, not a C++ change -- no server rebuild
+needed.** Regenerated `patched/command_table.iff` (1000 rows, 779 base +
+221 companion) via `build_command_table_rows.py`, re-ran
+`build_companion_content.py` (skills.iff/xp/STF outputs unchanged in
+shape, same pre-existing IS_HIDDEN skl_n/skl_d warnings as batch 40/41 --
+expected, harmless), repacked `companion_patch.tre` via
+`build_tre_patch.py` (16 records, ARCHIVE VERIFIED OK, all hashes match),
+and copied it to `D:\Launcher\newreturnbenserver\companion_patch.tre`
+(byte-identical copy confirmed). Nick needs to fully exit and relaunch the
+client (loose-file/TRE cache) to pick it up -- no server restart required.
+
+## Batch 44 (2026-08-10, same day) -- /companionreturn now recalls a stuck FOLLOW companion too
+
+**Symptom (Nick):** companion trained fine at its first skill-box XP
+threshold ("it came back and the box opened up"), but at the second
+threshold "the companion never asked me to train him" -- follow-up
+confirmed via AskUserQuestion: the companion was away/summoned and simply
+would not walk back.
+
+**Investigation:** no auto-notify-to-train mechanism exists in the code at
+all -- "it came back" the first time was just the companion's normal
+FOLLOW behavior happening to have it nearby already. So the real issue is
+a FOLLOW companion getting stuck away from the owner and not walking back
+on its own. `CompanionObjectImplementation.cpp`'s post-combat loot sweep
+(`runPostCombatSweepCheck()`) already has a hardened ~2-minute
+stuck-combat safety valve for exactly this class of problem (2026-07-29
+fix, "sometimes they run off and never return unless i press follow"), so
+this may just need more time than Nick waited, or may be a still-unknown
+edge case the existing safety valve doesn't cover -- not fully
+root-caused this pass.
+
+**What WAS a confirmed, real gap regardless of root cause:**
+`CompanionReturnCommand.h` (`/companionreturn`) silently no-op'd for any
+companion whose standingOrder was plain FOLLOW ("nothing ordered, nothing
+to return to" -- by design, since a working FOLLOW companion should
+already be at the owner's side). That left the owner with NO manual way
+to un-stick a FOLLOW companion that WASN'T behaving -- exactly the
+situation Nick hit. `/companionreturn` was the natural place to reach for
+and did nothing.
+
+**Fix:** `/companionreturn` now also handles plain FOLLOW: force-clears
+`lootSweepActive` (in case a sweep is wedged), sets companionState back to
+FOLLOW, and re-homes followObject/followState onto the owner (or a
+standing `/companionfollowother` escort target, matching
+`CompanionObjectImplementation.cpp`'s own `endSweep()` FOLLOW branch)
+immediately -- an instant manual escape hatch instead of waiting on the
+automatic 2-minute safety valve. STAY/GUARD behavior unchanged. Brace/
+paren balance clean (32/32, 116/116).
+
+**C++ change -- needs a rebuild + restart**, unlike batch 43. Nick: if
+this happens again, try `/companionreturn` first and let me know whether
+it fixes it immediately -- that'll confirm this is a real recovery tool
+and help narrow down whether the underlying stall is the known stuck-
+combat class or something new.
+
+## Batch 45 (2026-08-10, same day, corrects batch 44) -- real root cause of "companion never asked me to train him"
+
+Nick corrected batch 44's framing: this was never about the companion
+physically not walking back -- it was specifically that the Auto Skill-
+Training Walkup (companion notices a skill is 100%+ ready, walks over,
+opens the trainer SUI automatically -- `CompanionChatter.h`'s
+"readytotrain" reaction line, wired up in
+`tryInitiateSkillTrainWalkup()`/`runSkillTrainWalkupTick()`,
+`CompanionObjectImplementation.cpp`) worked for the FIRST skill box but
+never fired for the second, even though the in-game Skill Tree UI (Nick's
+screenshot) showed Carbines II sitting at have=10000/need=5000 -- i.e.
+genuinely 100% ready, just never offered.
+
+**Root cause, confirmed by reading the gate chain:**
+`tryInitiateSkillTrainWalkup()` (called every ~2s keep-up tick
+unconditionally, per its own doc comment) bails immediately if
+`isCompanionBusyForTraining(companion)` is true, which includes
+`companion->isInCombat()`. `isInCombat()` is the SAME defenderList-driven
+bitmask this file already documents getting stuck true forever for a
+bystander/stale-defender companion in two OTHER places
+(`runPostCombatSweepCheck()`'s `combatStuckPollCount`, 2026-07-29 fix;
+also referenced in `CompanionControlDeviceImplementation.cpp`'s death
+handling) -- but those fixes live entirely inside the post-combat loot
+sweep, a separate poll loop the training walkup shares no state with. The
+walkup tick had NO recovery of its own: once `isInCombat()` got stuck
+true, `tryInitiateSkillTrainWalkup()` bailed at the busy check every
+single tick, forever, with the ready skill sitting at 100% and never
+offered again -- silently, no error, no message. Given Nick's combat log
+from the same test session (batch 42/43's screenshots) shows a companion
+fighting two NPCs back to back with a third-party-style engagement
+pattern, this is exactly the shape of encounter the existing
+combatStuckPollCount comment already flags as the trigger.
+
+**Fix:** added `trainingStuckCombatPolls()` (companion objectID -> int,
+same function-local-static VectorMap idiom this file already uses for
+`nextTrainSuiSlotMs()`/`trainSuiSendScheduled()`/`trainSuiLastShownMs()`)
+and a probe in `tryInitiateSkillTrainWalkup()`: when `isInCombat()` is the
+SOLE blocker (not dead/incapacitated/entertaining/fleeing) AND
+`findReadyUntrainedSkill()` confirms a skill is genuinely ready, count
+consecutive stuck ticks; past 40 (~80s at this tick's ~2s cadence,
+matching combatStuckPollCount's own ~2-minute convention at its own 3s
+cadence), force-clear via `CombatManager::instance()->forcePeace(companion)`
+and proceed instead of bailing forever. Deliberately scoped to only
+intervene when there's actually something ready to teach, so a companion
+genuinely mid-fight with nothing to offer is left alone. Caught and fixed
+a duplicate `companionID` local-variable declaration in my own first pass
+at this edit before it reached a build. Brace/paren balance clean
+(663/663, 3195/3195).
+
+**C++ change -- needs the same rebuild + restart as batch 44.**
+
+## Batch 46 (2026-08-10, same day) -- root cause found: companion doesn't loot solo kills, or kills ordered via ability/ranged-attack commands
+
+**Symptom (Nick, three related reports):**
+1. "companion is not gathering loot if i dont attack" -- confirmed: "if we
+   both attack, the companion goes and gets loot and returns, if i dont
+   attack, no loot is gathered and the bodies are on the ground."
+2. Companion mid-delivery (returning kill #1's loot), redirected onto a
+   second target the owner didn't personally engage, solo-killed it --
+   loot never delivered until a THIRD, jointly-fought kill happened.
+3. (Likely the same root cause manifesting a third way, not separately
+   fixed this batch): training walkup also depends on combat state
+   clearing properly -- see batch 45.
+
+**Root cause:** `CompanionThreatObserver.idl` -- the ONLY thing that
+normally arms the post-combat loot sweep for organic combat -- is
+registered on the OWNER's own observable and fires on DAMAGERECEIVED/
+STARTCOMBAT for the OWNER specifically (its own doc comment: "every fight
+the owner gets into arms the loot/harvest sweep"). If the owner never
+personally takes damage or attacks, this observer never fires, and
+nothing else arms the sweep -- the companion has no reason to ever walk
+over and loot.
+
+`CompanionAttackCommand.h` already hit this exact gap and fixed it
+2026-07-29 (own comment: "nothing here ever armed the post-combat sweep
+... normally armed by CompanionThreatObserver watching the OWNER's own
+combat events, which never fire if the owner just orders the companion
+onto a target without taking damage/fighting personally") by calling
+`companion->deferredStartPostCombatSweep()` directly at order-issue time.
+That fix was NEVER propagated to the other two companion-combat-dispatch
+commands:
+- `CompanionRangedAttackCommand.h` (`/companionrangedattack`) -- missing
+  entirely.
+- `CompanionAbilityCommand.h` -- the SINGLE dispatcher class registered
+  under all 203 "companion<Ability>" commands (companionlegshot1,
+  companionbodyshot1, etc. -- confirmed from Nick's own combat log this
+  session that "Leg Shot 1" is his primary way of directing companion
+  combat). Missing here means this was very likely THE dominant path
+  loot silently went ungathered on, since it's the most-used companion
+  combat command class in practice.
+
+`CompanionSpecialAttackCommand.h` already had the call (confirmed via
+grep) -- only these two were missing it.
+
+**Fix:** added `companion->deferredStartPostCombatSweep();` to both,
+placed identically to `CompanionAttackCommand.h`'s own precedent (right
+after the companion is committed to the target, before the actual attack
+dispatch). Idempotent -- `deferredStartPostCombatSweep()` no-ops if a
+sweep is already armed/active (`CompanionObject::isLootSweepActive()`),
+so this is safe to call on every order with no risk of double-arming.
+
+**Report #2 (interrupted mid-delivery, solo kill in between) is not
+separately fixed this batch** -- the mid-sweep `isInCombat()` wait loop in
+`runSweepStep()` already has its own ~2-minute forcePeace() safety valve
+(same convention as batch 45's), so this may already self-resolve within
+that window; Nick's report of it only clearing on the NEXT joint kill may
+be coincidental timing rather than a distinct bug. Flagged for Nick to
+retest in isolation (interrupt a delivery, solo-kill the second target,
+and just wait ~2 minutes without a third fight) once this batch is live,
+to tell whether it's the same stuck-combat class or something new.
+
+Brace/paren balance clean on both files (CompanionRangedAttackCommand.h:
+23/23, 89/89; CompanionAbilityCommand.h: 22/22, 104/104).
+
+**C++ change -- needs the same rebuild + restart as batches 44/45.**
+
+## Batch 47 (2026-08-10) -- Companion seat-search (walk-to-a-real-chair) instead of floor-sit
+
+Per Nick: "when there is a seat around, and the companions have been waiting
+around, have them find a seat if there is one within 15 meters... search for
+a seat instead of sitting on the floor, if there is a seat, or couch or any
+other mountable object in range of 15 meters."
+
+File: CompanionObjectImplementation.cpp only (no new .cpp, header-only-style
+additions inside the existing impl file -- no cmake reconfigure needed).
+
+New helpers (added just before runIdleEmoteTick()):
+- isSeatFurniture(SceneObject*) -- SceneObjectType::FURNITURE + a template-
+  basename keyword match (chair/seat/couch/bench/stool/sofa/settee). There is
+  no dedicated "is a chair" engine flag; confirmed via Nick's own in-game
+  object-inspection screenshots that every real chair in this deployment
+  matches this pattern (cantina seats, lawn chairs). Deliberately excludes
+  other FURNITURE (tables/lamps/shelves) that don't match the naming.
+- findNearbySeat(CompanionObject*, uint64& outObjectID) -- nearest qualifying
+  seat within 15m via Zone::getInRangeObjects(), same scan idiom the loot
+  sweep already uses for corpses, just a tighter radius + furniture filter.
+- seatWalkTargetID() -- class-level VectorMap<companionID, seatID>, the
+  pending-walk registry. Populated by runIdleEmoteTick()'s sit roll,
+  consumed by runSeatWalkTick().
+- idleSittingCompanionsMap() -- class-level VectorMap<companionID, uint64>,
+  hoisted OUT of runIdleEmoteTick()'s old function-local static so
+  runSeatWalkTick()'s seat-arrival path can mark a companion as
+  "WE sat this one down" too, not just the immediate-floor-sit path.
+  Without this hoist, a chair-seated companion would be invisible to
+  runIdleEmoteTick()'s existing stand-up-when-busy check.
+- runSeatWalkTick(CompanionObject*, CreatureObject*) -- runs every ~2s from
+  the keep-up tick (registered alongside tryInitiateSkillTrainWalkup()/
+  runSkillTrainWalkupTick()). No-op unless seatWalkTargetID() has an entry
+  for this companion. Abandons cleanly (clears the patrol point, restores
+  standing posture) if the companion goes busy (combat/incap/craft-theater/
+  taxi/loot-sweep) or the seat object vanishes. Walks via addPatrolPoint()/
+  setFollowState(PATROLLING), same ordering constraint as the loot sweep's
+  corpse-walk (setFollowState() clears patrol points, so it must be called
+  BEFORE addPatrolPoint()). Arrival reach 2m -- sits in place (approximate;
+  there is no server-side per-seat mesh-slot resolution the way the real
+  client SitServerCommand.h resolves one from a chair click).
+
+runIdleEmoteTick() change: its existing ~20s sit-roll (1-in-4 of successful
+rolls) now calls findNearbySeat() FIRST. If a seat is found within 15m, it
+registers the walk in seatWalkTargetID() and returns -- runSeatWalkTick()
+picks it up next keep-up tick. Only falls back to the original immediate
+floor-sit if nothing qualifying is nearby.
+
+Dev note for future sessions: this batch was drafted across a context-
+compaction boundary and briefly shipped a compile-blocking bug (a call to a
+never-defined markCompanionAsIdleSitting() plus a dead, misleadingly-
+commented duplicate static map) -- caught and fixed BEFORE this push by
+hoisting idleSittingCompanions into the shared idleSittingCompanionsMap()
+accessor described above. Brace/paren balance verified clean (686/686,
+3330/3330) before delivery. NOT YET rebuilt/restarted/tested in-game --
+Nick asked for this before his next build, see the C++ rebuild note below.
+
+STILL OPEN, separately requested by Nick, NOT started this batch: cantina/
+entertainer behavior (companion should unequip its held weapon + equip
+civilian clothes like the existing camp-unequip logic, find a nearby active
+entertainer, and receive the real player-equivalent performance buff on
+normal timers). This needs its own investigation pass (locate the camp-
+unequip logic, confirm companions can hold/equip civilian clothing items,
+find the real player watch-dance/listen-music buff mechanism and whether it
+can target an NPC/companion actor, and a reliable "is in a cantina" +
+"is there an active entertainer nearby" detection). Will size this up as
+its own batch rather than bolt it onto the seat-search change.
+
+## Batch 48 (2026-08-10) -- City-aware taxi/keep-up pacing (wall-clipping fix)
+
+Per Nick: "when we get to a city, my companion goes through walls" while
+taking the companion-driven taxi, plus his follow-up approving the
+"building-density speed cap" option and asking for the tighter
+crawl-and-wait city leash on top.
+
+Root cause (not 100% proven, but well-evidenced): real navmesh pathing
+(PathFinderManager::findPath(), via AiAgentImplementation::findNextPosition())
+already drives both the taxi driver and the plain-FOLLOW keep-up catch-up --
+this was never a "no pathing" bug. The suspect is SPEED vs tight geometry:
+the taxi's own pacing (up to +20% catch-up) and the keep-up boost's flat
+1.8x catch-up multiplier both produce big per-tick position steps that can
+cut corners at speed in dense city block geometry, even while nominally
+following a valid path -- open terrain never showed this because there's
+nothing to clip through.
+
+Files: CompanionObjectImplementation.cpp + CompanionObject.idl (one new
+transient field -- .idl edit to an EXISTING file, no cmake reconfigure).
+
+New helper: isNearDenseBuildings(Zone*, x, y) -- true if 2+ real
+BuildingObjects are within 25m. Deliberately does NOT use CityManager/
+CityRegion (that tracks player-FOUNDED cities via a mayor's CityRegion and
+would miss every NPC-designed city -- Coronet, Theed, Mos Eisley -- entirely).
+Reuses the same Zone::getInRangeObjects() scan idiom as findNearbySeat()/
+the loot sweep.
+
+Taxi driver pacing (updateTaxiTick()): the existing 90m leash-stop / 50m
+resume / 1.2x catch-up trio is now only used in open terrain. Near dense
+buildings (checked off the DRIVER's own position every 200ms tick) it
+swaps to a 30m leash-stop / 15m resume / 1.05x catch-up trio -- tighter,
+so the driver eases into its existing crawl (30% speed, NOT a hard
+OBLIVIOUS stop -- that had its own bugs, see the 2026-08-04 pacing notes)
+much sooner in a city, and won't rush to close a big gap there.
+
+Plain-FOLLOW keep-up boost (runKeepUpTick()): new 3rd state alongside the
+existing on/off boost. Near dense buildings the flat 1.8x boost is capped
+to 1.15x, AND if the companion is 30m+ behind near buildings it switches
+to a genuine 0.6x CRAWL instead of any rush -- it deliberately waits for
+the owner to close the gap rather than attempt a corner-cutting sprint
+through city geometry. Crawl exits at a tighter 15m (vs the normal boost's
+10m resume), with hysteresis so a building-scan flicker at the cluster's
+edge doesn't bounce it in and out of crawl mid-recovery. Open terrain is
+completely unaffected -- exact original 1.8x/25m/10m numbers.
+
+New idl field: keepUpCityCrawling (transient boolean, alongside the
+existing keepUpBoosted/keepUpBaseRunSpeed/keepUpBaseWalkSpeed), reset in
+the same spawnObject() block as the others.
+
+Brace/paren balance verified clean on both files (697/697, 3370/3370 cpp;
+74/74, 337/337 idl) before delivery. NOT YET rebuilt/tested in-game.
+
+Separately flagged, NOT fixed this batch: Nick also asked whether the
+PLAYER (not the companion) can path around trees/rocks that snag movement
+on some planets. That's the player's own client-authoritative movement/
+collision -- same class of wall this project has hit before (Iron Rule 5:
+"can't server-move the player's own mount, can't force /follow"). Almost
+certainly not fixable from server-side companion code; told Nick this
+plainly rather than attempt something that can't work from here.

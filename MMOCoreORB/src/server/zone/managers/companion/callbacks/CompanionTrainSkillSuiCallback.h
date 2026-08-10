@@ -54,6 +54,13 @@ public:
 		if (!picked.isEmpty()) {
 			Locker clocker(strongCompanion, player);
 			CompanionSkillTrainer::instance()->trainSkill(player, strongCompanion, picked);
+
+			// Companion System (2026-08-09, v3 dynamic mirroring pass):
+			// recompute the owner's full datapad-wide mirrored ability set
+			// immediately after a real, interactive train -- see
+			// CompanionSkillTrainer.h's doc comment on
+			// syncOwnerMirrorAbilities().
+			CompanionSkillTrainer::instance()->syncOwnerMirrorAbilities(player);
 		}
 
 		// Tree mode: reopen so the newly-green box (and its whole trained

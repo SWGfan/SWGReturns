@@ -366,68 +366,16 @@ assert [r[0] for r in new_rows] == _BASELINE_ROW_NAMES
 #     cloned from the real row -- already correct and already proven (it's
 #     the same real ability), no reason to override.
 # ---------------------------------------------------------------------
-_COMPANION_ABILITY_NAMES = [
-    "applyDisease", "applyPoison", "bleedingShot", "concealShot", "confusionShot",
-    "eyeShot", "fastBlast", "fireAcidCone1", "fireAcidCone2", "fireAcidSingle1",
-    "fireAcidSingle2", "fireLightningCone1", "fireLightningCone2",
-    "fireLightningSingle1", "fireLightningSingle2", "flameCone1", "flameCone2",
-    "flameSingle1", "flameSingle2", "flurryShot1", "flurryShot2", "flushingShot1",
-    "flushingShot2", "headShot3", "healMind", "knockdownFire", "mindShot2",
-    "sniperShot", "sprayShot", "startleShot1", "startleShot2", "strafeShot1",
-    "strafeShot2", "surpriseShot", "torsoShot", "underHandShot",
-]
-
-# Companion System (2026-08-07, "full combat tree ability coverage" pass, per
-# live bug report: "how come im not seeing any of my companion's attack
-# icons?"). The original 36 above only covered the 11 profession MASTER-tier
-# skill.iff COMMANDS entries (the "badge-gated" set). Every ORDINARY tier
-# skill in the same 11 professions' Accuracy/Speed/Ability/Support/weapon-
-# tier I-IV branches -- i.e. almost everything a companion actually trains
-# via normal xp, since master tier requires the whole tree first -- was never
-# scanned at all. Confirmed by direct skills.iff COMMANDS extraction across
-# every in-scope profession/starter prefix (combat_marksman/carbine/rifle/
-# pistol/brawler/1hsword/2hsword/polearm/unarmed/bountyhunter/smuggler/
-# commando, science_doctor/medic, outdoors_squadleader/scout, social_
-# entertainer): 144 additional real, dispatchable ability tokens found (each
-# verified to have a real command_table.iff row to clone, same discipline as
-# the original 36/25). 2 excluded from that raw count: "formup" (collides
-# with the existing hand-authored baseline /companionformup order command --
-# a completely different feature, not an ability clone) and
-# "registerWithLocation" (real command exists, but it registers a location
-# on the planetary map -- a one-time character-progression side effect of
-# learning Doctor novice, not a sensible companion combat ability).
-_NEW_COMPANION_ABILITY_NAMES_2026_08_07 = [
-    "actionShot1", "actionShot2", "aim", "berserk2", "bodyShot1",
-    "bodyShot2", "bodyShot3", "boostmorale", "burstShot1", "burstShot2",
-    "chargeShot1", "chargeShot2", "cripplingShot", "cureDisease", "curePoison",
-    "dazzle", "disarmingShot1", "disarmingShot2", "diveShot", "doubleTap",
-    "dragIncapacitatedPlayer", "extinguishFire", "fanShot", "feignDeath", "firstAid",
-    "forage", "forceOfWill", "fullAutoArea1", "fullAutoArea2", "fullAutoSingle1",
-    "fullAutoSingle2", "headShot1", "headShot2", "healEnhance", "healState",
-    "healthShot1", "healthShot2", "intimidate2", "kipUpShot", "lastDitch",
-    "legShot1", "legShot2", "legShot3", "lowBlow", "maskscent",
-    "meditate", "melee1hBlindHit1", "melee1hBlindHit2", "melee1hBodyHit1", "melee1hBodyHit2",
-    "melee1hBodyHit3", "melee1hDizzyHit1", "melee1hDizzyHit2", "melee1hHealthHit1", "melee1hHealthHit2",
-    "melee1hHit1", "melee1hHit2", "melee1hHit3", "melee1hLunge2", "melee1hScatterHit1",
-    "melee1hScatterHit2", "melee1hSpinAttack1", "melee1hSpinAttack2", "melee2hArea1", "melee2hArea2",
-    "melee2hArea3", "melee2hHeadHit1", "melee2hHeadHit2", "melee2hHeadHit3", "melee2hHit1",
-    "melee2hHit2", "melee2hHit3", "melee2hLunge2", "melee2hMindHit1", "melee2hMindHit2",
-    "melee2hSpinAttack1", "melee2hSpinAttack2", "melee2hSweep1", "melee2hSweep2", "mindShot1",
-    "multiTargetPistolShot", "overChargeShot2", "panicShot", "pistolMeleeDefense1", "pistolMeleeDefense2",
-    "pointBlankArea2", "pointBlankSingle2", "polearmActionHit1", "polearmActionHit2", "polearmArea1",
-    "polearmArea2", "polearmHit1", "polearmHit2", "polearmHit3", "polearmLegHit1",
-    "polearmLegHit2", "polearmLegHit3", "polearmLunge2", "polearmSpinAttack1", "polearmSpinAttack2",
-    "polearmStun1", "polearmStun2", "polearmSweep1", "polearmSweep2", "powerBoost",
-    "quickHeal", "rally", "retreat", "revivePlayer", "rollShot",
-    "scatterShot1", "scatterShot2", "steadyaim", "stoppingShot", "suppressionFire1",
-    "suppressionFire2", "takeCover", "threatenShot", "tumbleToKneeling", "tumbleToProne",
-    "tumbleToStanding", "unarmedBlind1", "unarmedBodyHit1", "unarmedCombo1", "unarmedCombo2",
-    "unarmedDizzy1", "unarmedHeadHit1", "unarmedHit1", "unarmedHit2", "unarmedHit3",
-    "unarmedKnockdown1", "unarmedKnockdown2", "unarmedLegHit1", "unarmedLunge2", "unarmedSpinAttack1",
-    "unarmedSpinAttack2", "unarmedStun1", "volleyFire", "warcry2", "warningShot",
-    "wildShot1", "wildShot2",
-]
-_COMPANION_ABILITY_NAMES = _COMPANION_ABILITY_NAMES + _NEW_COMPANION_ABILITY_NAMES_2026_08_07
+# Companion System (2026-08-09, batch 40): the two lists that used to live
+# here (the original 36 + the 2026-08-07 142-name expansion) now live in
+# companion_ability_names.py, the single shared source of truth also used
+# by build_companion_content.py to generate the new per-ability hidden
+# gating skills -- see that module's docstring and NOTES.md batch 39/40 for
+# why (visible=2's "held ability" check turned out not to filter anything;
+# box-membership alone is the real gate). Nothing about this file's own row
+# generation below changed -- _COMPANION_ABILITY_NAMES still means exactly
+# what it always did (the combined 178-name set).
+from companion_ability_names import _COMPANION_ABILITY_NAMES
 
 
 def get_row_ci(name):
@@ -451,19 +399,73 @@ def make_companion_ability_command(ability):
     set_col(row, "commandGroup", 0)
     set_col(row, "disabled", 0)
     set_col(row, "godLevel", 0)
-    # Companion System (2026-07-13, "starter profession macro list" pass) --
-    # a handful of real ability rows (e.g. harvestCorpse) are visible=0 in
-    # stock data (hidden from the client's own command browser for reasons
-    # unrelated to us). Since the whole point of a companion<Ability> row is
-    # to be owner-hotbar-draggable, force visible up to 2 (the single most
-    # common "shown" value, same reasoning as the baseline order commands)
-    # whenever the cloned row would otherwise be hidden -- but leave an
-    # already-nonzero value (e.g. sample/survey's real visible=3) alone
-    # rather than overriding a proven-working existing category.
-    visibleIdx = colIndex["visible"]
-    currentVisible = struct.unpack("<i", row[visibleIdx])[0]
-    if currentVisible == 0:
-        set_col(row, "visible", 2)
+    # Companion System (2026-08-10, batch 42 follow-up): defaultTime MUST be
+    # overridden, not left cloned from the real ability row -- this was the
+    # one field the "clone the real row, override only what must differ"
+    # comment above got wrong. Real combat abilities are CombatQueueCommand
+    # subclasses, whose getCommandDuration() override ignores their own
+    # defaultTime column entirely (it computes actual duration from
+    # CombatManager::calculateWeaponAttackSpeed() against the ACTOR's own
+    # weapon instead -- see CombatQueueCommand.h). Their defaultTime column
+    # is therefore dead/uncomputed data -- confirmed every one of these rows
+    # (bodyShot1, chargeShot1, warcry2, meditate, ...) ships defaultTime=1.5
+    # regardless of the ability, clearly a legacy/unused authoring value.
+    #
+    # CompanionAbilityCommand.h (the class registered under every
+    # "companion<Ability>" name below) is a plain QueueCommand, NOT a
+    # CombatQueueCommand -- it does not override getCommandDuration(), so it
+    # falls through to the QueueCommand base implementation, which DOES
+    # return defaultTime literally. Cloning the row left that dead 1.5s
+    # sitting in a column that is actually read for this command: every
+    # "order the companion to use ability X" command was blocking the
+    # OWNER's own action queue (CreatureObjectImplementation::nextAction) for
+    # a real 1.5 seconds, exactly as if the OWNER had performed the ability
+    # themselves -- while the companion's own real ability instance (fired
+    # via companion->executeObjectControllerAction() inside doQueueCommand())
+    # correctly and separately timed itself off the COMPANION's own weapon
+    # speed. Two independent timers, but the owner's order-issuing one was
+    # needlessly long and stacked on top of the owner's own ability use,
+    # which is exactly what Nick reported as "my companion and i are on the
+    # same attack cool down timer" -- the owner's queue was busy either
+    # firing their own ability OR issuing a companion order, so the two
+    # visibly serialized even though nothing was truly shared. Overridden to
+    # 1.0 to match the existing baseline order-command precedent (/hpet,
+    # /companionattack, /companionfollow, etc. -- see set_col(row,
+    # "defaultTime", 1.0) # matches tellpet, above) -- issuing any companion
+    # order, ability or baseline, now costs the owner the same flat 1s
+    # "order acknowledged" delay and nothing more.
+    set_col(row, "defaultTime", 1.0)
+    # Companion System (2026-08-09, batch 26->28->32->35, RESTORED to 2):
+    # batches 26/28/32 chased this exact question (see NOTES.md for the
+    # full history) and batch 32 gave up, reverting to visible=3
+    # (unconditional listing) on the belief that visible=2 simply didn't
+    # work for these cloned rows client-side, for reasons nobody could
+    # inspect from server data alone.
+    #
+    # Batch 35 (2026-08-09) root-caused it for real, from the CLIENT side:
+    # this was never a command_table.iff column problem. The Command
+    # Browser's listing universe is the CLIENT's own skills.iff COMMANDS
+    # column for each of the player's TRAINED skill boxes, ANDed with
+    # visible=2's own characterAbility check -- a command absent from every
+    # trained box's COMMANDS is invisible under visible=2 no matter what the
+    # player holds, which is exactly why proven-held companionwarcry1 never
+    # listed (no companion skill box's COMMANDS mentioned it) while
+    # companionattack always did (it's in companion_master_novice's
+    # COMMANDS, which every owner trains first). Confirmed live: adding
+    # companionwarcry1 to companion_master_novice's COMMANDS (see
+    # build_companion_content.py) made it list correctly for an owner who
+    # actually held the ability, still under this same visible=2.
+    #
+    # Fix landed as two halves: build_companion_content.py's
+    # companion_master_novice box now lists all 203 companion mirror
+    # ability commands (satisfies box-membership universally, since every
+    # owner trains that box first), and visible=2 here provides the real,
+    # correctness-bearing filter (only actually-held abilities show,
+    # exactly matching what syncOwnerMirrorAbilities() grants/revokes).
+    # DO NOT revert to visible=3 again without re-reading NOTES.md batch 35
+    # first -- that was chasing a symptom whose real cause was on the other
+    # side of the pipeline the whole time.
+    set_col(row, "visible", 2)
     return row
 
 
@@ -491,14 +493,9 @@ new_rows.extend(ability_rows)
 # single-macro pipeline never forwards, or aren't independently
 # invokable actions at all.
 # ---------------------------------------------------------------------
-_STARTER_ABILITY_NAMES = [
-    "healDamage", "healWound", "tendWound", "tendDamage", "diagnose",
-    "medicalForage", "harvestCorpse", "startDance", "stopDance",
-    "startMusic", "stopMusic", "sample", "survey", "warcry1",
-    "intimidate1", "berserk1", "taunt", "polearmLunge1", "unarmedLunge1",
-    "melee1hLunge1", "melee2hLunge1", "centerOfBeing", "pointBlankArea1",
-    "pointBlankSingle1", "overchargeShot1",
-]
+# Companion System (2026-08-09, batch 40): also moved to
+# companion_ability_names.py -- see the import note above _COMPANION_ABILITY_NAMES.
+from companion_ability_names import _STARTER_ABILITY_NAMES
 
 starter_ability_rows = [make_companion_ability_command(a) for a in _STARTER_ABILITY_NAMES]
 new_rows.extend(starter_ability_rows)

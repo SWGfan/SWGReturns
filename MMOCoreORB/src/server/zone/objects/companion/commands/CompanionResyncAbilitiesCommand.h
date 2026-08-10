@@ -105,40 +105,16 @@ creature->sendSystemMessage("Companion ability resync is unavailable right now."
 return GENERALERROR;
 }
 
-// Baseline order commands (follow/stay/patrol/store/attack/etc.) --
-// always-available regardless of any companion's learned skills.
-trainer->grantBaselineOwnerOrderAbilities(creature);
-
-// The combat/medic/entertainer macro list ("test everything from
-// novice" grant -- see CompanionSkillTrainer.cpp's own doc comment
-// on grantAllAbilitiesForTesting() for why this is the only reach
-// for these abilities in this deployment).
-trainer->grantAllAbilitiesForTesting(creature);
-
-// Also re-run the real per-skill grant for every skill every
-// active companion has actually learned, in case any of those
-// (rather than the two blanket grants above) are what originally
-// unlocked a given macro for this owner.
-Vector<ManagedReference<CompanionObject*>> companions;
-resolveActiveCompanions(creature, companions);
-
-for (int i = 0; i < companions.size(); ++i) {
-CompanionObject* companion = companions.get(i);
-
-if (companion == nullptr) {
-continue;
-}
-
-for (int j = 0; j < companion->getLearnedSkillCount(); ++j) {
-const String& skillName = companion->getLearnedSkill(j);
-
-if (skillName.isEmpty()) {
-continue;
-}
-
-trainer->grantOwnerAbilitiesForSkill(creature, skillName);
-}
-}
+// Companion System (2026-08-09, v3 dynamic mirroring pass -- see
+// NOTES.md and CompanionSkillTrainer.h's doc comment on
+// syncOwnerMirrorAbilities()). Replaces the old three-part
+// grantBaselineOwnerOrderAbilities() + grantAllAbilitiesForTesting() +
+// per-summoned-companion-per-skill loop with a single full recompute,
+// unioned across EVERY companion in the datapad (summoned or stored --
+// syncOwnerMirrorAbilities() reads getCompanionObject() directly rather
+// than resolveActiveCompanions()'s getZone() != nullptr filter, so this
+// also fixes the old summoned-only limitation as a side effect).
+trainer->syncOwnerMirrorAbilities(creature);
 
 creature->sendSystemMessage("Your companion ability macros have been resynced -- check your Command Browser / hotbar.");
 

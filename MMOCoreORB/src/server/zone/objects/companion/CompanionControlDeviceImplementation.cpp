@@ -700,17 +700,16 @@ void CompanionControlDeviceImplementation::spawnObject(CreatureObject* player) {
 			}
 		}
 
-		// Companion System (2026-07-15, "test everything from novice" pass --
-		// see NOTES.md and CompanionSkillTrainer.h's doc comment on
-		// grantAllAbilitiesForTesting()). Self-heal for companions recruited
-		// before this pass shipped, same shape as the loadout backpack
-		// self-heal just above -- CompanionStarterProfessionSuiCallback only
-		// grants the 60 ability macros the first time a player picks a
-		// starter profession, so any existing companion (like the user's own
-		// test character) would otherwise never get them. Idempotent
-		// (hasAbility() guard per entry inside the method itself), cheap
-		// (fixed list, no scanning), safe to call every summon.
-		CompanionSkillTrainer::instance()->grantAllAbilitiesForTesting(player);
+		// Companion System (2026-08-09, "dynamic mirroring" pass, v3 work
+		// order): summon is one of syncOwnerMirrorAbilities()'s trigger
+		// points -- self-heals for companions recruited before this pass
+		// shipped, same shape as the loadout backpack self-heal just above,
+		// but now grants EXACTLY what this owner's datapad (summoned or
+		// stored companions alike) has actually trained, instead of the old
+		// grantAllAbilitiesForTesting()'s fixed 61-ability blanket grant --
+		// see docs/companion_system/NOTES.md. Recompute-and-diff, so safe to
+		// call every summon.
+		CompanionSkillTrainer::instance()->syncOwnerMirrorAbilities(player);
 	}
 
 	companion->setVitality(vitality);

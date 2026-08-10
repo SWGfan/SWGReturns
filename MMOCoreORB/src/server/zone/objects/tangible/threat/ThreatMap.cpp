@@ -282,6 +282,31 @@ CreatureObject* ThreatMap::getHighestDamagePlayer() {
 					player = cast<CreatureObject*>(owner);
 				}
 			}
+		} else if (creature->isCompanionObject()) {
+			// Companion System (2026-08-09, "solo-kill loot never generated" fix):
+			// a companion is neither isPlayerCreature() nor isPet() (a wholly
+			// separate custom class from the stock pet system), so its damage
+			// was invisible here -- when a companion did 100% of a kill's damage
+			// with the owner never landing a hit, this function fell through to
+			// returning nullptr for that owner, and notifyDestruction() skips
+			// ALL cash/loot/ownerID assignment when the credited player is null
+			// or fails isPlayerCreature(). Mirrors the isPet() branch immediately
+			// above verbatim, crediting the companion's damage to its linked
+			// owner instead of the companion itself.
+			CreatureObject* owner = creature->getLinkedCreature().get();
+
+			if (owner != nullptr && owner->isPlayerCreature()) {
+				if(!damageMap.contains(owner->getObjectID())){
+					damageMap.put(owner->getObjectID(),totalDamage);
+				} else {
+					damageMap.get(owner->getObjectID()) += totalDamage;
+				}
+
+				if (damageMap.get(owner->getObjectID()) > maxDamage) {
+					maxDamage = damageMap.get(owner->getObjectID());
+					player = cast<CreatureObject*>(owner);
+				}
+			}
 		}
 	}
 
@@ -328,6 +353,48 @@ CreatureObject* ThreatMap::getHighestDamageGroupLeader() {
 				leaderCreature = thisleader;
 			}
 		} else if (creature->isPet()) {
+			CreatureObject* owner = creature->getLinkedCreature().get();
+
+			if (owner != nullptr && owner->isPlayerCreature()) {
+				if (owner->isGrouped()) {
+					Reference<CreatureObject*> thisleader = owner->getGroup()->getLeader();
+
+					if (thisleader == nullptr || !thisleader->isPlayerCreature())
+						break;
+
+					if (!groupDamageMap.contains(owner->getGroupID())) {
+						groupDamageMap.put(owner->getGroupID(),totalDamage);
+					} else {
+						groupDamageMap.get(owner->getGroupID()) += totalDamage;
+					}
+
+					if (groupDamageMap.get(owner->getGroupID()) > highestGroupDmg) {
+						highestGroupDmg = groupDamageMap.get(owner->getGroupID());
+						leaderCreature = thisleader;
+					}
+				} else {
+					if (!groupDamageMap.contains(owner->getObjectID())) {
+						groupDamageMap.put(owner->getObjectID(),totalDamage);
+					} else {
+						groupDamageMap.get(owner->getObjectID()) += totalDamage;
+					}
+
+					if (totalDamage > highestGroupDmg) {
+						highestGroupDmg = totalDamage;
+						leaderCreature = owner;
+					}
+				}
+			}
+		} else if (creature->isCompanionObject()) {
+			// Companion System (2026-08-09, "solo-kill loot never generated" fix):
+			// same gap as getHighestDamagePlayer() above -- a companion falls
+			// through to the generic "else" branch below, which credits the
+			// COMPANION itself as leaderCreature. notifyDestruction() then finds
+			// a non-null but non-player "player", so ownerID gets set to the
+			// companion's own object ID and the isPlayerCreature() gate right
+			// after skips cash/loot creation entirely. Mirrors the isPet()
+			// branch immediately above verbatim, crediting the companion's
+			// damage to its linked owner instead.
 			CreatureObject* owner = creature->getLinkedCreature().get();
 
 			if (owner != nullptr && owner->isPlayerCreature()) {
