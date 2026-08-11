@@ -285,20 +285,22 @@ void FormationManager::arrangeFollowers(CreatureObject* owner, const String& for
 
 		// 2026-07-17 ("militant formations" pass) -- the persistent half:
 		// AiAgentImplementation::setDestination()'s FOLLOWING branch reads
-		// this blackboard Vector3 every movement tick and rotates it by the
-		// follow target's LIVE heading (x = right of the owner, y = forward
-		// of the owner -- see PetFormationCommand.h / LambdaShuttle
-		// reinforcements for the stock precedent), so the follower HOLDS
-		// this slot continuously while the owner moves instead of stacking
-		// on the owner's own position.
-		// genesis port: dropped the writeBlackboard("formationOffset", Vector3) call (and the
-		// Vector3 it built) -- genesis has NO AI blackboard at all (none of the blackboard
-		// write/read/peek/erase accessors exist anywhere in this tree, and genesis's
-		// AiAgentImplementation::setDestination() FOLLOWING branch has no formation-offset
-		// lookup to read it back). DEFERRED: formations are therefore a one-shot snap rather
-		// than a continuously-held slot -- the snapTeleport block below still places every
-		// follower at its computed forwardOffset/rightOffset, and setFollowObject(owner) +
-		// setFollowState(FOLLOWING) below still keep the squad together afterwards.
+		// this offset every movement tick and rotates it by the follow
+		// target's LIVE heading (x = right of the owner, y = forward of the
+		// owner -- see PetFormationCommand.h / LambdaShuttle reinforcements
+		// for the stock precedent), so the follower HOLDS this slot
+		// continuously while the owner moves instead of stacking on the
+		// owner's own position.
+		// genesis port: dropped the original writeBlackboard("formationOffset", Vector3) call --
+		// genesis has NO AI blackboard at all. DEFERRED for several batches: formations were a
+		// one-shot snap only, so the squad re-converged on the owner's bare position and piled
+		// up the moment the owner moved (Nick, 2026-08-11: "once i start to move around, they
+		// start to walk on top of each other"). FIXED 2026-08-11: reintroduced a minimal,
+		// AiAgent-level formationOffsetForward/Right pair (AiAgent.idl) that setDestination()'s
+		// FOLLOWING branch now reads directly in place of the removed blackboard -- same
+		// forward/right rotation convention as the snap-teleport just below, so the held slot
+		// lands exactly where this teleport puts the follower.
+		follower->setFormationOffset(forwardOffset, rightOffset);
 
 		if (follower->isCompanionObject()) {
 			CompanionObject* companionFollower = cast<CompanionObject*>(follower);

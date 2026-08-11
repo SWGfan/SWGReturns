@@ -5,6 +5,7 @@
  *      Author: victor
  */
 
+#include <cmath>
 #include <engine/core/ManagedReference.h>
 #include <server/zone/CloseObjectsVector.h>
 #include <engine/util/u3d/Vector3.h>
@@ -2251,7 +2252,40 @@ int AiAgentImplementation::setDestination() {
 		}
 
 		clearPatrolPoints();
-		setNextPosition(followCopy->getPositionX(), followCopy->getPositionZ(), followCopy->getPositionY(), followCopy->getParent().get().castTo<CellObject*>());
+
+		// Companion System (2026-08-11, "form up while moving" fix -- see
+		// FormationManager.cpp and NOTES.md). Nick: "when i do form up,
+		// my companions go in to posistion, but once i start to move
+		// around, they start to walk on top of each other... can we make
+		// it so when i move around they keep there distance". Root cause:
+		// genesis dropped the AI blackboard (see FormationManager.cpp's
+		// "genesis port" comment), so formUp() could only snap-teleport
+		// once and every follower's stock FOLLOWING destination has always
+		// been the follow target's exact position -- fine for a single
+		// plain follow, but every squad member converging on the same
+		// point is exactly the pile-up Nick is describing. When a
+		// formation offset has been assigned (FormationManager writes it,
+		// zero otherwise), rotate it by the follow target's LIVE heading
+		// and walk to that owner-relative slot instead of the target's
+		// bare position -- same rotation convention FormationManager.cpp's
+		// snap-teleport already uses, so the held slot lands exactly where
+		// the formUp() teleport originally put this follower.
+		if (formationOffsetForward != 0.f || formationOffsetRight != 0.f) {
+			float headingAngle = followCopy->getDirectionAngle();
+
+			float forwardX = std::sin(headingAngle);
+			float forwardY = std::cos(headingAngle);
+			float rightX = std::cos(headingAngle);
+			float rightY = -std::sin(headingAngle);
+
+			float destX = followCopy->getPositionX() + forwardX * formationOffsetForward + rightX * formationOffsetRight;
+			float destY = followCopy->getPositionY() + forwardY * formationOffsetForward + rightY * formationOffsetRight;
+
+			setNextPosition(destX, followCopy->getPositionZ(), destY, followCopy->getParent().get().castTo<CellObject*>());
+		} else {
+			setNextPosition(followCopy->getPositionX(), followCopy->getPositionZ(), followCopy->getPositionY(), followCopy->getParent().get().castTo<CellObject*>());
+		}
+
 		break;
 	default:
 		setOblivious();

@@ -11679,3 +11679,138 @@ startWatch/startListen take just creature+entid).
 NOT yet rebuilt/tested in-game -- pending Nick's next build (bundled with batches 53-55 in the
 same pass).
 
+
+
+## Batch 57 (2026-08-11) -- Form Up formation collapses while moving, FIXED
+
+**Report (Nick):** "when i do form up, my companions go in to posistion, but
+once i start to move around, they start to walk on top of each other and
+then when i stop they are piled up on top of each other, can we make it so
+when i move around they keep there distance"
+
+**Root cause:** already flagged as a DEFERRED limitation in
+FormationManager.cpp's own "genesis port" comment from the original
+"militant formations" pass (2026-07-17). The intended mechanism was: write
+each follower's owner-relative slot offset into the AI's per-tick
+"formationOffset" blackboard entry, which AiAgentImplementation::
+setDestination()'s FOLLOWING branch would read and rotate by the owner's
+live heading every movement tick, so the follower HOLDS its slot
+continuously while the owner moves. genesis has no AI blackboard at all (no
+write/read/peek/erase accessors exist anywhere in this tree), so that write
+was silently dropped and formUp() could only ever snap-teleport once.
+AiAgentImplementation::setDestination()'s stock FOLLOWING case always sets
+next-position to the follow target's bare position -- correct for one
+plain follow, but every squad member converging on the exact same point is
+precisely the "walk on top of each other" / "piled up" behavior Nick
+described.
+
+**Fix:** reintroduced a minimal, non-blackboard equivalent directly on
+AiAgent, generic across pets/droids/companions (inert by default -- zero
+risk to any AiAgent that never has it set):
+
+- AiAgent.idl: two new `private transient float` fields,
+  `formationOffsetForward`/`formationOffsetRight` (meters; forward = ahead
+  of the follow target, right = lateral), plus `setFormationOffset(forward,
+  right)` / `clearFormationOffset()` / `getFormationOffsetForward()` /
+  `getFormationOffsetRight()` accessors.
+- AiAgentImplementation.cpp::setDestination()'s FOLLOWING case: when either
+  offset is non-zero, rotates it by the follow target's live
+  getDirectionAngle() (identical forward/right rotation convention
+  FormationManager.cpp's own snap-teleport already used) and walks to that
+  owner-relative slot instead of the target's bare position. Zero offset
+  (the default) reproduces the original behavior byte-for-byte.
+- FormationManager.cpp::arrangeFollowers(): now calls
+  `follower->setFormationOffset(forwardOffset, rightOffset)` for every
+  follower on every formUp()/applyFormationOffsets() call (replacing the
+  dead blackboard-write comment block). A real formation type (wedge, box,
+  line, column, vanguard, escort) writes a non-zero slot that is now HELD
+  while the owner moves. Plain /companionfollow's "stack" formation type
+  still computes (0, 0) for every slot, so plain follow deliberately keeps
+  the tight-convergence "stay close to us" behavior Nick asked for on
+  2026-07-29 -- only /companionformup's real shapes hold spacing in motion.
+
+Files: AiAgent.idl, AiAgentImplementation.cpp,
+managers/companion/FormationManager.cpp. Verified brace/paren balance on
+all three edited files before commit. Needs a full rebuild (AiAgent.idl
+change regenerates the IDL-derived headers) -- no lua/string-table changes,
+so no `r reloadstrings` needed.
+
+**Constraint note:** getMaxDistance() for FOLLOWING (AiAgentImplementation.cpp)
+is unaffected -- it is only an arrival tolerance around whatever
+next-position setDestination() picked (verified via findNextPosition()'s
+maxDistance usage in the same file), not a distance check against the
+follow target directly, so it applies correctly to the new offset slot
+positions with no separate change needed.
+
+
+## Batch 58 (2026-08-11) -- Cantina seat-seeking root-caused: local-vs-world coordinate bug, FIXED
+
+**Report (Nick):** "when my companions enter a cantina, they still arent
+sitting down, or finding a chair to sit on, can we fix this" -- reported
+AFTER batch 54 (which was supposed to add eager seat-seeking the moment
+cantina clothes go on) had already built and deployed clean.
+
+**Root cause, two compounding bugs in the SAME feature, both coordinate-
+space mistakes -- companion cantina interiors are always inside a
+BuildingObject's cell, and this is the first companion feature that
+searches/paths while genuinely indoors:**
+
+1. `findNearbySeat()` called `zone->getInRangeObjects(companion->
+   getPositionX(), companion->getPositionY(), ...)`. `getPositionX()/
+   getPositionY()` are CELL-LOCAL coordinates whenever the object's root
+   parent is a BuildingObject (confirmed via
+   `SceneObjectImplementation::getWorldPositionX/Y()` -- they only equal
+   getPositionX/Y() when the root parent is NOT a building).
+   `Zone::getInRangeObjects()` operates in ZONE/WORLD space (confirmed by
+   `runEntertainerWatchTick()`, batch 56, already correctly using
+   `getWorldPositionX/Y()` a few functions up in the same file). So the
+   quadtree query was searching around the companion's small
+   cell-relative coordinates as if they were real zone coordinates --
+   almost always the wrong location in the zone entirely, silently
+   returning zero furniture, every single call. The per-candidate
+   distance check had the same mistake. Fixed: both the search anchor and
+   the distance check now use getWorldPositionX/Y() throughout, matching
+   runEntertainerWatchTick()'s already-correct idiom.
+2. `runSeatWalkTick()`'s arrival-walk built `PatrolPoint point(seat->
+   getPositionX(), seat->getPositionZ(), seat->getPositionY())` -- the
+   4-arg `PatrolPoint(x, z, y, CellObject* cell = nullptr)` constructor
+   defaults `cell` to nullptr when omitted, which `WorldCoordinates` then
+   treats as "these X/Y are OUTDOOR zone coordinates". Since the seat's
+   X/Y are cell-local, the companion would have been aimed at whatever
+   tiny coordinates the chair happens to have relative to its cell,
+   interpreted as an outdoor zone location -- nowhere near the actual
+   chair, even after bug 1 above is fixed and a real seat is found. Fixed
+   by attaching the seat's actual parent CellObject to the PatrolPoint
+   (`seat->getParent().get().castTo<CellObject*>()`), same idiom
+   FormationManager.cpp's setNextPosition(..., parent.castTo<CellObject*>())
+   already uses, and matching how AiAgent's own homeLocation.setCell(cell)
+   attaches cell context to ITS patrol point. Correctly falls back to
+   nullptr (outdoor/world coordinates, unchanged behavior) for any
+   unparented outdoor seat, e.g. a camp lawn chair.
+
+**Why batch 54's eager cantina search never got a second chance to
+"just get lucky":** runCantinaAmbianceTick() only makes its one seat-search
+attempt on the SAME tick cantina clothes go on (gated by
+cantinaAttireActive() being freshly set) -- since that one attempt was
+guaranteed to fail (bug 1, unconditionally, every time the companion is
+indoors), and the map entry then persists for the whole cantina visit,
+there was never a second attempt. The much slower generic idle-emote
+~15%x25% sit roll (runIdleEmoteTick(), unrelated to cantina, fires
+everywhere) hit the exact same findNearbySeat() bug, so even its
+floor-sit fallback was reachable in theory but the seat-search half was
+equally broken there too.
+
+Files: CompanionObjectImplementation.cpp (findNearbySeat(),
+runSeatWalkTick()). Verified whole-file brace/paren balance (739/739,
+3603/3603) before commit. Pure C++ logic, needs a rebuild, no
+`r reloadstrings`.
+
+**Flagged for SWGReturnFable, not yet swept:** this is a real, general bug
+CLASS -- any `zone->getInRangeObjects(obj->getPositionX(), obj->
+getPositionY(), ...)` call site is wrong the moment that object can be
+inside a building cell. Asked SWGReturnFable (see notes-to-swgreturnfable.md)
+to sweep the codebase for other call sites with the same pattern -- the
+loot-sweep corpse scan (isNearDenseBuildings()'s own doc comment claims to
+share "the same Zone::getInRangeObjects() scan idiom as findNearbySeat()/
+the loot sweep") is the most likely other victim, since companions now
+auto-loot indoors too.

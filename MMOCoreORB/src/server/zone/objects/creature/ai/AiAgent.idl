@@ -101,6 +101,19 @@ class AiAgent extends CreatureObject {
 	@weakReference
 	private SceneObject followStore;
 	private unsigned int followState;
+
+	// Companion System (2026-08-11, "form up while moving" fix -- see
+	// FormationManager.cpp and NOTES.md). Owner-relative slot offset
+	// (meters, forward = ahead of the follow target, right = lateral),
+	// applied by setDestination()'s FOLLOWING branch to hold a formation
+	// slot continuously while the follow target moves, instead of every
+	// follower converging on the target's exact position. Zero (the
+	// default) reproduces the original plain-follow behavior exactly, so
+	// this is inert for every AiAgent that never has it set (all pets,
+	// droids, and NPCs are unaffected; only FormationManager writes it).
+	private transient float formationOffsetForward;
+	private transient float formationOffsetRight;
+
 	@dereferenced
 	private transient Mutex targetMutex;
 	@dereferenced
@@ -716,6 +729,29 @@ class AiAgent extends CreatureObject {
 		synchronized (targetMutex) {
 			followStore = followObject;
 		}
+	}
+
+	/**
+	 * Companion System (2026-08-11) -- see formationOffsetForward/Right
+	 * field comment above. Called by FormationManager to assign (or, with
+	 * (0, 0), clear) this follower's held slot.
+	 */
+	public void setFormationOffset(float forward, float right) {
+		formationOffsetForward = forward;
+		formationOffsetRight = right;
+	}
+
+	public void clearFormationOffset() {
+		formationOffsetForward = 0.f;
+		formationOffsetRight = 0.f;
+	}
+
+	public float getFormationOffsetForward() {
+		return formationOffsetForward;
+	}
+
+	public float getFormationOffsetRight() {
+		return formationOffsetRight;
 	}
 
 	public native void restoreFollowObject();

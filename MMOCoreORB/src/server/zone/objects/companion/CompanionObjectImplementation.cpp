@@ -4988,8 +4988,27 @@ namespace {
 
 		constexpr float SEAT_SEARCH_RANGE = 15.f;
 
+		// 2026-08-11 FIX (Nick: "still arent sitting down, or finding a
+		// chair to sit on" -- the batch-54 eager cantina seat search never
+		// worked). getPositionX()/getPositionY() are CELL-LOCAL coordinates
+		// whenever the object's root parent is a BuildingObject (see
+		// SceneObjectImplementation::getWorldPositionX/Y() -- they only
+		// equal getPositionX/Y() outside a building), but a cantina
+		// companion is always standing inside the building's interior
+		// cell. Zone::getInRangeObjects() operates in ZONE/WORLD space
+		// (confirmed by runEntertainerWatchTick()'s own correct use of
+		// getWorldPositionX/Y() a few functions up), so this was querying
+		// the quadtree around the companion's small cell-relative
+		// coordinates as if they were real zone coordinates -- almost
+		// always the wrong location in the zone entirely, silently
+		// returning zero furniture. Worse, since runCantinaAmbianceTick()
+		// only ever makes ONE eager attempt (gated on cantinaAttireActive()
+		// being freshly set), that single doomed attempt never got a
+		// second try. Switched the search anchor AND the per-candidate
+		// distance check to getWorldPositionX/Y() throughout, matching
+		// runEntertainerWatchTick()'s already-correct idiom.
 		SortedVector<ManagedReference<QuadTreeEntry*>> nearbyObjects;
-		zone->getInRangeObjects(companion->getPositionX(), companion->getPositionY(), SEAT_SEARCH_RANGE, &nearbyObjects, true, true);
+		zone->getInRangeObjects(companion->getWorldPositionX(), companion->getWorldPositionY(), SEAT_SEARCH_RANGE, &nearbyObjects, true, true);
 
 		SceneObject* nearestSeat = nullptr;
 		float nearestDistSq = 0.f;
@@ -5001,8 +5020,8 @@ namespace {
 				continue;
 			}
 
-			float dx = scno->getPositionX() - companion->getPositionX();
-			float dy = scno->getPositionY() - companion->getPositionY();
+			float dx = scno->getWorldPositionX() - companion->getWorldPositionX();
+			float dy = scno->getWorldPositionY() - companion->getWorldPositionY();
 			float distSq = dx * dx + dy * dy;
 
 			if (nearestSeat == nullptr || distSq < nearestDistSq) {
@@ -5095,7 +5114,23 @@ namespace {
 			companion->setFollowObject(nullptr);
 
 			if (companion->getPatrolPointSize() == 0) {
-				PatrolPoint point(seat->getPositionX(), seat->getPositionZ(), seat->getPositionY());
+				// 2026-08-11 FIX (same report as findNearbySeat()'s
+				// coordinate fix above): PatrolPoint's 4th arg (CellObject*
+				// cell) defaults to nullptr when omitted, which
+				// WorldCoordinates then treats as "these X/Y are OUTDOOR
+				// zone coordinates" -- but seat->getPositionX/Y() are
+				// CELL-LOCAL (the seat is furniture inside the cantina's
+				// interior cell). Without the seat's own parent cell
+				// attached, the pathfinder aimed the companion at whatever
+                                // tiny coordinates the chair happens to have relative to its
+				// cell, interpreted as an outdoor location -- nowhere near
+				// the actual chair. Passing the seat's parent CellObject
+				// (same idiom as FormationManager.cpp's
+				// setNextPosition(..., parent.castTo<CellObject*>())) fixes
+				// this the same way homeLocation.setCell(cell) does for
+				// AiAgent's own patrol points.
+				ManagedReference<SceneObject*> seatParent = seat->getParent().get();
+				PatrolPoint point(seat->getPositionX(), seat->getPositionZ(), seat->getPositionY(), seatParent.castTo<CellObject*>());
 				// setFollowState() calls clearPatrolPoints(), so the state
 				// must be set BEFORE the point is queued -- same ordering
 				// as the loot sweep's own corpse-walk (runSweepStep()).
