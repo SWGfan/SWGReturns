@@ -11512,3 +11512,170 @@ on top of that baseline and did not introduce any new imbalance).
 NOT yet rebuilt/tested in-game -- pending Nick's next build (bundled with batch 51, the harvest-
 skill fix, in the same build/test pass).
 
+
+## Batch 53 (2026-08-11) — Two real bugs in the post-death companion revive path
+
+Nick's report: "after my companion died, i called it back out and its no longer able to be
+buffed by my character builder terminal, also its health is low."
+
+Both root-caused in `CompanionControlDeviceImplementation.cpp`:
+
+**1. Health low (reviveCompanion()):** the HAM-restore loop was doing
+`companion->setMaxHAM(i, 100); companion->setHAM(i, 100);` for all 9 HAM indices -- a flat
+literal 100, not a percentage. This clobbered the companion's real baseline max
+(600/400/400/1100/500/500/900/500/500 -- see `COMPANION_BASELINE_HAM` in
+CompanionObjectImplementation.cpp, "same total HAM point budget a real human character does")
+down to just 100 on every pool. The 2026-07-28 request that added this loop ("give them 100 of
+each") meant 100% (full revive), not literally the number 100 -- so a revived companion came
+back with 100 max health instead of its real 600. Fixed by mirroring the same 9
+COMPANION_BASELINE_HAM values locally (duplicated with an explicit "must stay in sync" comment,
+since the source table has internal `static` linkage in a different .cpp file).
+
+**2. No longer buffable (handleCompanionDeath()):** `CompanionObjectImplementation::
+notifyObjectDestructionObservers()` deliberately skips the entire stock NPC-death pipeline for
+companions (corpse/loot/XP/faction don't apply) and routes straight to
+`handleCompanionDeath()` -- but nothing in that custom path ever cleared the companion's buff
+list. A buff applied before death (e.g. via the Character Builder Terminal's companion-buff
+pass, added 2026-07-15) survived `destroyObjectFromWorld()` and was still attached after the
+death->store->resummon cycle, so `PlayerManagerImplementation::doEnhanceCharacter()`'s
+`if (player->hasBuff(crc)) return false;` guard silently refused to ever re-apply it. Fixed by
+adding `companion->clearBuffs(false, true);` in `handleCompanionDeath()` -- removeAll=true,
+matching the same call CreatureObject.idl's `destroyObjectFromDatabase()` makes for a full
+object-state wipe (as opposed to `setPetLevel()`'s lighter `clearBuffs(false, false)` for a
+mere level change, which is the wrong precedent here since this is a full death reset).
+
+Both bugs only manifest after at least one companion death -- a companion that has never died
+would never hit either code path, which is why this wasn't caught until now.
+
+Verified: brace/paren balance clean (84/84 braces, 607/607 parens).
+NOT yet rebuilt/tested in-game -- pending Nick's next build.
+
+
+## Batch 54 (2026-08-11) — Cantina ambiance: weapon un/re-equip + eager seat-seeking
+
+Nick's report: "the companion took the armor off while in the cantina and put it back on when
+exited, but they never took off their weapon" and (separately) "they also never sat down at all
+and never found a chair to sit on."
+
+**Weapon fix:** `runCantinaAmbianceTick()` (batch 50) only ever called
+`CampDeploymentManager::changeIntoCampClothes()`/`restoreArmorFromCamp()`, which are
+armor-only (that's all the camp-ambiance feature they were built for ever needed). Weapon
+un/re-equip already has a proven precedent elsewhere in the codebase -- the Entertainer
+Dance/Watch feature's watcher weapon handling (`CampDeploymentManager.cpp`, `companion->
+getWeapon()` -> `unequipItemToInventory()` on start, look up by stored objectID + `getRootParent()
+== companion` guard -> `equipItemFromInventory()` on stop) -- reused the same shape here with a
+new locally-tracked `cantinaWeaponRemoved()` map (companionID -> weaponID, 0 = "checked, had
+none"), deliberately separate from CampDeploymentManager's own armor-tracking map since weapon
+handling has no cantina-specific home there.
+
+**Seat fix:** the general idle-emote sit roll (`runIdleEmoteTick()`, ~15% per ~20s tick x
+1-in-4 chance to prefer sitting) averages roughly once per 9 minutes -- too slow to read as
+"the companion sits down in the cantina." The moment `runCantinaAmbianceTick()` swaps a
+companion into cantina clothes (i.e. once per cantina visit, not every tick), it now also makes
+one immediate `findNearbySeat()`/`seatWalkTargetID()` attempt (same infra batch 47 built),
+guarded against double-triggering over an already-sitting or already-walking-to-a-seat
+companion. If nothing's free at that exact moment, the normal slower idle roll still covers it
+later.
+
+Verified: brace/paren balance clean (718/718 braces, up from the prior 709/709 baseline by
+exactly the added blocks; 3475/3475 parens).
+
+**Still open, NOT built this batch (see the "watch a real entertainer" scoping note below):**
+Nick also wants a companion to autonomously watch a real (non-companion) entertainer performing
+in the cantina and receive the heal/buff, same as a real player patron would. Confirmed via
+reading `PlayerManagerImplementation::startWatch()` that the stock `/watch` command only works
+on a REAL PLAYER entertainer (`if (!object->isPlayerCreature()) { ... "You can not /watch
+NPCs." ... return; }` -- the NPC-entertainer branch is dead/commented-out code even for real
+players). This is buildable by mirroring the existing companion-performer Entertainer
+Dance/Watch buff-accrual machinery, but targeting a real dancing/music-playing PLAYER instead
+of a companion performer -- register via `EntertainingSession::addWatcher()`, handle posture,
+range, and session-end cleanup. Genuinely a new feature, not a quick fix -- scoped, not started.
+
+NOT yet rebuilt/tested in-game -- pending Nick's next build.
+
+
+## Batch 55 (2026-08-11) — Elite Companion Handler skill line was never registered with its trainer
+
+Nick's report: "before we do above, we need to be able to train the novice elite companion
+handler profession with the same trainer" -- talking to Footo Aso (the Companion Handler
+trainer) never offered "Novice Elite Companion Handler" at all, even though the skill tree
+showed it as reachable (0 SP, correctly chained) in Nick's own Skills window.
+
+**Root cause:** confirmed via `docs/companion_system/tools/iff_datatable.py` (the existing
+skills.iff codec) dumping `docs/companion_system/tools/patched/skills.iff` -- the
+`companion_master_elite_*` skill line (18 boxes: novice, master, and 4 levels each of
+husbandry/resilience/discipline/vigilance) exists in skills.iff, structurally identical in
+shape to the base `companion_master_*` tier (same PARENT chain, IS_HIDDEN=0, GOD_ONLY=0,
+SEARCHABLE=1, correctly requiring `companion_master_master` as prereq) -- so the skill tree
+data itself was never the problem.
+
+The actual gate is `MMOCoreORB/bin/scripts/screenplays/trainers/trainerData.lua`'s
+`trainer_companion_master` table -- a hardcoded array of skill names a given trainer NPC is
+allowed to offer (keyed by creature-template name, wired to the conversation via
+`trainer_conv.lua`'s `createTrainerConversationTemplate("companionMasterTrainerConvoTemplate",
+"trainer_companion_master")`). The file's own comment already warns: "Every entry in this table
+must have a matching trainer_<x> registration ... or SkillTrainer:getPrerequisiteTrainerSkills()
+indexes a nil 'skills' table and crashes the conversation" -- but the array only ever listed the
+18 BASE-tier names; the 18 elite-tier names were simply never added when the elite line was
+created. Same bug class as the Veteran Reward Vendor's missing serverobjects.lua manifest entry
+and the Master Survey Tool's missing schematics.lua registration -- new content needing a
+SEPARATE registration list that's easy to forget.
+
+**Fix:** added all 18 `companion_master_elite_*` names to the `trainer_companion_master` array
+(same list shape as the base tier, minus the bare category root `companion_master_elite`
+itself, matching how the base tier also omits its own bare `companion_master` root).
+
+Verified: brace-balance clean (39/39) and `luac -p` syntax-checked clean.
+
+This is a pure lua DATA file under `bin/scripts/` -- no C++/`.idl` touched, so this needs only a
+**server restart** (via the Control Panel), no rebuild.
+
+
+## Batch 56 (2026-08-11) — Companions can now watch a real entertainer for wound heal + buff
+
+Nick's ask: "they never watched the entertainer that was dancing to heal their wounds and get
+a buff." Confirmed (batch 54's note) that the stock `/watch` command only works on real player
+entertainers, and the existing companion-performer Entertainer Dance/Watch system
+(CampDeploymentManager.cpp) is a fully separate, parallel implementation built because ITS
+"entertainer" is a CompanionObject the stock system has never heard of.
+
+**Design decision:** rather than building a second parallel wound-heal/buff-math
+implementation for this (real-entertainer) direction, this batch reuses the REAL player
+`/watch` and `/listen` code paths directly --
+`PlayerManagerImplementation::startWatch()`/`stopWatch()`/`startListen()`/`stopListen()` and
+`EntertainingSessionImplementation`'s `addWatcher()`/`healWounds()`/`activateEntertainerBuff()`.
+Verified by direct read that none of these ever call `getPlayerObject()` on the
+watcher/listener/patron parameter -- only on the ENTERTAINER (always a real player in this
+feature's scope) -- and `stopWatch()`'s one real-player-only messaging block is already guarded
+behind `creature->isPlayerCreature()`. This means:
+- Wound healing comes for free from the entertainer's own periodic
+  `doEntertainerPatronEffects()` task, which runs for every registered watcher/listener
+  regardless of who registered them, and already self-evicts anyone who wanders past 10m of the
+  entertainer (calls `stopWatch()`/`stopListen()` itself).
+- The one-time attribute buff (dance-mind, or music focus+willpower) grants automatically when
+  `stopWatch()`/`stopListen()` runs, exactly like a real patron (accrue silently while watching,
+  one buff at stop -- same model the companion-performer version already uses).
+- Zero new buff-math code needed in Companion System code at all.
+
+**New:** `CompanionObjectImplementation.cpp`'s `runEntertainerWatchTick()` (wired into the same
+~20s idle-emote tick as `runCantinaAmbianceTick()`/`runIdleEmoteTick()`). While idle (not
+dead/incap/combat/taxi/loot-sweep/craft-theater), scans for the nearest real player within 15m
+(matches `findNearbySeat()`'s own radius convention) who `isDancing()`/`isPlayingMusic()`, and
+calls the real `startWatch()`/`startListen()` on the companion's behalf. New
+`entertainerWatchTarget()` tracking map (companionID -> entertainerID) is purely local
+bookkeeping so the tick knows when to voluntarily stop (companion goes busy) vs. recognizing the
+stock system already tore things down on its own (`!isWatching() && !isListening()` after a
+tracked entry -- drops the stale entry, self-healing).
+
+Not gated to cantinas specifically -- any nearby real entertainer performing (cantina, player
+camp, wherever) is eligible, matching how a real player's own `/watch` isn't cantina-gated
+either.
+
+Verified: brace/paren balance clean (739/739 braces, up from 718/718 by exactly the added
+block; 3576/3576 parens). All 4 PlayerManager methods called match their real `PlayerManager.idl`
+signatures exactly (stopWatch/stopListen take doSendPackets/forced/doLock/outOfRange bools;
+startWatch/startListen take just creature+entid).
+
+NOT yet rebuilt/tested in-game -- pending Nick's next build (bundled with batches 53-55 in the
+same pass).
+

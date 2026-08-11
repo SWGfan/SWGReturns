@@ -5174,6 +5174,21 @@ namespace {
 		return map;
 	}
 
+	/** Companion objectID -> the weapon's objectID THIS tick unequipped for
+	 * cantina ambiance (0 == checked, had none equipped). Mirrors
+	 * cantinaAttireActive() above but for the weapon slot -- armor removal
+	 * reuses CampDeploymentManager's own tracked state via
+	 * changeIntoCampClothes()/restoreArmorFromCamp(), but weapon un/re-equip
+	 * has no cantina-specific home there (its only existing weapon-unequip
+	 * caller is the Entertainer Dance/Watch feature, a different flow), so
+	 * it's tracked locally here instead. Added 2026-08-11, per Nick: "they
+	 * never took off their weapon" while cantina attire was otherwise
+	 * working. */
+	VectorMap<uint64, uint64>& cantinaWeaponRemoved() {
+		static VectorMap<uint64, uint64> map;
+		return map;
+	}
+
 	/**
 	 * Runs from the ~20s idle-emote tick (see the call site next to
 	 * runIdleEmoteTick()). While the owner is inside a cantina and the
@@ -5183,6 +5198,12 @@ namespace {
 	 * on "in a cantina" instead of "camp deployed nearby". Restores real
 	 * armor the moment the owner leaves the cantina or the companion goes
 	 * busy, but only if THIS tick removed it (cantinaAttireActive() above).
+	 * Also unequips/re-equips the companion's weapon (cantinaWeaponRemoved()
+	 * above) and, the moment cantina clothes go on, makes one immediate
+	 * attempt to find and walk to a real seat -- 2026-08-11, per Nick: the
+	 * general idle-emote sit roll (runIdleEmoteTick(), ~15% per ~20s tick x
+	 * 1-in-4) was too slow to read as real cantina ambiance ("they never sat
+	 * down at all and never found a chair to sit on").
 	 */
 	void runCantinaAmbianceTick(CompanionObject* companion, CreatureObject* owner) {
 		if (companion == nullptr || owner == nullptr) {
@@ -5191,6 +5212,7 @@ namespace {
 
 		uint64 companionID = companion->getObjectID();
 		auto& active = cantinaAttireActive();
+		auto& weaponRemoved = cantinaWeaponRemoved();
 
 		bool busy = companion->getZone() == nullptr || companion->isDead() || companion->isIncapacitated()
 				|| companion->isInCombat() || companion->isTaxiActive() || companion->isLootSweepActive()
@@ -5202,11 +5224,214 @@ namespace {
 			if (!active.contains(companionID)) {
 				active.put(companionID, (uint64) 1);
 				CampDeploymentManager::instance()->changeIntoCampClothes(companion, owner);
+
+				bool alreadySeated = idleSittingCompanionsMap().contains(companionID) && idleSittingCompanionsMap().get(companionID) != 0;
+				bool alreadyWalkingToSeat = seatWalkTargetID().contains(companionID);
+
+				if (!companion->isInCombat() && !alreadySeated && !alreadyWalkingToSeat) {
+					uint64 seatObjectID = 0;
+
+					if (findNearbySeat(companion, seatObjectID)) {
+						companion->setCompanionState(CompanionObject::PATROL);
+						companion->setFollowObject(nullptr);
+						seatWalkTargetID().put(companionID, seatObjectID);
+					}
+				}
 			}
-		} else if (active.contains(companionID)) {
-			active.drop(companionID);
-			CampDeploymentManager::instance()->restoreArmorFromCamp(companion, owner);
+
+			if (!weaponRemoved.contains(companionID)) {
+				ManagedReference<WeaponObject*> weapon = companion->getWeapon();
+				uint64 weaponID = 0;
+
+				if (weapon != nullptr) {
+					weaponID = weapon->getObjectID();
+					companion->unequipItemToInventory(weapon, owner);
+				}
+
+				weaponRemoved.put(companionID, weaponID);
+			}
+		} else {
+			if (active.contains(companionID)) {
+				active.drop(companionID);
+				CampDeploymentManager::instance()->restoreArmorFromCamp(companion, owner);
+			}
+
+			if (weaponRemoved.contains(companionID)) {
+				uint64 weaponID = weaponRemoved.get(companionID);
+				weaponRemoved.drop(companionID);
+
+				if (weaponID != 0) {
+					Zone* zone = companion->getZone();
+					ZoneServer* zoneServer = zone != nullptr ? zone->getZoneServer() : nullptr;
+					ManagedReference<SceneObject*> weaponObj = zoneServer != nullptr ? zoneServer->getObject(weaponID) : nullptr;
+					TangibleObject* weaponTano = weaponObj != nullptr ? weaponObj->asTangibleObject() : nullptr;
+
+					if (weaponTano != nullptr && weaponTano->getRootParent() == companion) {
+						companion->equipItemFromInventory(weaponTano, owner);
+					}
+				}
+			}
 		}
+	}
+
+	/** Companion objectID -> the real entertainer's objectID this companion
+	 * is currently registered as watching/listening to via the STOCK
+	 * PlayerManager startWatch()/startListen() machinery (absent == not
+	 * currently watching anyone). Companion System (2026-08-11, per Nick:
+	 * "they never watched the entertainer that was dancing to heal their
+	 * wounds and get a buff") -- deliberately reuses the REAL player
+	 * /watch and /listen code paths directly rather than re-implementing
+	 * wound-heal/buff math in parallel (the way the companion-PERFORMER
+	 * Dance/Watch feature in CampDeploymentManager.cpp had to, since ITS
+	 * "entertainer" is a CompanionObject the stock system has never heard
+	 * of). Confirmed safe to call with a companion as the WATCHING side:
+	 * startWatch()/stopWatch()/startListen()/stopListen() and
+	 * EntertainingSessionImplementation's addWatcher()/healWounds()/
+	 * activateEntertainerBuff() never call getPlayerObject() on the
+	 * watcher/listener/patron parameter, only on the ENTERTAINER (always a
+	 * real player here) -- and stopWatch()'s one real player-only
+	 * messaging block is already guarded behind `creature->isPlayerCreature()`.
+	 * This means wound healing comes for free from the entertainer's own
+	 * periodic doEntertainerPatronEffects() task (runs for every
+	 * registered watcher/listener regardless of who registered them, and
+	 * already self-evicts anyone who wanders past 10m of the entertainer),
+	 * and the one-time attribute buff grants automatically when
+	 * stopWatch()/stopListen() runs -- exactly like a real patron, with no
+	 * new buff-math code needed here at all. */
+	VectorMap<uint64, uint64>& entertainerWatchTarget() {
+		static VectorMap<uint64, uint64> map;
+		return map;
+	}
+
+	/**
+	 * Runs from the ~20s idle-emote tick (see the call site next to
+	 * runIdleEmoteTick()). While idle, looks for the nearest real (player)
+	 * entertainer dancing or playing music within 15m (matches
+	 * findNearbySeat()'s own "would a companion realistically notice this"
+	 * radius) and registers the companion as a watcher/listener via
+	 * PlayerManager's real startWatch()/startListen() -- see
+	 * entertainerWatchTarget()'s doc comment above for why this is safe
+	 * and sufficient with no extra buff/heal code. Stops watching the
+	 * moment the companion goes busy; the stock system handles every other
+	 * stop condition (entertainer stops performing, range, session end) on
+	 * its own.
+	 */
+	void runEntertainerWatchTick(CompanionObject* companion, CreatureObject* owner) {
+		if (companion == nullptr || owner == nullptr) {
+			return;
+		}
+
+		Zone* zone = companion->getZone();
+
+		if (zone == nullptr) {
+			return;
+		}
+
+		ZoneServer* zoneServer = zone->getZoneServer();
+
+		if (zoneServer == nullptr) {
+			return;
+		}
+
+		ManagedReference<PlayerManager*> playerManager = zoneServer->getPlayerManager();
+
+		if (playerManager == nullptr) {
+			return;
+		}
+
+		uint64 companionID = companion->getObjectID();
+		auto& watching = entertainerWatchTarget();
+
+		bool busy = companion->isDead() || companion->isIncapacitated() || companion->isInCombat()
+				|| companion->isTaxiActive() || companion->isLootSweepActive()
+				|| isCraftTheaterBusy(owner, companion);
+
+		bool currentlyTracked = watching.contains(companionID);
+
+		if (busy) {
+			if (currentlyTracked) {
+				uint64 entertainerID = watching.get(companionID);
+
+				if (companion->isWatching()) {
+					playerManager->stopWatch(companion, entertainerID, true, false, false, false);
+				} else if (companion->isListening()) {
+					playerManager->stopListen(companion, entertainerID, true, false, false, false);
+				}
+
+				watching.drop(companionID);
+			}
+
+			return;
+		}
+
+		if (currentlyTracked) {
+			// Ongoing healing/eviction is entirely the entertainer's own
+			// doEntertainerPatronEffects() task's job -- just notice if it
+			// already tore this down on its own (entertainer stopped
+			// performing, session ended, range self-eviction) and drop our
+			// stale bookkeeping to match.
+			if (!companion->isWatching() && !companion->isListening()) {
+				watching.drop(companionID);
+			}
+
+			return;
+		}
+
+		CloseObjectsVector* vec = (CloseObjectsVector*) companion->getCloseObjects();
+		SortedVector<QuadTreeEntry*> closeObjects;
+
+		if (vec != nullptr) {
+			closeObjects.removeAll(vec->size(), 10);
+			vec->safeCopyReceiversTo(closeObjects, CloseObjectsVector::PLAYERTYPE);
+		} else {
+			zone->getInRangeObjects(companion->getWorldPositionX(), companion->getWorldPositionY(), 15.0f, &closeObjects, true);
+		}
+
+		CreatureObject* bestEntertainer = nullptr;
+		float bestDistSq = 225.0f; // 15m squared
+
+		for (int i = 0; i < closeObjects.size(); ++i) {
+			SceneObject* object = static_cast<SceneObject*>(closeObjects.get(i));
+
+			if (object == nullptr || !object->isPlayerCreature() || object == companion) {
+				continue;
+			}
+
+			CreatureObject* candidate = static_cast<CreatureObject*>(object);
+
+			if (!candidate->isDancing() && !candidate->isPlayingMusic()) {
+				continue;
+			}
+
+			float dx = companion->getPositionX() - candidate->getPositionX();
+			float dy = companion->getPositionY() - candidate->getPositionY();
+			float distSq = dx * dx + dy * dy;
+
+			if (distSq <= bestDistSq) {
+				bestDistSq = distSq;
+				bestEntertainer = candidate;
+			}
+		}
+
+		if (bestEntertainer == nullptr) {
+			return;
+		}
+
+		uint64 entertainerID = bestEntertainer->getObjectID();
+
+		if (bestEntertainer->isDancing()) {
+			playerManager->startWatch(companion, entertainerID);
+		} else {
+			playerManager->startListen(companion, entertainerID);
+		}
+
+		// If the target had nothing valid to offer (session already gone,
+		// etc.) startWatch()/startListen() simply return early without
+		// setting watchToID/listenToID -- the next tick's currentlyTracked
+		// branch above notices isWatching()/isListening() are both still
+		// false and drops this stale entry on its own, so no extra
+		// verification is needed here.
+		watching.put(companionID, entertainerID);
 	}
 
 	void runIdleEmoteTick(CompanionObject* companion, CreatureObject* owner) {
@@ -5344,6 +5569,7 @@ namespace {
 
 			runIdleEmoteTick(companion, owner);
 			runCantinaAmbianceTick(companion, owner);
+			runEntertainerWatchTick(companion, owner);
 
 			scheduleCompanionIdleEmoteTick(companionRef);
 		}, "CompanionIdleEmoteTickLambda", 20000);

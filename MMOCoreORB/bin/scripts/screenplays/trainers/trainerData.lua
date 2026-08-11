@@ -953,6 +953,36 @@ trainerSkills = {
 		"companion_master_vigilance_01",
 		"companion_master_vigilance_02",
 		"companion_master_vigilance_03",
-		"companion_master_vigilance_04"
+		"companion_master_vigilance_04",
+		-- 2026-08-11 fix, per Nick ("before we do above, we need to be able
+		-- to train the novice elite companion handler profession with the
+		-- same trainer"): the companion_master_elite_* skill line exists in
+		-- skills.iff (verified: PARENT/SKILLS_REQUIRED/IS_HIDDEN/GOD_ONLY
+		-- all look identical in shape to the base tier above, correctly
+		-- chained off companion_master_master) but was never added here --
+		-- same bug class as the comment above warns about (a skill missing
+		-- from this table isn't just invisible, per SkillTrainer:
+		-- getPrerequisiteTrainerSkills() it can crash the conversation).
+		-- This is the ONLY registration needed: trainer_conv.lua's
+		-- createTrainerConversationTemplate("companionMasterTrainerConvoTemplate",
+		-- "trainer_companion_master") already keys off this same table entry.
+		"companion_master_elite_novice",
+		"companion_master_elite_master",
+		"companion_master_elite_husbandry_01",
+		"companion_master_elite_husbandry_02",
+		"companion_master_elite_husbandry_03",
+		"companion_master_elite_husbandry_04",
+		"companion_master_elite_resilience_01",
+		"companion_master_elite_resilience_02",
+		"companion_master_elite_resilience_03",
+		"companion_master_elite_resilience_04",
+		"companion_master_elite_discipline_01",
+		"companion_master_elite_discipline_02",
+		"companion_master_elite_discipline_03",
+		"companion_master_elite_discipline_04",
+		"companion_master_elite_vigilance_01",
+		"companion_master_elite_vigilance_02",
+		"companion_master_elite_vigilance_03",
+		"companion_master_elite_vigilance_04"
 	},
 }

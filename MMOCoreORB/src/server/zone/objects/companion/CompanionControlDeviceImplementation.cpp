@@ -965,6 +965,23 @@ void CompanionControlDeviceImplementation::handleCompanionDeath(CreatureObject* 
 
 		companion->setCompanionState(CompanionObject::STAY);
 
+		// Bug fix (2026-08-11, per Nick: "after my companion died, i called
+		// it back out and its no longer able to be buffed by my character
+		// builder terminal") -- notifyObjectDestructionObservers() skips the
+		// entire stock NPC-death pipeline for companions (see that
+		// override's own doc comment), so nothing was ever clearing the
+		// companion's buff list on death. A buff applied before death (e.g.
+		// via the Character Builder Terminal) survived destroyObjectFromWorld()
+		// below and was still attached after the death->store->resummon
+		// cycle, so PlayerManagerImplementation::doEnhanceCharacter()'s
+		// `if (player->hasBuff(crc)) return false;` guard silently refused
+		// to re-apply it forever after -- reading in-game as "the terminal
+		// doesn't work on my companion anymore". removeAll=true matches the
+		// same call CreatureObject.idl's destroyObjectFromDatabase() makes
+		// for a full object-state wipe (as opposed to setPetLevel()'s
+		// lighter clearBuffs(false, false) for a mere level change).
+		companion->clearBuffs(false, true);
+
 		// Companion Taxi (2026-07-15): same teardown as storeObject() above.
 		companion->stopTaxiRide(false);
 
@@ -1014,9 +1031,35 @@ void CompanionControlDeviceImplementation::reviveCompanion() {
 	companion->setPosture(CreaturePosture::UPRIGHT, true, true);
 	companion->setCompanionState(CompanionObject::FOLLOW);
 
+	// Bug fix (2026-08-11, per Nick: "its health is low" after being
+	// called back out post-death): this loop was setting every HAM pool's
+	// MAX to a flat literal 100, clobbering the companion's real baseline
+	// max (600/400/400/1100/500/500/900/500/500 -- see
+	// COMPANION_BASELINE_HAM in CompanionObjectImplementation.cpp, "same
+	// total HAM point budget a real human character does"). The 2026-07-28
+	// request that added this loop meant "100%" (full revive), not the
+	// literal number 100 -- a revived companion was coming back with e.g.
+	// 100 max health instead of its real 600, which read as critically low
+	// AND made Character Builder Terminal buffs (small flat amounts against
+	// the real baseline) look like they were doing nothing on top of it.
+	// MUST stay in sync with COMPANION_BASELINE_HAM if that table ever
+	// changes -- not shared directly since it's `static` (internal linkage)
+	// in a different .cpp file.
+	static const int REVIVE_BASELINE_HAM[9] = {
+		600,  // HEALTH       (500 profession + 100 racial)
+		400,  // STRENGTH     (300 + 100)
+		400,  // CONSTITUTION (300 + 100)
+		1100, // ACTION       (1000 + 100)
+		500,  // QUICKNESS    (400 + 100)
+		500,  // STAMINA      (400 + 100)
+		900,  // MIND         (800 + 100)
+		500,  // FOCUS        (400 + 100)
+		500,  // WILLPOWER    (400 + 100)
+	};
+
 	for (int i = 0; i < 9; ++i) {
-		companion->setMaxHAM(i, 100);
-		companion->setHAM(i, 100);
+		companion->setMaxHAM(i, REVIVE_BASELINE_HAM[i]);
+		companion->setHAM(i, REVIVE_BASELINE_HAM[i]);
 	}
 
 	companion->setMaxVitality(maxVitality);
