@@ -35,6 +35,7 @@
 #include "server/zone/objects/creature/ai/PatrolPoint.h"
 #include "server/zone/managers/companion/CompanionSkillTrainer.h"
 #include "server/zone/managers/companion/CompanionGearExchangeManager.h"
+#include "server/zone/managers/companion/CampDeploymentManager.h" // 2026-08-11, cantina ambiance: changeIntoCampClothes()/restoreArmorFromCamp()
 #include "server/zone/objects/cell/CellObject.h"
 #include "server/zone/Zone.h"
 // COMPANION_TAXI_CHAIN_2026_08_07 -- getWaypointListSize()/getWaypoint() and
@@ -176,6 +177,19 @@
 #define COMPANION_KEEPUP_CITY_CRAWL_MULTIPLIER 0.6f // slow, deliberate pace instead of a boosted rush through tight geometry
 
 namespace {
+
+	// Forward declaration -- isNearDenseBuildings() is DEFINED much further
+	// down (2026-08-10, alongside the seat-search helpers), but
+	// updateTaxiTick() below needs to call it and is defined earlier in
+	// this file than that. All `namespace { ... }` blocks in this file are
+	// the same translation-unit-local unnamed namespace, so this
+	// declaration and that later definition refer to the same function --
+	// same fix shape as any free-function forward-use case, just noted
+	// explicitly since this file's helpers are conventionally NOT
+	// forward-declared (see the "NOT CompanionObjectImplementation::
+	// members" comment on the later helper block for why they're free
+	// functions in the first place).
+	bool isNearDenseBuildings(Zone* zone, float x, float y);
 
 	// Reschedules the taxi mirror/arrival tick. Free function (not an idl
 	// method) so the generated header doesn't need a private-helper
@@ -2961,7 +2975,10 @@ namespace {
 
 		Creature* creature = cast<Creature*>(corpse);
 
-		if (creature == nullptr || !creature->canHarvestMe(owner)) {
+		// The ranger companion is the one doing the harvesting, not the owner -- bypass the
+		// stock "player personally holds Scout" gate (requirePlayerSkill=false) and rely on
+		// companionHasRangerTraining() instead. Every other precondition is unchanged.
+		if (creature == nullptr || !creature->canHarvestMe(owner, false)) {
 			return false;
 		}
 
@@ -2984,7 +3001,9 @@ namespace {
 
 		Zone* zone = creature->getZone();
 
-		if (zone == nullptr || !creature->isCreature() || !creature->canHarvestMe(owner)) {
+		// Same bypass as corpseHarvestableBy() above -- the ranger companion's own training
+		// gates this, not the owner's personal Scout skill.
+		if (zone == nullptr || !creature->isCreature() || !creature->canHarvestMe(owner, false)) {
 			return;
 		}
 
@@ -4885,7 +4904,7 @@ namespace {
 	 * instead of rush) near dense geometry -- open-terrain pacing is
 	 * untouched, since that's not where the clipping was reported.
 	 */
-	bool isNearDenseBuildings(Zone* zone, float x, float y) const {
+	bool isNearDenseBuildings(Zone* zone, float x, float y) {
 		if (zone == nullptr) {
 			return false;
 		}
@@ -4928,7 +4947,7 @@ namespace {
 	 * lamps, shelves) that also carry SceneObjectType::FURNITURE but never
 	 * this naming pattern.
 	 */
-	bool isSeatFurniture(SceneObject* scno) const {
+	bool isSeatFurniture(SceneObject* scno) {
 		if (scno == nullptr || scno->getGameObjectType() != SceneObjectType::FURNITURE) {
 			return false;
 		}
@@ -4956,7 +4975,7 @@ namespace {
 	 * Zone::getInRangeObjects() scan idiom the loot sweep already uses
 	 * for corpses (LOOT_SWEEP_SCAN_RANGE), just a tighter radius and a
 	 * furniture filter instead of a corpse filter. */
-	bool findNearbySeat(CompanionObject* companion, uint64& outObjectID) const {
+	bool findNearbySeat(CompanionObject* companion, uint64& outObjectID) {
 		if (companion == nullptr) {
 			return false;
 		}
@@ -5102,6 +5121,94 @@ namespace {
 		idleSittingCompanionsMap().put(companionID, (uint64) 1);
 	}
 
+	/**
+	 * Companion System (2026-08-11, per Nick: "the companion is not
+	 * sitting or taking off armor or weapon when inside a cantina", and
+	 * earlier "if the companion is in a cantina, they should do the same
+	 * type unequip like we do in a camp, equip the clothes they have and
+	 * unequip the item they are holding"). Cheap "is the owner inside a
+	 * cantina" proxy -- walks to the owner's root parent BuildingObject
+	 * and checks its gameObjectType against
+	 * SceneObjectType::RECREATIONBUILDING (the real designer-data tag SWG
+	 * cantina buildings carry), with a template-name "cantina" fallback --
+	 * same "no clean flag, match the convention instead" idiom
+	 * isSeatFurniture() already uses for chairs. Checked off the OWNER,
+	 * not the companion, since a companion is always within a few meters
+	 * of its owner while FOLLOWing/idling and "the owner walked into the
+	 * cantina" is the actually-meaningful signal.
+	 */
+	bool isOwnerInCantina(CreatureObject* owner) {
+		if (owner == nullptr) {
+			return false;
+		}
+
+		ManagedReference<SceneObject*> root = owner->getRootParent(); // matches every other getRootParent() call site in this codebase
+
+		if (root == nullptr || !root->isBuildingObject()) {
+			return false;
+		}
+
+		if (root->getGameObjectType() == SceneObjectType::RECREATIONBUILDING) {
+			return true;
+		}
+
+		SharedObjectTemplate* objTemplate = root->getObjectTemplate();
+
+		if (objTemplate != nullptr && objTemplate->getFullTemplateString().toLowerCase().indexOf("cantina") >= 0) {
+			return true;
+		}
+
+		return false;
+	}
+
+	/** Companion objectID -> 1 iff THIS tick is the one that stripped the
+	 * companion's armor for cantina clothes. Deliberately separate from
+	 * CampDeploymentManager's own campAttireRemovedArmor map (which
+	 * changeIntoCampClothes()/restoreArmorFromCamp() already guard
+	 * themselves against double-triggering) so this tick only ever
+	 * restores armor IT removed -- an active camp's own attire state,
+	 * removed by the SAME underlying methods for a different reason, is
+	 * never touched from here. */
+	VectorMap<uint64, uint64>& cantinaAttireActive() {
+		static VectorMap<uint64, uint64> map;
+		return map;
+	}
+
+	/**
+	 * Runs from the ~20s idle-emote tick (see the call site next to
+	 * runIdleEmoteTick()). While the owner is inside a cantina and the
+	 * companion isn't busy, swaps it into carried civilian clothes via
+	 * CampDeploymentManager's own proven changeIntoCampClothes() -- the
+	 * exact same swap the camp-ambiance feature already uses, just gated
+	 * on "in a cantina" instead of "camp deployed nearby". Restores real
+	 * armor the moment the owner leaves the cantina or the companion goes
+	 * busy, but only if THIS tick removed it (cantinaAttireActive() above).
+	 */
+	void runCantinaAmbianceTick(CompanionObject* companion, CreatureObject* owner) {
+		if (companion == nullptr || owner == nullptr) {
+			return;
+		}
+
+		uint64 companionID = companion->getObjectID();
+		auto& active = cantinaAttireActive();
+
+		bool busy = companion->getZone() == nullptr || companion->isDead() || companion->isIncapacitated()
+				|| companion->isInCombat() || companion->isTaxiActive() || companion->isLootSweepActive()
+				|| isCraftTheaterBusy(owner, companion);
+
+		bool wantCantinaClothes = !busy && isOwnerInCantina(owner);
+
+		if (wantCantinaClothes) {
+			if (!active.contains(companionID)) {
+				active.put(companionID, (uint64) 1);
+				CampDeploymentManager::instance()->changeIntoCampClothes(companion, owner);
+			}
+		} else if (active.contains(companionID)) {
+			active.drop(companionID);
+			CampDeploymentManager::instance()->restoreArmorFromCamp(companion, owner);
+		}
+	}
+
 	void runIdleEmoteTick(CompanionObject* companion, CreatureObject* owner) {
 		if (companion == nullptr || owner == nullptr) {
 			return;
@@ -5236,6 +5343,7 @@ namespace {
 			CreatureObject* owner = companion->getLinkedCreature().get();
 
 			runIdleEmoteTick(companion, owner);
+			runCantinaAmbianceTick(companion, owner);
 
 			scheduleCompanionIdleEmoteTick(companionRef);
 		}, "CompanionIdleEmoteTickLambda", 20000);

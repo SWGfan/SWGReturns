@@ -85,6 +85,21 @@ public:
 			break;
 		}
 
+		// 2026-08-11: same companion-attack marker as CombatQueueCommand::sendAttackCombatSpam().
+		if (attacker->isCompanionObject()) {
+			StringBuffer msg;
+			msg << ">> " << attacker->getDisplayedName() << " ";
+
+			if (attackResult == CombatManager::HIT)
+				msg << "taunts its target!";
+			else
+				msg << "fails to taunt its target.";
+
+			CombatManager::instance()->broadcastCustomCombatSpam(attacker, UnicodeString(msg.toString()), color);
+
+			return;
+		}
+
 		CombatManager::instance()->broadcastCombatSpam(attacker, nullptr, nullptr, damage, "cbt_spam", stringName, color);
 
 	}

@@ -831,6 +831,42 @@ public:
 			break;
 		}
 
+		// 2026-08-11: give companion-attacker combat lines a ">> " marker so they're easy to
+		// visually pick out of the combat log from the owner's own attacks. Bypasses the
+		// STF-templated path (no new client string-table entries needed) with a plain
+		// hand-built line instead -- real players are completely unaffected (unchanged path
+		// below).
+		if (attacker->isCompanionObject()) {
+			StringBuffer msg;
+			msg << ">> " << attacker->getDisplayedName() << " ";
+
+			switch (attackResult) {
+			case CombatManager::HIT:
+				msg << "hits " << defender->getDisplayedName() << " for " << damage << " points of damage!";
+				break;
+			case CombatManager::MISS:
+				msg << "misses " << defender->getDisplayedName() << "!";
+				break;
+			case CombatManager::DODGE:
+				msg << "'s attack on " << defender->getDisplayedName() << " is dodged!";
+				break;
+			case CombatManager::COUNTER:
+				msg << "'s attack on " << defender->getDisplayedName() << " is countered!";
+				break;
+			case CombatManager::BLOCK:
+			case CombatManager::RICOCHET:
+				msg << "'s attack on " << defender->getDisplayedName() << " is blocked!";
+				break;
+			default:
+				msg << "attacks " << defender->getDisplayedName() << "!";
+				break;
+			}
+
+			CombatManager::instance()->broadcastCustomCombatSpam(attacker, UnicodeString(msg.toString()), color);
+
+			return;
+		}
+
 		CombatManager::instance()->broadcastCombatSpam(attacker, defender, nullptr, damage, "cbt_spam", stringName, color);
 
 	}

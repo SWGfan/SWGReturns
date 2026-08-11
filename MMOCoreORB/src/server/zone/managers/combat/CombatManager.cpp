@@ -2281,6 +2281,38 @@ void CombatManager::broadcastCombatSpam(TangibleObject* attacker, TangibleObject
 	}
 }
 
+void CombatManager::broadcastCustomCombatSpam(TangibleObject* attacker, const UnicodeString& message, byte color) const {
+	if (attacker == nullptr)
+		return;
+
+	Zone* zone = attacker->getZone();
+	if (zone == nullptr)
+		return;
+
+	CloseObjectsVector* vec = (CloseObjectsVector*) attacker->getCloseObjects();
+	SortedVector<QuadTreeEntry*> closeObjects;
+
+	if (vec != nullptr) {
+		closeObjects.removeAll(vec->size(), 10);
+		vec->safeCopyReceiversTo(closeObjects, CloseObjectsVector::PLAYERTYPE);
+	} else {
+#ifdef COV_DEBUG
+		info("Null closeobjects vector in CombatManager::broadcastCustomCombatSpam", true);
+#endif
+		zone->getInRangeObjects(attacker->getWorldPositionX(), attacker->getWorldPositionY(), COMBAT_SPAM_RANGE, &closeObjects, true);
+	}
+
+	for (int i = 0; i < closeObjects.size(); ++i) {
+		SceneObject* object = static_cast<SceneObject*>( closeObjects.get(i));
+
+		if (object->isPlayerCreature() && attacker->isInRange(object, COMBAT_SPAM_RANGE)) {
+			CreatureObject* receiver = static_cast<CreatureObject*>( object);
+			CombatSpam* spam = new CombatSpam(receiver, message, color);
+			receiver->sendMessage(spam);
+		}
+	}
+}
+
 void CombatManager::broadcastCombatAction(CreatureObject * attacker, TangibleObject * defenderObject,
 		WeaponObject* weapon, const CreatureAttackData & data, int damage, uint8 hit, uint8 hitLocation) const {
 	const String& animation = data.getCommand()->getAnimation(attacker, defenderObject, weapon, hitLocation, damage);

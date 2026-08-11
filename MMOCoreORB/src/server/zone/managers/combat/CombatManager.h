@@ -154,6 +154,14 @@ public:
 	void sendMitigationCombatSpam(CreatureObject* defender, TangibleObject* item, uint32 damage, int type) const;
 	void broadcastCombatSpam(TangibleObject* attacker, TangibleObject* defender, TangibleObject* item, int damage, const String& file, const String& stringName, byte color) const;
 
+	/**
+	 * Same broadcast-to-nearby-players range/audience logic as broadcastCombatSpam(), but takes
+	 * an already-built raw UnicodeString instead of looking up a templated cbt_spam.stf entry.
+	 * Added 2026-08-11 for the companion-attack combat-log marker so no new client string-table
+	 * entries are needed.
+	 */
+	void broadcastCustomCombatSpam(TangibleObject* attacker, const UnicodeString& message, byte color) const;
+
 	void broadcastCombatAction(CreatureObject* attacker, TangibleObject* defenderObject, WeaponObject* weapon, const CreatureAttackData& data, int damage, uint8 hit, uint8 hitLocation) const;
 
 	float hitChanceEquation(float attackerAccuracy, float attackerRoll, float targetDefense, float defenderRoll) const;

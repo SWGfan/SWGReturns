@@ -11305,3 +11305,210 @@ collision -- same class of wall this project has hit before (Iron Rule 5:
 "can't server-move the player's own mount, can't force /follow"). Almost
 certainly not fixable from server-side companion code; told Nick this
 plainly rather than attempt something that can't work from here.
+
+## Batch 49 (2026-08-10) -- fix batch 47/48 compile errors (never build-tested before now)
+
+Nick's first rebuild after batches 47/48 landed failed with real errors, not just
+the pre-existing harmless -Wcomment warning at the old 4671-ish line (which had
+already been closed off/documented and drifted to a new line number as the file
+grew -- still harmless, still not a build blocker, left alone).
+
+Root cause: isNearDenseBuildings()/isSeatFurniture()/findNearbySeat() were all
+written with a trailing `const`, copying what looked like a class-member-style
+signature. They are NOT class members -- this file has a long-established
+pattern (explicit comment on the anonymous-namespace block: 'All free functions
+taking CompanionObject*/CreatureObject* params ... NOT
+CompanionObjectImplementation:: members') of free functions living in
+`namespace { ... }` blocks, called from the real idl-declared native methods.
+`const` on a free (non-member) function is a hard compile error
+('non-member function ... cannot have cv-qualifier') -- removed from all three.
+
+Second, separate error: isNearDenseBuildings() is DEFINED in the seat-search
+namespace block (~line 4079-5244) but CALLED from updateTaxiTick(), which is
+defined much earlier in the file (~line 2340) -- a genuine forward-use problem
+for a free function (unlike class members, free functions need a prior
+declaration). Fixed with a one-line forward declaration inside the FIRST
+anonymous-namespace block (~line 178, alongside scheduleCompanionTaxiTick) --
+all `namespace { ... }` blocks in one file are the same translation-unit-local
+unnamed namespace, so the forward declaration and the later real definition
+correctly refer to the same function.
+
+Lesson for future sessions: this file's helper functions are free functions in
+anonymous namespaces, NOT class members, despite having no qualifying prefix at
+their definition site (which looks identical to an inline class-member
+definition at a glance). Before adding `const` to a new helper here, or calling
+a not-yet-defined helper from an EARLIER function in the file, check which
+`namespace { ... }` block (if any) it's really in.
+
+Brace/paren balance verified clean (698/698, 3375/3375). Pushed. Still NOT
+confirmed to build clean end-to-end -- Nick rebuilding now.
+
+Build CONFIRMED clean by Nick right after batch 49 -- [100%] Built target core3, only the pre-existing harmless -Wcomment warning. Batches 47-49 (seat-search, city-aware taxi/keep-up pacing, and their compile fix) are built and ready to test in-game.
+
+## Batch 50 (2026-08-11) -- cantina ambiance: auto unequip/equip civvies
+
+Per Nick: "the companion is not sitting or taking off armor or weapon
+when inside a cantina" (follow-up to his earlier, not-yet-built cantina/
+entertainer-watching request).
+
+Sitting: already covered by batch 47's seat-search -- no separate fix
+needed, but the odds are low enough to look broken over a short test
+(~15% roll per ~20s idle tick, then a further 1-in-4 to pick sit over a
+standing emote -- roughly one attempt every 9 minutes on average). Told
+Nick this plainly rather than let it look unfixed.
+
+Armor/weapon unequip: genuinely never wired -- fixed this batch, scoped
+to ONLY the equip-swap half of the original cantina ask (detect cantina,
+swap to civilian clothes like the camp-ambiance feature already does).
+The other half -- watch a REAL entertainer and receive the actual
+performance buff -- is still NOT built; flagged again as its own
+separate, larger piece of work (needs real-entertainer detection +
+buff-sourcing, not just the equip swap).
+
+Files: CompanionObjectImplementation.cpp, CampDeploymentManager.h.
+
+CampDeploymentManager::changeIntoCampClothes()/restoreArmorFromCamp()
+were PRIVATE (only ever called from that class's own camp-ambiance
+tick) -- made PUBLIC so CompanionObjectImplementation.cpp's new cantina
+tick can call them directly. Same precondition as every existing caller
+(@pre companion locked), already satisfied by the keep-up/idle-emote
+tick infrastructure that calls into this. No other CampDeploymentManager
+callers touched.
+
+New in CompanionObjectImplementation.cpp (anonymous namespace, next to
+the seat-search helpers):
+- isOwnerInCantina(CreatureObject*) -- walks to the owner's root parent
+  BuildingObject, checks SceneObjectType::RECREATIONBUILDING (the real
+  designer tag on SWG cantina buildings) with a template-name 'cantina'
+  fallback -- same 'no clean flag, match the convention' idiom as
+  isSeatFurniture(). Checked off the OWNER (a companion is always a few
+  meters away while FOLLOWing/idling), not the companion.
+- cantinaAttireActive() -- own tracking map, deliberately SEPARATE from
+  CampDeploymentManager's own campAttireRemovedArmor map, so this tick
+  only ever restores armor IT removed -- an active camp's own attire
+  state (removed by the same underlying methods, different reason) is
+  never touched from here.
+- runCantinaAmbianceTick(CompanionObject*, CreatureObject*) -- runs from
+  the same ~20s idle-emote tick as runIdleEmoteTick()/the seat-search
+  roll. Busy-gated (combat/taxi/loot-sweep/craft-theater/dead/
+  incapacitated) same as the other idle-tick features. Swaps in on
+  entering a cantina, restores on leaving or going busy.
+
+Brace/paren balance verified clean (709/709, 3427/3427 cpp; 11/11 h).
+Pushed. NOT yet rebuilt/tested in-game.
+
+## Batch 51 (2026-08-11) — Companion ranger harvest no longer gated on owner's own Scout skill
+
+**Bug reported by Nick:** "i notice my companion doesnt harvest hide bone or meat unless i
+have the scout skill. we need to make it so the companion can use the scout skills
+independently from the user."
+
+**Root cause:** `CreatureImplementation::canHarvestMe(CreatureObject* player)`
+(MMOCoreORB/src/server/zone/objects/creature/ai/CreatureImplementation.cpp) is the stock
+engine gate used by every "can this thing be harvested" check in the codebase. It requires
+the `player` argument to personally hold `"outdoors_scout_novice"` and a `creature_harvesting`
+skill mod >= 1. The companion ranger-harvest code
+(CompanionObjectImplementation.cpp: corpseHarvestableBy(), companionHarvestCorpse()) calls
+this exact stock method but passes the OWNER as `player`, not the ranger-trained companion --
+so a companion with full ranger training was silently blocked whenever the owner personally
+lacked Scout. companionHasRangerTraining() (the companion's own skill gate) was already
+correctly checking the companion's learned skills, but its result was never wired to bypass
+this stock check.
+
+**Fix (non-breaking for real players):** added a defaulted second parameter to
+`canHarvestMe()`:
+  - Creature.idl:  `public native boolean canHarvestMe(CreatureObject player, boolean requirePlayerSkill = true);`
+  - CreatureImplementation.cpp: the two skill checks (`hasSkill("outdoors_scout_novice")` and
+    `getSkillMod("creature_harvesting") < 1`) are now gated on `requirePlayerSkill`. Every
+    other precondition (range/combat/dead/incap/isPet/hasOrganics/alreadyHarvested/
+    loot-ownership) is unchanged and still runs unconditionally.
+  - The default value (`true`) preserves EXACT existing behavior for all 3 real-player call
+    sites with zero code changes needed there:
+    CreatureManagerImplementation.cpp:925, CreatureImplementation.cpp:33 (internal),
+    HarvestCorpseCommand.h:90.
+  - The 2 companion call sites (CompanionObjectImplementation.cpp corpseHarvestableBy() and
+    companionHarvestCorpse()) now pass `canHarvestMe(owner, false)`, relying on
+    companionHasRangerTraining() (already checked earlier in both call chains) instead of the
+    owner's personal skill.
+
+**Lesson for future sessions:** IDL native method declarations DO support default parameter
+values (precedent: CreatureObject.idl's `inflictDamage(..., boolean notifyClient = true, ...)`)
+and DO support true overloading by different param lists (same file, two `inflictDamage`
+declarations). A defaulted bool parameter is the lowest-risk way to give one stock engine gate
+two different callers with two different rulesets, without touching any of the real-player
+call sites.
+
+Verified: brace/paren balance clean on all 3 touched files
+(Creature.idl 26/26 braces, 100/100 parens; CreatureImplementation.cpp 65/65 braces,
+381/381 parens; CompanionObjectImplementation.cpp 709/709 braces, 3430/3430 parens).
+NOT yet rebuilt/tested in-game -- pending Nick's next build.
+
+
+## Research note (2026-08-11) — Combat spam text color is a FIXED small client enum, not an arbitrary palette
+
+Nick asked whether companion combat-log lines could render in purple text to visually separate
+them from the player's own combat spam, and whether a separate companion ability hotbar could
+be shown in the top-right UI.
+
+**Combat spam color:** every combat text line (floating text above heads AND the Combat chat
+tab) is sent via the `CombatSpam` packet (server/zone/packets/object/CombatSpam.h), whose
+constructor takes a `byte color` with the field's own in-file comment: "colour flag. 0=white,
+1=auto green/red, 10=red, 11=yellow". A repo-wide grep of every `CombatSpam`/`sendStateCombatSpam`/
+`sendCustomCombatSpam`/`broadcastCombatSpam` call site confirms ONLY 0, 1, 10, and 11 are ever
+used anywhere in this codebase -- matching the historically documented retail-SWG combat-text
+palette (white/green/red/yellow, no purple, going back to the original game). This byte is
+interpreted by the COMPILED client engine, which we do not have source for (only server C++ +
+the loose-file/TRE data layer). There is no known 5th value; inventing one is not something we
+can verify or safely ship blind. **Conclusion: purple companion combat text is not achievable
+without client engine source. Same class of wall as Iron Rule 5 (client-authoritative
+behavior).** Cheap alternative not yet built: prefix companion combat-spam lines with a
+distinct text marker (e.g. a bracketed tag) via the existing `sendCustomCombatSpam(unicode,
+color)` path, so they're still easy to visually scan even without a new color.
+
+**Separate companion ability hotbar:** SWG's toolbar/UI is data-driven (moddable UI templates
+exist in the wider SWG modding community) but building a genuinely new hotbar window that shows
+a companion's current/queued combat abilities would require SWG UI-template authoring (a
+different skillset/pipeline than Core3 C++, likely a new custom UI file added via
+companion_patch.tre) PLUS a new server-side data feed exposing the companion's live action
+state to that window. Not attempted -- flagged as a large, separate effort, not a quick build.
+Not started this session.
+
+
+## Batch 52 (2026-08-11) — Companion combat-log lines get a ">> " marker for easy visual scanning
+
+**Request:** Nick wanted companion combat lines to stand out from his own in the Combat chat
+tab. Real "purple text" isn't possible (see the 2026-08-11 research note above -- CombatSpam's
+color byte is a fixed small client enum: white/auto-green-red/red/yellow only, no purple, and
+we don't have client engine source). Nick chose the cheap text-marker alternative instead.
+
+**Implementation:** the vast majority of "X hits/misses Y for Z damage" combat-log lines funnel
+through ONE chokepoint: `CombatQueueCommand::sendAttackCombatSpam()` (and TauntCommand's own
+override of the same method, since Taunt is a real companion command via
+`/companiontaunt`). Both now check `attacker->isCompanionObject()` (an existing SceneObject-level
+virtual, safe to call on any TangibleObject*) and, when true, build a plain hand-written line
+(`">> " + attacker name + verb + defender name [+ damage]`) instead of going through the
+templated `cbt_spam.stf` lookup -- so this needed ZERO new client string-table entries (no TRE
+regen, no risk of the "raw unresolved STF key" bug class this project has hit before). Real
+player-driven attacks are completely untouched (same code path as before, unconditional
+`isCompanionObject()` check short-circuits only for companion attackers).
+
+New `CombatManager::broadcastCustomCombatSpam(TangibleObject* attacker, const UnicodeString&
+message, byte color)` (CombatManager.h/.cpp) mirrors the existing `broadcastCombatSpam()`'s
+nearby-player broadcast/range logic exactly, but sends the raw already-built UnicodeString via
+the CombatSpam packet's 3-arg (receiver, string, color) constructor instead of the 8-arg
+file+stringName constructor.
+
+Covers: normal attacks (hit/miss/dodge/counter/block, CombatQueueCommand.h) and Taunt
+(success/fail, TauntCommand.h). Does NOT cover mitigation spam (armor/PSG/force absorb --
+those are about the DEFENDER's gear, not the attacker, out of scope for "which companion did
+this") or the posture/state spam (stand/prone/kneel, stunned/blind/dizzy -- not attack lines).
+
+Verified: brace/paren balance clean, net of a PRE-EXISTING 1-brace-off-by-one artifact already
+present in CombatQueueCommand.h before this session's edit (146/145 baseline, confirmed via a
+fresh device-side count on the untouched file -- almost certainly a brace character inside a
+string literal or comment elsewhere in that large file; this session's edit added a clean +2/+2
+on top of that baseline and did not introduce any new imbalance).
+
+NOT yet rebuilt/tested in-game -- pending Nick's next build (bundled with batch 51, the harvest-
+skill fix, in the same build/test pass).
+

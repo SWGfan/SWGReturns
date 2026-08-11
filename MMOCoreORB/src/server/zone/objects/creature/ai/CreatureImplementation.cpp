@@ -239,16 +239,23 @@ void CreatureImplementation::notifyDespawn(Zone* zone) {
 	AiAgentImplementation::notifyDespawn(zone);
 }
 
-bool CreatureImplementation::canHarvestMe(CreatureObject* player) {
+bool CreatureImplementation::canHarvestMe(CreatureObject* player, bool requirePlayerSkill) {
 
-	if(!player->isInRange(_this.getReferenceUnsafeStaticCast(), 10.0f) || player->isInCombat() || !player->hasSkill("outdoors_scout_novice")
+	if(!player->isInRange(_this.getReferenceUnsafeStaticCast(), 10.0f) || player->isInCombat()
 			|| player->isDead() || player->isIncapacitated() || isPet())
+		return false;
+
+	// A ranger-trained companion harvesting on the owner's behalf is gated on the companion's
+	// own skill (checked by the caller) instead of the owner personally holding Scout -- every
+	// other precondition here (range/combat/dead/incap/organics/already-harvested/loot-ownership)
+	// still applies unchanged.
+	if (requirePlayerSkill && !player->hasSkill("outdoors_scout_novice"))
 		return false;
 
 	if (!hasOrganics())
 		return false;
 
-	if (player->getSkillMod("creature_harvesting") < 1)
+	if (requirePlayerSkill && player->getSkillMod("creature_harvesting") < 1)
 		return false;
 
 	if (alreadyHarvested.contains(player->getObjectID()))

@@ -97,7 +97,15 @@ class Creature extends AiAgent {
 
 	public native boolean hasDNA();
 
-	public native boolean canHarvestMe(CreatureObject player);
+	/**
+	 * @param requirePlayerSkill When true (default, preserves existing behavior for every
+	 *  real-player call site), the caller must personally hold "outdoors_scout_novice" and a
+	 *  creature_harvesting skill mod >= 1. Pass false only for a ranger-trained COMPANION
+	 *  harvesting on the owner's behalf, where the companion's own skill gate has already been
+	 *  checked separately -- all other preconditions (range/combat/dead/incap/organics/
+	 *  already-harvested/loot-ownership) still apply unchanged.
+	 */
+	public native boolean canHarvestMe(CreatureObject player, boolean requirePlayerSkill = true);
 	public native boolean canDroidHarvestMe(CreatureObject player,CreatureObject droid);
 
 	public native boolean hasSkillToHarvestMe(CreatureObject player);
