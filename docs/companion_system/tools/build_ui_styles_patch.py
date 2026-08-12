@@ -156,18 +156,38 @@ MAPPING = {
     # Replaced with combatTarget / chargeShot1 / setwarcry respectively --
     # each independently verified to have exactly one plain + one
     # ui_shader_add definition at the same SourceRect, no Size override.
-    "companionguard": "defend",
+    # Companion System (2026-08-12, per Nick: "can we change the icons for
+    # guard and return"). Root cause of BOTH showing the blank/default
+    # icon in-game, found by actually walking the live aftermath_1.tre
+    # ui_styles.inc namespace tree rather than re-guessing a style name:
+    # the client resolves command-browser/hotbar icons from ONE specific
+    # namespace, Styles.Icon.command (confirmed empirically -- every OTHER
+    # working companion icon's base style, e.g. areaTrack/assist/
+    # combatTarget/group/consent, lives there). "defend" and "callRetreat"
+    # (the two prior picks) exist ONLY under the unrelated "social"
+    # namespace (mail/tell-panel icons) -- never in Styles.Icon.command --
+    # so the client's icon lookup simply never found them, no matter how
+    # many times the loose-file deploy pipeline ran. Both replacements
+    # below were verified present in Styles.Icon.command (and its
+    # New.buttons.space.Icon.command mirror) with matching SourceRect in
+    # both copies -- the same "must have both copies" rule the
+    # 2026-07-25 fix note above already established -- and neither
+    # SourceRect collides with any other companion command's pixels.
+    #   companionguard  -> "shields" (142,209,166,233) -- a literal shield
+    #                      glyph, matches CompanionGuardCommand.h's real
+    #                      job (escort/protect a target).
+    #   companionreturn -> "guildMove" (324,486,348,510) -- a movement/
+    #                      travel glyph, matches CompanionReturnCommand.h's
+    #                      real job (rally-point recall -- "snap a
+    #                      battlefield line back into shape").
+    "companionguard": "shields",
     "companionfollowother": "combatTarget",
     "companionrangedattack": "overchargeShot1",
     "companionspecialone": "chargeShot1",
     "companionspecialtwo": "defaultAttack",
     "companiongroup": "group",
     "companionfriend": "consent",
-    # Companion System (2026-07-20, "massive battlefield" pass, per user
-    # request) -- return -> areaTrack (same "walk back to a marked spot"
-    # visual already used for patrol; no dedicated "rally point" style
-    # exists in the palette).
-    "companionreturn": "callRetreat",
+    "companionreturn": "guildMove",
     # Companion System (2026-07-25, "Jenkins" pass, per user request "i also
     # want a icon macro i can use") -- went through two wrong picks before
     # this one: "callRetreat" (no ui_shader_add copy -- silently fell back

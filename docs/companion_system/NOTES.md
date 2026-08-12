@@ -11814,3 +11814,54 @@ loot-sweep corpse scan (isNearDenseBuildings()'s own doc comment claims to
 share "the same Zone::getInRangeObjects() scan idiom as findNearbySeat()/
 the loot sweep") is the most likely other victim, since companions now
 auto-loot indoors too.
+
+
+## Batch 59 (2026-08-12) -- Companion Guard / Return command-browser icons FIXED
+
+**Report (Nick):** "can we change the icons for guard and return. please
+pick 2 different icons and lets code it in" -- both were showing the
+generic blank/default icon in the Command Browser.
+
+**Root cause:** the client resolves hotbar/command-browser icons from ONE
+specific ui_styles.inc namespace, `Styles.Icon.command` -- confirmed by
+walking the live aftermath_1.tre palette directly (a small script parsed
+every `<Namespace>`/`<ImageStyle>` tag into a proper nesting stack rather
+than a flat name-only scan). Every OTHER working companion icon's base
+style (areaTrack, assist, combatTarget, group, consent, chargeShot1,
+defaultAttack, overchargeShot1) lives in that exact namespace. The two
+prior picks for Guard/Return -- "defend" and "callRetreat" -- exist ONLY
+under the unrelated "social" namespace (mail/tell-panel icons), never in
+Styles.Icon.command, so the client's icon lookup silently never found them
+no matter how many times the loose-file deploy pipeline ran (this also
+retroactively explains the 2026-08-07 NOTES entry that thought it had
+fixed this -- that pass fixed a real STALENESS bug in the deploy script,
+but the underlying MAPPING picks were wrong from the start and nobody had
+walked the actual namespace tree to check).
+
+**Fix:** picked two replacements, both verified present in
+Styles.Icon.command (and its New.buttons.space.Icon.command mirror) with
+matching SourceRect in both copies -- the same "must have both copies"
+rule the 2026-07-25 fix note established -- and neither colliding with any
+other companion command's pixels:
+  - `companionguard` -> `"shields"` (142,209,166,233) -- a literal shield
+    glyph, matches CompanionGuardCommand.h's real job (escort/protect a
+    target).
+  - `companionreturn` -> `"guildMove"` (324,486,348,510) -- a movement/
+    travel glyph, matches CompanionReturnCommand.h's real job (rally-point
+    recall -- "snap a battlefield line back into shape").
+
+Applied to `build_ui_styles_patch.py`'s MAPPING, regenerated
+`patched/ui_styles.inc` against the live aftermath_1.tre (SWG_TRE_DIR
+pointed at the real client folder), then deployed directly into the LOOSE
+`ui/ui_styles.inc` the client actually reads (patch_loose_ui_styles.py --
+per the 2026-08-07 investigation, the SWG Returns launcher installs a loose
+copy of this file that takes precedence over anything packed in a TRE).
+Confirmed via the deploy script's own diff: exactly 4 entries refreshed
+(companionguard, companion_guard, companionreturn, companion_return), 0
+added, 618 already correct -- i.e. only the two intended commands changed.
+
+Files: docs/companion_system/tools/build_ui_styles_patch.py,
+docs/companion_system/tools/patched/ui_styles.inc (regenerated artifact).
+Pure client-side UI data -- no server rebuild or restart needed. Client
+must be FULLY exited and relaunched (not just relogged) to pick up the new
+icons, same requirement as every other icon fix this project has hit.
