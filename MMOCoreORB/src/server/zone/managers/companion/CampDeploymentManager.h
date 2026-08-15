@@ -188,6 +188,21 @@ public:
 	String describeTierForPicker(CompanionObject* companion, int tierIndex) const;
 	bool isTierWithinTraining(CompanionObject* companion, int tierIndex) const;
 
+	/** Swaps a companion into camp clothes (unequip armor -> equip clothes)
+	 * if it carries clothes; records removed armor. @pre companion locked.
+	 * Made public 2026-08-11 (per Nick: "the companion is not ... taking
+	 * off armor or weapon when inside a cantina") so
+	 * CompanionObjectImplementation.cpp's own cantina-ambiance tick can
+	 * call it directly -- same call shape/precondition as every existing
+	 * caller inside this class's own camp-ambiance tick, none of which
+	 * were touched. */
+	void changeIntoCampClothes(CompanionObject* companion, CreatureObject* owner);
+
+	/** Restores the armor unequipped by changeIntoCampClothes(). @pre
+	 * companion locked. Made public 2026-08-11, see changeIntoCampClothes()
+	 * above for why. */
+	void restoreArmorFromCamp(CompanionObject* companion, CreatureObject* owner);
+
 private:
 	/** Owners with a camp-ambiance loop currently running (dedupe guard).
 	 * 2026-07-20. */
@@ -251,14 +266,6 @@ private:
 	 * CompanionMenuComponent.cpp per this project's own per-file-copy
 	 * convention. */
 	void resolveActiveCompanionsForDance(CreatureObject* owner, Vector<ManagedReference<CompanionObject*> >& out) const;
-
-	/** Swaps a companion into camp clothes (unequip armor -> equip clothes)
-	 * if it carries clothes; records removed armor. @pre companion locked. */
-	void changeIntoCampClothes(CompanionObject* companion, CreatureObject* owner);
-
-	/** Restores the armor unequipped by changeIntoCampClothes(). @pre
-	 * companion locked. */
-	void restoreArmorFromCamp(CompanionObject* companion, CreatureObject* owner);
 
 	bool companionHasRangerOrScoutTraining(CompanionObject* companion) const;
 

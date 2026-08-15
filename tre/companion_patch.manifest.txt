@@ -1,20 +1,20 @@
 companion_patch.tre -- contents
 ==============================================================
 
-Generated 2026-08-07 11:04:11 by `swggenesis_menu.py tre_publish`.
-Archive: 3,071,315 bytes, 16 records.
+Generated 2026-08-07 12:14:48 by `swggenesis_menu.py tre_publish`.
+Archive: 3,220,412 bytes, 16 records.
 
 A .tre is a binary archive, so GitHub shows it as "not displayed".
 This manifest exists so you can see what is inside without downloading.
 
 path                                                              bytes  checksum
 ---------------------------------------------------------- ------------  ----------
-datatables/command/command_table.iff                            276,117  0xd5eb3129
+datatables/command/command_table.iff                            321,547  0xd5eb3129
 datatables/skill/skills.iff                                     318,557  0xbbcc65ed
 datatables/skill/xp_limits.iff                                    1,278  0x400712ac
 object/intangible/companion/shared_companion_control_device.iff          999  0xc729f206
 object/tangible/inventory/shared_character_inventory.iff          1,454  0x3969e83b
-string/en/cmd_n.stf                                             119,079  0xb3480c3b
+string/en/cmd_n.stf                                             134,577  0xb3480c3b
 string/en/companion.stf                                           7,458  0xa5eef709
 string/en/exp_n.stf                                               5,117  0xd51895a0
 string/en/mob/creature_names.stf                                215,953  0xd79b1b95
@@ -24,4 +24,4 @@ string/en/skl_n.stf                                             169,465  0x0531b
 string/en/skl_t.stf                                              27,161  0x55107d1b
 string/en/stat_d.stf                                             85,254  0x356cb533
 string/en/stat_n.stf                                             34,635  0xe69f7d2f
-ui/ui_styles.inc                                              1,371,164  0x6c61a831
+ui/ui_styles.inc                                              1,459,333  0x6c61a831

@@ -143,7 +143,15 @@ public:
 
 	bool hasDNA();
 
-	bool canHarvestMe(CreatureObject* player);
+	/**
+	 * @param requirePlayerSkill When true (default, preserves existing behavior for every
+	 *  real-player call site), the caller must personally hold "outdoors_scout_novice" and a
+	 *  creature_harvesting skill mod >= 1. Pass false only for a ranger-trained COMPANION
+	 *  harvesting on the owner's behalf, where the companion's own skill gate has already been
+	 *  checked separately -- all other preconditions (range/combat/dead/incap/organics/
+	 *  already-harvested/loot-ownership) still apply unchanged.
+	 */
+	bool canHarvestMe(CreatureObject* player, bool requirePlayerSkill = true);
 
 	bool canDroidHarvestMe(CreatureObject* player, CreatureObject* droid);
 
@@ -288,7 +296,15 @@ public:
 
 	bool hasDNA();
 
-	bool canHarvestMe(CreatureObject* player);
+	/**
+	 * @param requirePlayerSkill When true (default, preserves existing behavior for every
+	 *  real-player call site), the caller must personally hold "outdoors_scout_novice" and a
+	 *  creature_harvesting skill mod >= 1. Pass false only for a ranger-trained COMPANION
+	 *  harvesting on the owner's behalf, where the companion's own skill gate has already been
+	 *  checked separately -- all other preconditions (range/combat/dead/incap/organics/
+	 *  already-harvested/loot-ownership) still apply unchanged.
+	 */
+	bool canHarvestMe(CreatureObject* player, bool requirePlayerSkill = true);
 
 	bool canDroidHarvestMe(CreatureObject* player, CreatureObject* droid);
 
@@ -414,7 +430,7 @@ public:
 
 	bool hasDNA();
 
-	bool canHarvestMe(CreatureObject* player);
+	bool canHarvestMe(CreatureObject* player, bool requirePlayerSkill);
 
 	bool canDroidHarvestMe(CreatureObject* player, CreatureObject* droid);
 

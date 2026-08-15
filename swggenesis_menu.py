@@ -3,7 +3,7 @@
 SWG Genesis server backend -- called by SWGGenesisControlPanel.ahk via wsl.exe.
 
 Lives on the Windows D: drive and is executed directly from WSL, so there is
-no copy step: /mnt/d/SWGGenesis/swggenesis_menu.py
+no copy step: /mnt/c/SWGGenesis/swggenesis_menu.py
 
 Every action prints plain text to stdout. The GUI parses `status`, `remote`,
 `planets_get` and `backup_count`; everything else is free text for the log pane.
@@ -33,17 +33,17 @@ import time
 from datetime import datetime
 
 # ---------------------------------------------------------------- configuration
-REPO      = "/mnt/d/SWGGenesis"
+REPO      = "/mnt/c/SWGGenesis"
 MMO       = REPO + "/MMOCoreORB"
 BIN       = MMO + "/bin"
 BUILD     = MMO + "/build/unix"
 LOG       = BIN + "/log/core3.log"
-CONSOLE_LOG = "/mnt/d/SWGGenesis/console.log"  # stdout-only errors land here
-ACTIVITY_LOG = "/mnt/d/SWGGenesis/menu_activity.log"  # 2026-08-07: every real action, tee'd live -- see act_rebuild()/main()
+CONSOLE_LOG = "/mnt/c/SWGGenesis/console.log"  # stdout-only errors land here
+ACTIVITY_LOG = "/mnt/c/SWGGenesis/menu_activity.log"  # 2026-08-07: every real action, tee'd live -- see act_rebuild()/main()
 CONF      = BIN + "/conf/config-local.lua"
 CONF_MAIN = BIN + "/conf/config.lua"
-CLIENT    = "/mnt/d/Launcher/newreturnbenserver"
-BACKUPS   = "/mnt/d/SWGGenesis/backups"
+CLIENT    = "/mnt/c/SWGEmu"
+BACKUPS   = "/mnt/c/SWGGenesis/backups"
 
 SCREEN    = "genesis"
 LOGIN_PORT = 46453
@@ -61,6 +61,15 @@ CMAKE_FLAGS = [
     "-DCOMPILE_TESTS=OFF",   # see module docstring -- without it cmake cannot configure
     "-DENABLE_ERROR_ON_WARNINGS=OFF",
     "-DCMAKE_POLICY_VERSION_MINIMUM=3.5",
+    # 2026-08-15: core3client does NOT compile against the pinned engine3.
+    # src/client/ClientCore.h declares `class ClientCore : public Core, public
+    # Logger` but only includes system/lang.h, and Core is not declared there
+    # any more -> "expected class-name before ',' token", then ~60 cascading
+    # errors. It is a bench/debug client, irrelevant to running the server, but
+    # it is part of the default `all` target, so its failure aborts make BEFORE
+    # core3 links. Upstream ships this exact switch for it; using the switch
+    # keeps our source divergence at zero.
+    "-DENABLE_BUILD_CLIENT=OFF",
     "-Wno-dev",
 ]
 
@@ -389,9 +398,21 @@ def _timing_write_marks(marks):
 
 
 def timing_mark_start(kind):
-    """Record that `kind` just began, unless it is already running."""
+    """Record that `kind` just began, unless it is already running.
+
+    A mark older than STALE_CEILING is treated as abandoned rather than
+    trusted forever. 2026-08-15: a build kicked off outside this script's
+    own log convention (a manual wsl.exe rebuild) was invisible to
+    _build_progress_line()'s log glob, so its "done" close-out never fired
+    and an 8-day-old "build" mark sat in .genesis_timing_marks. The next
+    build the panel *did* see (via the live cc1plus check) inherited that
+    stale start time and displayed as "OVERDUE by 209h" on top of a
+    perfectly healthy, currently-running build.
+    """
+    STALE_CEILING = 3 * 3600  # generous: full rebuilds run 50-65 min per fix_time_overflow.ps1
     marks = _timing_marks()
-    if kind not in marks:
+    started = marks.get(kind)
+    if started is None or (time.time() - started) > STALE_CEILING:
         marks[kind] = time.time()
         _timing_write_marks(marks)
 
@@ -503,7 +524,12 @@ def _build_progress_line():
     """
     import glob as _glob
 
-    logs = _glob.glob("/tmp/build*.log") + _glob.glob("/tmp/genesis_build.log")
+    # 2026-08-15: also recognize logs from one-off repo-root scripts (e.g.
+    # fix_time_overflow.ps1's fix_rebuild_log.txt, finish_build_log.txt) --
+    # not just /tmp -- so a manual rebuild shows real % progress instead of
+    # being invisible to this glob and falling back to the bare cc1plus check.
+    logs = (_glob.glob("/tmp/build*.log") + _glob.glob("/tmp/genesis_build.log") +
+            _glob.glob(REPO + "/*rebuild_log*.txt") + _glob.glob(REPO + "/*build_log*.txt"))
 
     newest, newest_age = None, None
     for p in logs:
@@ -531,8 +557,15 @@ def _build_progress_line():
         # Nothing running. Mention a recent build briefly so a finished GUI
         # rebuild does not just vanish without a word.
         if newest_age is not None and newest_age < 900:
-            rc, tail = sh("tail -3 '%s' 2>/dev/null" % newest)
-            state = "DONE" if "Built target core3" in tail else "STOPPED"
+            # 2026-08-15: widened from tail -3 and given a second success
+            # marker. Wrapper scripts (fix_time_overflow.sh and friends)
+            # append their own summary block -- a "-------- result --------"
+            # banner, an `ls -lh` line, then "BUILD OK" -- AFTER the real
+            # "[100%] Built target core3" line, which pushed it outside a
+            # 3-line window and produced a false "Build stopped without
+            # finishing" on a build that had in fact finished clean.
+            rc, tail = sh("tail -10 '%s' 2>/dev/null" % newest)
+            state = "DONE" if ("Built target core3" in tail or "BUILD OK" in tail) else "STOPPED"
             took = timing_mark_done("build")
             detail = "%d min ago" % int(newest_age // 60)
             if took:
@@ -853,22 +886,22 @@ data is the .db files plus log.*, which is what you see here.
 
 TO RESTORE
   1. Stop the server:
-       python3 /mnt/d/SWGGenesis/swggenesis_menu.py shutdown
+       python3 /mnt/c/SWGGenesis/swggenesis_menu.py shutdown
 
   2. Move the current object database aside (do NOT delete it until the
      restore is proven good):
-       mv /mnt/d/SWGGenesis/MMOCoreORB/bin/databases \
-          /mnt/d/SWGGenesis/MMOCoreORB/bin/databases.before-restore
+       mv /mnt/c/SWGGenesis/MMOCoreORB/bin/databases \
+          /mnt/c/SWGGenesis/MMOCoreORB/bin/databases.before-restore
 
   3. Put this one back:
-       cp -a %s/databases /mnt/d/SWGGenesis/MMOCoreORB/bin/databases
+       cp -a %s/databases /mnt/c/SWGGenesis/MMOCoreORB/bin/databases
 
   4. MySQL:
        gunzip -c %s/genesis.sql.gz | mysql -u %s -p%s %s
 
   5. Start, and log in to check a character before deleting the folder from
      step 2:
-       python3 /mnt/d/SWGGenesis/swggenesis_menu.py start
+       python3 /mnt/c/SWGGenesis/swggenesis_menu.py start
 """
 
 
@@ -1883,6 +1916,66 @@ then publish it here with `swggenesis_menu.py tre_publish`.
 """
 
 
+def act_tre_deploy():
+    """Copy the built TRE straight to the live TrePath (the client-facing
+    folder the running server actually reads from) and verify the byte size
+    matches afterward.
+
+    Companion System (2026-08-08, DEPLOY_TRE_TO_TREPATH_2026_08_08): added
+    after a real incident -- companion abilities were correct server-side
+    (a directly-typed slash command worked) but did not show up in the
+    Command Browser, because neither tre_sync nor tre_publish has ever
+    touched TrePath. tre_sync only rewrites config-local.lua's load-order
+    list; tre_publish only copies to <repo>/tre/ for other players/GitHub.
+    The actual "put the new archive where the running client reads it" step
+    was always a manual `cp` nobody was reminded to run after a rebuild.
+    See docs/companion_system/NOTES.md, batch 23, for the full writeup.
+    """
+    if not os.path.exists(TRE_BUILT):
+        print("REFUSED: %s does not exist." % TRE_BUILT)
+        print("Build it first, from inside docs/companion_system/tools/:")
+        print("    python3 build_companion_content.py && python3 build_tre_patch.py")
+        return
+
+    tre_dir = _tre_path()
+    if not tre_dir:
+        print("REFUSED: could not resolve TrePath from config-local.lua or config.lua.")
+        return
+    if not os.path.isdir(tre_dir):
+        print("REFUSED: TrePath does not exist on disk: %s" % tre_dir)
+        return
+
+    src_size = os.path.getsize(TRE_BUILT)
+    dst = os.path.join(tre_dir, PATCH_TRE)
+
+    same = os.path.exists(dst) and os.path.getsize(dst) == src_size
+    if same:
+        with open(TRE_BUILT, "rb") as f:
+            src_data = f.read()
+        with open(dst, "rb") as f:
+            same = f.read() == src_data
+    if same:
+        print("%s already matches the built archive -- not rewritten." % dst)
+        print("%-17s: %s bytes (unchanged)" % (PATCH_TRE, format(src_size, ",")))
+        return
+
+    shutil.copy2(TRE_BUILT, dst)
+
+    dst_size = os.path.getsize(dst)
+    print("Deployed %s -> %s" % (TRE_BUILT, dst))
+    if dst_size == src_size:
+        print("VERIFIED: %s bytes, source and TrePath copy match." % format(dst_size, ","))
+    else:
+        print("MISMATCH: source is %s bytes, TrePath copy is %s bytes -- copy did NOT verify cleanly."
+              % (format(src_size, ","), format(dst_size, ",")))
+        print("Do not trust the client to pick this up. Re-run tre_deploy.")
+        return
+
+    print("")
+    print("Client caches TRE contents -- fully close and relaunch the client")
+    print("(reconnecting is not enough) before checking the Command Browser.")
+
+
 # ------------------------------------------------------------------ players / admin
 def mysql_rows(sql, timeout=60):
     """Rows as lists of strings. -B -N gives tab-separated output with no box
@@ -2137,7 +2230,7 @@ ACTIONS = """SWGReturn server control -- actions:
   set_admin USER [LEVEL]
   console_errors      stdout-only errors Core3 never writes to core3.log
   backup_count        integer: completed world saves seen in core3.log
-  db_backup           gzip mysqldump into D:\\SWGGenesis\\backups (MySQL only)
+  db_backup           gzip mysqldump into C:\\SWGGenesis\\backups (MySQL only)
   backup_all          FULL backup: object DB + MySQL + restore notes
       --stop-first    save and shut the server down first (needed for a
                       consistent object-DB copy), leaves it stopped
@@ -2155,6 +2248,7 @@ ACTIONS = """SWGReturn server control -- actions:
   tre_check           READ-ONLY: is companion_patch.tre first, has the list drifted
   tre_sync            regenerate the TRE load order, patch first (run after a pull)
   tre_publish         copy the built TRE to <repo>/tre/ with a manifest + README
+  tre_deploy          copy the built TRE straight to TrePath + verify byte size (live client folder)
   tune_get            TUNE|key|label|current|default|kind|min|max  (gameplay knobs)
   tune_set --key K --value V     write one whitelisted knob, with a backup
   tune_file           path of the lua file the knobs live in
@@ -2231,6 +2325,7 @@ def main():
     elif a == "tre_check":         act_tre_check()
     elif a == "tre_sync":          act_tre_sync()
     elif a == "tre_publish":       act_tre_publish()
+    elif a == "tre_deploy":         act_tre_deploy()
     elif a == "tune_get":          act_tune_get()
     elif a == "tune_file":         act_tune_file()
     elif a == "tune_set":          act_tune_set(_flag(args, "--key"), _flag(args, "--value"))

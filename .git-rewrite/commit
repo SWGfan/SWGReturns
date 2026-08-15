@@ -1,8 +1,0 @@
-tree eae2bc38bbc0adef34b2195f4a3d0be72ce7131c
-parent 9b3a445f6383e100f5de26d6d76b1b32b5d0b107
-author crush <crush@c3d1530f-68f5-4bd0-87dc-8ef779617e40> 1313587475 +0000
-committer crush <crush@c3d1530f-68f5-4bd0-87dc-8ef779617e40> 1313587475 +0000
-
-[fixed] Bug preventing purchases of valid travel tickets.
-
-git-svn-id: http://svn2.assembla.com/svn/swgemu/core3/trunk@3260 c3d1530f-68f5-4bd0-87dc-8ef779617e40

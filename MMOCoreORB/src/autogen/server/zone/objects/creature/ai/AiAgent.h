@@ -668,6 +668,19 @@ public:
 
 	void storeFollowObject();
 
+	/**
+	 * Companion System (2026-08-11) -- see formationOffsetForward/Right
+	 * field comment above. Called by FormationManager to assign (or, with
+	 * (0, 0), clear) this follower's held slot.
+	 */
+	void setFormationOffset(float forward, float right);
+
+	void clearFormationOffset();
+
+	float getFormationOffsetForward();
+
+	float getFormationOffsetRight();
+
 	void restoreFollowObject();
 
 	unsigned int getFollowState() const;
@@ -1011,6 +1024,10 @@ private:
 	ManagedWeakReference<SceneObject* > followStore;
 
 	unsigned int followState;
+
+	float formationOffsetForward;
+
+	float formationOffsetRight;
 
 	Mutex targetMutex;
 
@@ -1421,6 +1438,19 @@ public:
 	ManagedWeakReference<SceneObject* > getFollowObject();
 
 	void storeFollowObject();
+
+	/**
+	 * Companion System (2026-08-11) -- see formationOffsetForward/Right
+	 * field comment above. Called by FormationManager to assign (or, with
+	 * (0, 0), clear) this follower's held slot.
+	 */
+	void setFormationOffset(float forward, float right);
+
+	void clearFormationOffset();
+
+	float getFormationOffsetForward();
+
+	float getFormationOffsetRight();
 
 	void restoreFollowObject();
 
@@ -1877,6 +1907,14 @@ public:
 	ManagedWeakReference<SceneObject* > getFollowObject();
 
 	void storeFollowObject();
+
+	void setFormationOffset(float forward, float right);
+
+	void clearFormationOffset();
+
+	float getFormationOffsetForward();
+
+	float getFormationOffsetRight();
 
 	void restoreFollowObject();
 

@@ -11865,3 +11865,77 @@ docs/companion_system/tools/patched/ui_styles.inc (regenerated artifact).
 Pure client-side UI data -- no server rebuild or restart needed. Client
 must be FULLY exited and relaunched (not just relogged) to pick up the new
 icons, same requirement as every other icon fix this project has hit.
+
+## Entry (2026-08-15) -- Control panel "BUILDING 0% -- OVERDUE by 209h" FIXED (display bug, not a real hang)
+
+**Report (Nick):** panel showed GENESIS STOPPED plus BUILD 0% / starting /
+OVERDUE by 209h (usually 4m 02s). Looked like a wedged build.
+
+**Root cause, confirmed live:** a real rebuild WAS actively running (Time.h
+buffer-overflow fix from `fix_time_overflow.ps1`, invoked via
+`FIX AND REBUILD.cmd` -> `wsl.exe ... bash fix_time_overflow.sh`, which
+`make -j$NPROC`s straight into `fix_rebuild_log.txt` in the repo root).
+`swggenesis_menu.py`'s `_build_progress_line()` only globs
+`/tmp/build*.log` / `/tmp/genesis_build.log` for progress, so it never saw
+that log -- it fell back to a bare `pgrep cc1plus` check, which only
+proves *something* is compiling, not since when. It then called
+`timing_mark_start("build")`, which refused to overwrite an EXISTING mark
+no matter how old. That mark was 8 days stale (Aug 7 02:00 UTC) from an
+earlier build invoked the same out-of-band way, whose "done" close-out
+never fires either (unreachable when `newest` stays `None` the whole
+build). Two compounding bugs: (1) manual/out-of-band builds are invisible
+to the progress glob, so their timing marks are never opened OR closed
+correctly; (2) `timing_mark_start` trusted an unbounded-age mark forever,
+so one abandoned mark corrupts every subsequent build's ETA display until
+someone notices.
+
+**Fix, in `swggenesis_menu.py`:**
+1. `_build_progress_line()`'s glob now also matches `REPO/*rebuild_log*.txt`
+   and `REPO/*build_log*.txt` (catches `fix_rebuild_log.txt`,
+   `finish_build_log.txt`, and future same-pattern scripts) -- these logs
+   already use the identical `[ NN%] Building ...` cmake format the
+   existing tail-parser expects, so real percentage now shows instead of a
+   permanent "0% / starting".
+2. `timing_mark_start(kind)` now discards a mark older than a 3-hour
+   `STALE_CEILING` (full rebuilds run 50-65 min per the fix script's own
+   estimate) and restarts it from now, instead of trusting an unbounded-age
+   mark forever.
+
+No server rebuild needed -- this is the Python control panel script, not
+core3 source. Delivered live via the device bridge to
+`C:\SWGGenesis\swggenesis_menu.py` while the real rebuild kept running
+underneath (only the timing-marks text file and the .py script were
+touched; the running `make` process was left alone).
+
+Also noted in passing: `claude/companion-project-brief.md` /
+`claude/swgreturn-genesis-pivot-2026-08-03.md` say the repo lives at
+`E:\SWGGenesis` -- it does not. Nick moved it again, to `C:\SWGGenesis`
+(`MOVE GENESIS TO C.cmd` / `move_genesis_to_c.ps1`, both present in the
+repo root, undated in the doc). **Canonical path is now `C:\SWGGenesis`.**
+Project docs need updating; flagged for the next turn that touches them.
+
+Files: `swggenesis_menu.py` (`_build_progress_line`, `timing_mark_start`).
+
+## Entry (2026-08-15, same day, follow-up) -- false "Build stopped without finishing" from the panel fix above
+
+**Report (Nick):** right after the previous fix, panel showed a red "Build
+stopped without finishing (3 min ago) -- check the log" banner while the
+server was actually mid-BOOT on the just-finished build.
+
+**Root cause:** a regression in the fix above. Widening the log glob to
+include `fix_rebuild_log.txt` meant `_build_progress_line()` now had to
+classify that log's ending as DONE or STOPPED -- and it only looked at the
+last 3 lines. `fix_time_overflow.sh` appends its own summary block AFTER
+the real `[100%] Built target core3` line (a `-------- result --------`
+banner, an `ls -lh` of the binary, a blank line, then `BUILD OK`), which
+pushed the actual success line outside that 3-line window. The check saw
+only the trailing summary, found no "Built target core3" in it, and
+reported STOPPED on a build that had in fact succeeded cleanly.
+
+**Fix:** widened the tail window from `tail -3` to `tail -10` and added
+`BUILD OK` as a second recognized success marker alongside
+`Built target core3`, so wrapper scripts with their own summary footer are
+still classified correctly.
+
+Files: `swggenesis_menu.py` (`_build_progress_line`, the DONE/STOPPED
+tail check). No server rebuild involved -- Python control panel only.

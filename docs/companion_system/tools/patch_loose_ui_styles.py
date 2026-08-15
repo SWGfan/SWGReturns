@@ -65,27 +65,53 @@ import re
 import sys
 import shutil
 import datetime
+import importlib.util
 
 LOOSE = "/mnt/d/Launcher/newreturnbenserver/ui/ui_styles.inc"
 TOOLS = "/mnt/d/SWGGenesis/docs/companion_system/tools"
 
-# Ability mirrors: companion<Name> clones <Name>.
-ABILITY_NAMES = [
-    "applyDisease", "applyPoison", "bleedingShot", "concealShot", "confusionShot",
-    "eyeShot", "fastBlast", "fireAcidCone1", "fireAcidCone2", "fireAcidSingle1",
-    "fireAcidSingle2", "fireLightningCone1", "fireLightningCone2",
-    "fireLightningSingle1", "fireLightningSingle2", "flameCone1", "flameCone2",
-    "flameSingle1", "flameSingle2", "flurryShot1", "flurryShot2", "flushingShot1",
-    "flushingShot2", "headShot3", "healMind", "knockdownFire", "mindShot2",
-    "sniperShot", "sprayShot", "startleShot1", "startleShot2", "strafeShot1",
-    "strafeShot2", "surpriseShot", "torsoShot", "underHandShot",
-    "healDamage", "healWound", "tendWound", "tendDamage", "diagnose",
-    "medicalForage", "harvestCorpse", "startDance", "stopDance",
-    "startMusic", "stopMusic", "sample", "survey", "warcry1",
-    "intimidate1", "berserk1", "taunt", "polearmLunge1", "unarmedLunge1",
-    "melee1hLunge1", "melee2hLunge1", "centerOfBeing", "pointBlankArea1",
-    "pointBlankSingle1", "overchargeShot1",
-]
+# Companion System (2026-08-08, "icon coverage drift" fix) -- this used to be
+# a second, hand-maintained copy of build_ui_styles_patch.py's ability lists,
+# and it silently fell out of sync: the 2026-08-07 "full combat tree ability
+# coverage" pass (142 new abilities -- actionShot1, aim, berserk2, bodyShot1,
+# etc.) added those names to build_ui_styles_patch.py's own
+# _NEW_COMPANION_ABILITY_NAMES_2026_08_07 list, but nobody updated this
+# file's separate copy, so every one of those 142 commands got a blank icon
+# in-game (confirmed live -- Action Shot 1/2, Aim, Berserk 2, Body Shot 1,
+# etc. all showed empty icon boxes) even though the command itself worked
+# fine. ABILITY_NAMES is now READ from build_ui_styles_patch.py at runtime
+# (same pattern read_mapping() already uses for the 16 order-command
+# mappings, just below), so this file can never drift from the real list
+# again -- add a new ability there and this script picks it up automatically.
+def read_ability_names():
+    """_COMPANION_ABILITY_NAMES + _STARTER_ABILITY_NAMES, read live from
+    build_ui_styles_patch.py so this file has no separate list to go stale."""
+    path = os.path.join(TOOLS, "build_ui_styles_patch.py")
+    try:
+        src = open(path, encoding="utf-8", errors="replace").read()
+    except OSError:
+        print("  (could not read build_ui_styles_patch.py -- ability icons skipped)")
+        return []
+    names = []
+    for varname in ("_COMPANION_ABILITY_NAMES", "_NEW_COMPANION_ABILITY_NAMES_2026_08_07",
+                     "_STARTER_ABILITY_NAMES"):
+        m = re.search(r"^" + varname + r"\s*=\s*(?:_COMPANION_ABILITY_NAMES\s*\+\s*)?\[(.*?)^\]",
+                       src, re.S | re.M)
+        if not m:
+            continue
+        names.extend(re.findall(r'"([^"]+)"', m.group(1)))
+    # de-dupe, preserve first-seen order (the +=  reassignment of
+    # _COMPANION_ABILITY_NAMES means a naive scan could otherwise double-count)
+    seen = set()
+    out = []
+    for n in names:
+        if n not in seen:
+            seen.add(n)
+            out.append(n)
+    return out
+
+
+ABILITY_NAMES = None  # populated by main() via read_ability_names(), once TOOLS is known to be valid
 
 BLOCK = re.compile(
     r"[ \t]*<ImageStyle\s*\n"
@@ -96,17 +122,33 @@ BLOCK = re.compile(
 
 
 def read_mapping():
-    """The 16 hand-picked order-command mappings, read from the generator."""
+    """All MAPPING entries -- the hand-picked order-command mappings AND the
+    per-ability entries build_ui_styles_patch.py computes at import time
+    (icon-name defaults, plus the _NO_REAL_ICON_OVERRIDES_2026_08_07
+    substitutes for abilities with no real icon in the palette, e.g.
+    berserk1 -> warcry1).
+
+    Companion System (2026-08-08, batch 31 fix) -- this used to regex-slice
+    only the STATIC "key": "value" pairs written literally inside the
+    `MAPPING = {...}` block, which silently missed every entry added
+    afterward by `for a in ...: MAPPING["companion"+a] = ...get(a, a)`.
+    Confirmed live: berserk1/berserk2/rally/takeCover were reported "no base
+    style in this file" even though their intended overrides (warcry1,
+    warcry2, boostmorale, tumbleToProne) DO exist in the loose file -- the
+    override was computed correctly in build_ui_styles_patch.py but this
+    function never saw it. Now imports the module directly so the fully
+    -computed MAPPING (including runtime overrides) is read, not a static
+    text slice that goes stale the moment anyone adds a dynamic override.
+    """
     path = os.path.join(TOOLS, "build_ui_styles_patch.py")
     try:
-        src = open(path, encoding="utf-8", errors="replace").read()
-    except OSError:
-        print("  (could not read build_ui_styles_patch.py -- hand-picked mappings skipped)")
+        spec = importlib.util.spec_from_file_location("_build_ui_styles_patch", path)
+        mod = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(mod)
+        return dict(getattr(mod, "MAPPING", {}))
+    except Exception as exc:
+        print("  (could not import build_ui_styles_patch.py for MAPPING -- %s)" % exc)
         return {}
-    m = re.search(r"^MAPPING\s*=\s*\{(.*?)^\}", src, re.S | re.M)
-    if not m:
-        return {}
-    return dict(re.findall(r"\"([^\"]+)\"\s*:\s*\"([^\"]+)\"", m.group(1)))
 
 
 def main():
@@ -126,11 +168,15 @@ def main():
 
     print("loose file: %d bytes, %d styles" % (len(text), len(blocks)))
 
+    global ABILITY_NAMES
+    ABILITY_NAMES = read_ability_names()
+    print("ability list: %d names read from build_ui_styles_patch.py" % len(ABILITY_NAMES))
+
     wanted = {}                                    # newName -> baseName
-    for cmd, base in read_mapping().items():
-        wanted[cmd] = base
     for ab in ABILITY_NAMES:
         wanted["companion" + ab] = ab
+    for cmd, base in read_mapping().items():       # MAPPING overrides win
+        wanted[cmd] = base
 
     def source_rect(block_text):
         m = re.search(r"SourceRect='([^']*)'", block_text)
@@ -175,8 +221,10 @@ def main():
                 updated.append(v)
                 continue
 
-            clones += block.replace("Name='%s'" % real_base_name, "Name='%s'" % v, 1)
+            new_block = block.replace("Name='%s'" % real_base_name, "Name='%s'" % v, 1)
+            clones += new_block
             have.add(vlow)
+            blocks[vlow] = (new_block, v)
             added.append(v)
 
         if clones:

@@ -28,7 +28,7 @@
 ;     output stops wrapping mid-word at 78 characters. "Fix Console Width"
 ;     applies that to an already-running server.
 ;
-; Shells out to WSL to run /mnt/d/SWGGenesis/swggenesis_menu.py, which holds
+; Shells out to WSL to run /mnt/c/SWGGenesis/swggenesis_menu.py, which holds
 ; all the real logic. This file is only a front end.
 ;
 ; THE ONE BIG DIFFERENCE FROM THE SWGRETURN PANEL
@@ -43,9 +43,9 @@
 ; 46xxx and 'genesis'. Nothing here should ever touch either of the others.
 ; ============================================================================
 
-WSL_DISTRO := "Debian"
-WIN_USER   := "nickw"
-WSL_PY     := "/mnt/d/SWGGenesis/swggenesis_menu.py"
+WSL_DISTRO := "Ubuntu-24.04"
+WIN_USER   := A_UserName        ; auto-detected (was hardcoded "nickw"; the 2026-08-15 Windows reinstall changed it to Nick240)
+WSL_PY     := "/mnt/c/SWGGenesis/swggenesis_menu.py"
 
 ; PULSE_INIT_ORDER_FIX -- these MUST be assigned before the first RefreshStatus()
 ; call, which happens further down at file scope. AHK v2 throws when a global is
@@ -64,9 +64,9 @@ PulseOn   := false
 ; updates it in passing. The WHEN is deliberately NOT stored here -- it comes
 ; from this file's own mtime, which cannot drift out of date the way a
 ; hand-written string does.
-PANEL_UPDATE_NOTE := "added Activity Log pane (tails menu_activity.log live) + dropped console HScroll"
+PANEL_UPDATE_NOTE := "added Deploy TRE button (copies built TRE straight to TrePath + verifies byte size) -- closes the gap where tre_sync/tre_publish never touched the live client folder"
 SCREEN_SESSION := "genesis"                        ; NOT 'swgemu', NOT 'swgreturns'
-CLIENT_DIR := "D:\Launcher\newreturnbenserver"     ; the launcher's install
+CLIENT_DIR := "C:\SWGEmu"     ; our own copy on the SSD (was the launcher install)
 CLIENT_EXE := CLIENT_DIR . "\SWGEmu.exe"
 CommitMsgWinPath := "C:\Users\" . WIN_USER . "\AppData\Local\Temp\genesis_commit_msg.txt"
 CommitMsgWslPath := "/mnt/c/Users/" . WIN_USER . "/AppData/Local/Temp/genesis_commit_msg.txt"
@@ -99,7 +99,7 @@ WHICH SERVER AM I PLAYING?
 
 PLAY
   PLAY              -- launches the client from
-                       D:\Launcher\newreturnbenserver\SWGEmu.exe.
+                       C:\SWGEmu\SWGEmu.exe.
                        If it's pointed at LOCAL it warns when your server
                        isn't running. If it's pointed at LIVE it just goes.
                        Do NOT run their launcher to start the game -- it
@@ -152,12 +152,12 @@ LOGS & LIVE VIEW
                        to core3.log: MySQL schema errors, unregistered
                        object CRCs, schematic failures. They exist nowhere
                        else, which is why Start captures the console to
-                       D:\SWGGenesis\console.log.
+                       C:\SWGGenesis\console.log.
   Show Log Tail     -- last 120 lines of core3.log.
 
 DATABASE & ADMIN
   Backup Database   -- gzipped mysqldump of the 'genesis' database into
-                       D:\SWGGenesis\backups. MySQL side only -- the object
+                       C:\SWGGenesis\backups. MySQL side only -- the object
                        store in bin/databases is a separate Berkeley DB.
   List Accounts     -- accounts, admin levels, character count.
   Set Admin         -- sets admin_level (15 = full). Usernames are stored
@@ -329,6 +329,233 @@ ScrollToEnd(ctrl) {
 }
 
 ; ---- GUI --------------------------------------------------------------------
+; ============================================================================
+; THEME_SYSTEM_2026_08_08 -- 5 selectable color themes + a "Theme..." button
+; that opens a picker (see OpenThemeDialog() further down). Per Nick: "make a
+; dark themed version, give me an option menu with different themes, 5 total."
+;
+; HOW FAR THIS ACTUALLY GOES: native Win32 push buttons, checkboxes and
+; GroupBox borders (all really the same "Button" window class under the
+; hood, distinguished only by style bits) render themselves under the OS
+; visual style and ignore font/background color changes without full
+; owner-draw -- adding that would mean new WM_CTLCOLOR*/NM_CUSTOMDRAW message
+; handling across all 6 windows in an already timing-fragile script (see this
+; file's own revision history), so it isn't done here. What IS themed, and
+; covers the large majority of what's actually on screen: every window's
+; background, every plain text label, all Edit boxes (Log/Console/Activity/
+; the two big Console/Tuning boxes/etc.), and all 3 ListViews (Players,
+; Chars, Planets) via LVM_SETBKCOLOR/LVM_SETTEXTCOLOR. Buttons/checkboxes/
+; groupbox borders stay native chrome in every theme, including Dark.
+;
+; StatusText/BuildText/TargetLabel/RemoteLabel keep their own EXISTING
+; dynamic status coloring (green=up/orange=starting/red=down, etc, set
+; elsewhere in this file) -- ApplyThemeToWindow() explicitly skips whatever
+; controls are passed in its skip list so a theme switch can never stomp on
+; those live status colors.
+;
+; Applied once at startup (LoadSavedTheme() below, defaulting to "Dark" on a
+; fresh install with no saved choice yet -- Nick's actual ask), and live to
+; every currently-open window the instant a new theme is picked
+; (ApplyThemeEverywhere()). Each of the 5 secondary windows (BigGui/
+; PlayersGui/TuneGui/PlanetsGui/SchedGui) is themed a SECOND way too: once at
+; its own first-build time (they're the "build once, Show()/Hide() to
+; reuse" pattern already used throughout this file), using whatever theme is
+; current at that moment -- so a window opened for the first time after a
+; theme switch still comes up correctly themed even before ApplyThemeEverywhere
+; ever touches it again.
+Themes := Map(
+    "Light",  Map("label", "Light (Windows Default)",
+        "winBg", "F0F0F0", "fg", "000000", "editBg", "FFFFFF", "editFg", "000000"),
+    ; GOLD_TEXT_2026_08_08 -- per Nick: "make the black text on the dark
+    ; themes yellow gold color". fg/editFg on all 3 dark-family themes below
+    ; switched to gold (FFD700); High Contrast is left at pure yellow
+    ; (FFFF00) on purpose -- that one's the max-contrast accessibility
+    ; option, a different job than the other three's aesthetic gold.
+    "Dark",   Map("label", "Dark",
+        "winBg", "1E1E1E", "fg", "FFD700", "editBg", "252526", "editFg", "FFD700"),
+    "Midnight", Map("label", "Midnight Blue",
+        "winBg", "0D1B2A", "fg", "FFD700", "editBg", "16283E", "editFg", "FFD700"),
+    "Solarized", Map("label", "Solarized Dark",
+        "winBg", "002B36", "fg", "FFD700", "editBg", "073642", "editFg", "FFD700"),
+    "HighContrast", Map("label", "High Contrast",
+        "winBg", "000000", "fg", "FFFFFF", "editBg", "000000", "editFg", "FFFF00"),
+)
+THEME_ORDER := ["Light", "Dark", "Midnight", "Solarized", "HighContrast"]
+CurrentTheme := "Dark"
+PANEL_SETTINGS_INI := A_ScriptDir . "\panel_settings.ini"
+
+GetThemeColors(name) {
+    global Themes
+    return Themes.Has(name) ? Themes[name] : Themes["Light"]
+}
+
+LoadSavedTheme() {
+    global PANEL_SETTINGS_INI, Themes
+    saved := IniRead(PANEL_SETTINGS_INI, "Display", "Theme", "Dark")
+    return Themes.Has(saved) ? saved : "Dark"
+}
+
+SaveTheme(name) {
+    global PANEL_SETTINGS_INI
+    IniWrite(name, PANEL_SETTINGS_INI, "Display", "Theme")
+}
+
+; COLORREF for SendMessage's ListView color messages is 0x00BBGGRR, not
+; 0x00RRGGBB -- this just swaps the byte order of a plain "RRGGBB" hex string.
+HexToBgr(hex) {
+    hex := StrReplace(hex, "0x", "")
+    r := Integer("0x" . SubStr(hex, 1, 2))
+    g := Integer("0x" . SubStr(hex, 3, 2))
+    b := Integer("0x" . SubStr(hex, 5, 2))
+    return (b << 16) | (g << 8) | r
+}
+
+SetListViewColors(lv, bgHex, fgHex) {
+    bgr := HexToBgr(bgHex)
+    fgr := HexToBgr(fgHex)
+    SendMessage(0x1001, 0, bgr, lv)   ; LVM_SETBKCOLOR
+    SendMessage(0x1026, 0, bgr, lv)   ; LVM_SETTEXTBKCOLOR
+    SendMessage(0x1024, 0, fgr, lv)   ; LVM_SETTEXTCOLOR
+}
+
+; Set right before each EnumChildWindows() pass so the plain (non-closure)
+; callback below can see which theme/skip-list is active without needing
+; CallbackCreate's own lParam plumbing.
+___ThemeApply_Colors := 0
+___ThemeApply_Skip := []
+
+_ThemeEnumProc(hwnd, lParam) {
+    global ___ThemeApply_Colors, ___ThemeApply_Skip
+
+    ctrl := ""
+    try ctrl := GuiCtrlFromHwnd(hwnd)
+    if !IsObject(ctrl)
+        return true
+
+    for skipCtrl in ___ThemeApply_Skip {
+        if (IsObject(skipCtrl) && ctrl == skipCtrl)
+            return true
+    }
+
+    className := ""
+    VarSetStrCapacity(&className, 260)
+    DllCall("GetClassName", "Ptr", hwnd, "Str", className, "Int", 260)
+
+    theme := ___ThemeApply_Colors
+
+    switch className {
+        case "Static":
+            try ctrl.SetFont("c" . theme["fg"])
+        case "Edit":
+            try ctrl.Opt("Background" . theme["editBg"])
+            try ctrl.SetFont("c" . theme["editFg"])
+        case "SysListView32":
+            try SetListViewColors(ctrl, theme["editBg"], theme["editFg"])
+        ; Button (push buttons, checkboxes, groupbox borders -- all the same
+        ; win32 class) deliberately left alone; see the header note above.
+    }
+
+    return true
+}
+
+; skipCtrls: an array of GuiControl objects (e.g. status labels with their
+; own dynamic coloring elsewhere) to leave completely untouched.
+ApplyThemeToWindow(guiObj, theme, skipCtrls := []) {
+    global ___ThemeApply_Colors, ___ThemeApply_Skip
+
+    if !IsObject(guiObj)
+        return
+
+    guiObj.BackColor := theme["winBg"]
+
+    ___ThemeApply_Colors := theme
+    ___ThemeApply_Skip := skipCtrls
+
+    cb := CallbackCreate(_ThemeEnumProc, "F")
+    DllCall("EnumChildWindows", "Ptr", guiObj.Hwnd, "Ptr", cb, "Ptr", 0)
+    CallbackFree(cb)
+}
+
+; Re-themes the main window immediately, plus any of the 5 secondary windows
+; that happen to already be built right now (IsObject() guard -- they're the
+; "build once, Show()/Hide() to reuse" globals already used throughout this
+; file). A window not yet built gets themed correctly the first time it IS
+; built instead -- see the ApplyThemeToWindow() call added near each of their
+; own .Show() calls.
+ApplyThemeEverywhere(name) {
+    global CurrentTheme, StatusText, BuildText, TargetLabel, RemoteLabel, MyGui
+    global BigGui, PlayersGui, TuneGui, PlanetsGui, SchedGui
+
+    CurrentTheme := name
+    SaveTheme(name)
+    theme := GetThemeColors(name)
+
+    ApplyThemeToWindow(MyGui, theme, [StatusText, BuildText, TargetLabel, RemoteLabel])
+
+    if IsObject(BigGui)
+        ApplyThemeToWindow(BigGui, theme)
+    if IsObject(PlayersGui)
+        ApplyThemeToWindow(PlayersGui, theme)
+    if IsObject(TuneGui)
+        ApplyThemeToWindow(TuneGui, theme)
+    if IsObject(PlanetsGui)
+        ApplyThemeToWindow(PlanetsGui, theme)
+    if IsObject(SchedGui)
+        ApplyThemeToWindow(SchedGui, theme)
+}
+
+ThemeGui := 0
+
+OpenThemeDialog(*) {
+    global ThemeGui, Themes, THEME_ORDER, CurrentTheme, MyGui
+
+    if IsObject(ThemeGui) {
+        try {
+            ThemeGui.Show()
+            return
+        }
+    }
+
+    ThemeGui := Gui("+Owner" . MyGui.Hwnd, "Genesis -- Theme")
+    ThemeGui.MarginX := 14
+    ThemeGui.MarginY := 12
+    ThemeGui.SetFont("s10", "Segoe UI")
+
+    ThemeGui.Add("Text", "w280", "Pick a color theme for this panel:")
+
+    radios := Map()
+    first := true
+    for key in THEME_ORDER {
+        yOpt := first ? "xm y+10" : "xm y+6"
+        checkedOpt := (key = CurrentTheme) ? " Checked" : ""
+        radios[key] := ThemeGui.Add("Radio", yOpt . checkedOpt, Themes[key]["label"])
+        first := false
+    }
+
+    BtnThemeApply := ThemeGui.Add("Button", "xm y+16 w110 h30", "Apply")
+    BtnThemeClose := ThemeGui.Add("Button", "x+10 w110 h30", "Close")
+
+    BtnThemeApply.OnEvent("Click", (*) => ApplyPickedTheme(radios))
+    BtnThemeClose.OnEvent("Click", (*) => ThemeGui.Hide())
+    ThemeGui.OnEvent("Close", (thisGui) => (thisGui.Hide(), true))
+
+    ApplyThemeToWindow(ThemeGui, GetThemeColors(CurrentTheme))
+    ThemeGui.Show("w320")
+}
+
+ApplyPickedTheme(radios) {
+    global ThemeGui
+    for key, radioCtrl in radios {
+        if radioCtrl.Value {
+            ApplyThemeEverywhere(key)
+            ApplyThemeToWindow(ThemeGui, GetThemeColors(key))
+            return
+        }
+    }
+}
+
+CurrentTheme := LoadSavedTheme()
+
 MyGui := Gui("+Resize +MinSize880x560", "SWG Genesis Server Control Panel")
 MyGui.MarginX := 14
 MyGui.MarginY := 12
@@ -348,7 +575,7 @@ MyGui.SetFont("s12 Bold", "Segoe UI")
 BtnPlay := MyGui.Add("Button", "w280 h44", "▶   PLAY")
 MyGui.SetFont("s10 Norm", "Segoe UI")
 PlayHint := MyGui.Add("Text", "x+16 yp+4 w660 vPlayHint",
-    "Launches D:\Launcher\newreturnbenserver\SWGEmu.exe. Don't start the game from their launcher -- it resets the cfgs.")
+    "Launches C:\SWGEmu\SWGEmu.exe. Don't start the game from their launcher -- it resets the cfgs.")
 
 ; Which server the client is pointed at. This folder is shared with their live
 ; service, so this is never assumed -- it is read from the cfgs on demand.
@@ -388,6 +615,7 @@ BtnPlanets  := MyGui.Add("Button", "x+8 w96 h32", "Planets...")
 BtnTreCheck := MyGui.Add("Button", "x+8 w96 h32", "TRE Check")
 BtnTreSync  := MyGui.Add("Button", "x+8 w96 h32", "TRE Sync")
 BtnTrePub   := MyGui.Add("Button", "x+8 w110 h32", "Publish TRE")
+BtnTreDeploy := MyGui.Add("Button", "x+8 w130 h32", "Deploy TRE")
 BtnTuning   := MyGui.Add("Button", "xm+16 y+8 w170 h32", "Server Tuning...")
 BtnPlayers  := MyGui.Add("Button", "x+8 w170 h32", "Players && Admin...")
 MyGui.Add("Text", "x+12 yp+8 w420 cGray",
@@ -406,6 +634,7 @@ BtnConfirmPush.Enabled := false
 RemoteLabel    := MyGui.Add("Text", "xm+16 y+14 w940 vRemoteLabel cGray", "Push target: (checking...)")
 
 BtnHelp := MyGui.Add("Button", "xm y+14 w130 h28", "Help")
+BtnTheme := MyGui.Add("Button", "x+8 w130 h28", "Theme...")
 LogBox  := MyGui.Add("Edit", "xm y+8 w980 h180 ReadOnly VScroll", Trim(HELP_TEXT))
 
 ConsoleLabel := MyGui.Add("Text", "xm y+12 w760 vConsoleLabel",
@@ -507,6 +736,7 @@ wantW := 1010
 wantH := 1180
 maxW := waR - waL - 20
 maxH := waB - waT - 20
+ApplyThemeToWindow(MyGui, GetThemeColors(CurrentTheme), [StatusText, BuildText, TargetLabel, RemoteLabel])
 MyGui.Show("w" . (wantW > maxW ? maxW : wantW) . " h" . (wantH > maxH ? maxH : wantH))
 
 SetLog(text) {
@@ -740,6 +970,7 @@ PlayClick(*) {
 }
 
 BtnHelp.OnEvent("Click", (*) => SetLog(Trim(HELP_TEXT)))
+BtnTheme.OnEvent("Click", OpenThemeDialog)
 BtnRefresh.OnEvent("Click", (*) => (RefreshStatus(), RefreshTarget(), RefreshConsole()))
 BtnErrors.OnEvent("Click", (*) => SetLog(RunCapture("log_errors")))
 BtnConErr.OnEvent("Click", (*) => SetLog(RunCapture("console_errors")))
@@ -779,6 +1010,23 @@ TreSyncClick(*) {
     SetLog(RunCapture("tre_sync") . "`n----------------------------------------`n" . RunCapture("tre_check"))
 }
 
+BtnTreDeploy.OnEvent("Click", TreDeployClick)
+TreDeployClick(*) {
+    r := MsgBox("Deploy the built TRE straight to TrePath (the live client folder)?"
+              . "`n`nCopies docs/companion_system/tools/companion_patch.tre over"
+              . "`nwhatever is currently sitting in TrePath, then verifies the"
+              . "`nbyte size matches. This is the step tre_sync and tre_publish"
+              . "`nnever do -- added 2026-08-08 after a stale-TRE bug cost a full"
+              . "`ndebugging round-trip (companion abilities worked server-side"
+              . "`nbut did not show up in the Command Browser)."
+              . "`n`nAfter this, fully close and relaunch the client -- it caches"
+              . "`nTRE contents, so reconnecting is not enough.",
+              "Deploy TRE", "YesNo Icon?")
+    if (r != "Yes")
+        return
+    SetLog(RunCapture("tre_deploy") . "`n----------------------------------------`n" . RunCapture("tre_check"))
+}
+
 BtnConsole.OnEvent("Click", (*) => (
     Run('cmd.exe /c wsl.exe -d ' . WSL_DISTRO . ' -- python3 ' . WSL_PY . ' console & echo. & echo (window closed -- press any key) & pause >nul')
 ))
@@ -811,7 +1059,7 @@ BackupAllClick(*) {
             SetBusy(true)
             SetLog("Saving the world, shutting down, backing up, then starting again.`n`n"
                 . "Object database (excluding the __db.* region files the engine`n"
-                . "rebuilds anyway) plus a MySQL dump, into D:\SWGGenesis\backups\<timestamp>.`n`n"
+                . "rebuilds anyway) plus a MySQL dump, into C:\SWGGenesis\backups\<timestamp>.`n`n"
                 . "The server has to be stopped for the copy to be consistent, so it`n"
                 . "is stopped, copied, and brought back up automatically. Nothing for`n"
                 . "you to press -- give it several minutes and watch for GENESIS RUNNING.")
@@ -831,14 +1079,14 @@ BackupAllClick(*) {
     SetBusy(true)
     SetLog("Server is stopped -- taking a full backup.`n`n"
         . "Object database (excluding the __db.* region files the engine rebuilds`n"
-        . "anyway) plus a MySQL dump, into D:\SWGGenesis\backups\<timestamp>.`n`n"
+        . "anyway) plus a MySQL dump, into C:\SWGGenesis\backups\<timestamp>.`n`n"
         . "About 309 MB and roughly a minute. A RESTORE.txt goes in beside it.")
     RunAsync("backup_all", ActionDone)
 }
 
 BtnBackup.OnEvent("Click", (*) => (
     SetBusy(true),
-    SetLog("Backing up the genesis database to D:\SWGGenesis\backups...`n`nPlease wait."),
+    SetLog("Backing up the genesis database to C:\SWGGenesis\backups...`n`nPlease wait."),
     RunAsync("db_backup", ActionDone)
 ))
 
@@ -870,7 +1118,7 @@ BigBusy := false
 BtnBigCon.OnEvent("Click", ShowBigConsole)
 
 ShowBigConsole(*) {
-    global BigGui, BigBox, BigAuto, BigPause, BigStatus
+    global BigGui, BigBox, BigAuto, BigPause, BigStatus, CurrentTheme
 
     ; Re-show rather than rebuild, so Pause/Auto-scroll and the scroll position
     ; survive closing and reopening the window.
@@ -907,6 +1155,7 @@ ShowBigConsole(*) {
         w := 1200
     if (h > 900)
         h := 900
+    ApplyThemeToWindow(BigGui, GetThemeColors(CurrentTheme))
     BigGui.Show("w" . w . " h" . h)
 
     RefreshBigConsole()
@@ -985,7 +1234,7 @@ PlayerChars := []
 BtnPlayers.OnEvent("Click", ShowPlayers)
 
 ShowPlayers(*) {
-    global PlayersGui, PlayersLV, CharsLV, PlayersMsg, MyGui
+    global PlayersGui, PlayersLV, CharsLV, PlayersMsg, MyGui, CurrentTheme
 
     if IsObject(PlayersGui) {
         try PlayersGui.Destroy()
@@ -1022,6 +1271,7 @@ ShowPlayers(*) {
     BtnPlClose.OnEvent("Click", (*) => PlayersGui.Destroy())
     PlayersLV.OnEvent("ItemSelect", (*) => ShowCharsForSelected())
 
+    ApplyThemeToWindow(PlayersGui, GetThemeColors(CurrentTheme))
     PlayersGui.Show()
     LoadPlayers()
 }
@@ -1141,7 +1391,7 @@ TuneMsg := 0
 BtnTuning.OnEvent("Click", ShowTuning)
 
 ShowTuning(*) {
-    global TuneGui, TuneRows, TuneMsg, MyGui
+    global TuneGui, TuneRows, TuneMsg, MyGui, CurrentTheme
 
     if IsObject(TuneGui) {
         try TuneGui.Destroy()
@@ -1191,7 +1441,7 @@ ShowTuning(*) {
     if (n = 0) {
         TuneGui.Add("Text", "xm y+14 w720 cRed",
             "No tunables came back from the backend."
-          . "`nIs the updated swggenesis_menu.py in place at /mnt/d/SWGGenesis/?"
+          . "`nIs the updated swggenesis_menu.py in place at /mnt/c/SWGGenesis/?"
           . "`nRaw output: " . SubStr(TrimAll(out), 1, 300))
     }
 
@@ -1208,6 +1458,7 @@ ShowTuning(*) {
     BtnTReload.OnEvent("Click", (*) => ShowTuning())
     BtnTClose.OnEvent("Click", (*) => TuneGui.Destroy())
 
+    ApplyThemeToWindow(TuneGui, GetThemeColors(CurrentTheme))
     TuneGui.Show()
 }
 
@@ -1301,7 +1552,7 @@ PlanetsMsg := 0
 BtnPlanets.OnEvent("Click", ShowPlanets)
 
 ShowPlanets(*) {
-    global PlanetsGui, PlanetsLV, PlanetsMsg, MyGui
+    global PlanetsGui, PlanetsLV, PlanetsMsg, MyGui, CurrentTheme
 
     if IsObject(PlanetsGui) {
         try PlanetsGui.Destroy()
@@ -1330,6 +1581,7 @@ ShowPlanets(*) {
     BtnPApply.OnEvent("Click", ApplyPlanets)
     BtnPClose.OnEvent("Click", (*) => PlanetsGui.Destroy())
 
+    ApplyThemeToWindow(PlanetsGui, GetThemeColors(CurrentTheme))
     PlanetsGui.Show()
     LoadPlanets()
 }
@@ -1368,7 +1620,7 @@ LoadPlanets() {
     PlanetsLV.Opt("+Redraw")
 
     if (nGround = 0 && nSpace = 0) {
-        PlanetsMsg.Value := "Couldn't read any zones. Is swggenesis_menu.py in place at /mnt/d/SWGGenesis/?`nRaw output: " . SubStr(Trim(out), 1, 200)
+        PlanetsMsg.Value := "Couldn't read any zones. Is swggenesis_menu.py in place at /mnt/c/SWGGenesis/?`nRaw output: " . SubStr(Trim(out), 1, 200)
         return
     }
 
@@ -1466,7 +1718,7 @@ StartSaveNow(*) {
     }
     SaveBaseline := BackupCount()
     if (SaveBaseline < 0) {
-        MsgBox("The backend didn't return a save count.`n`nCheck that /mnt/d/SWGGenesis/swggenesis_menu.py is in place.", "Save World", "Icon!")
+        MsgBox("The backend didn't return a save count.`n`nCheck that /mnt/c/SWGGenesis/swggenesis_menu.py is in place.", "Save World", "Icon!")
         return
     }
     SetBusy(true)
@@ -1535,7 +1787,7 @@ RefreshRemote(*) {
     }
 
     if (PushUrl = "") {
-        RemoteLabel.Value := "Push target: UNKNOWN -- no 'origin' remote in /mnt/d/SWGGenesis?"
+        RemoteLabel.Value := "Push target: UNKNOWN -- no 'origin' remote in /mnt/c/SWGGenesis?"
         return
     }
 
@@ -1641,7 +1893,7 @@ RefreshTarget()
 ; on a machine that gets shut down at night is precisely when it would not be.
 ; A Windows task starts the distro itself.
 ;
-; Tasks run D:\SWGGenesis\run_backup.cmd rather than a long inline command,
+; Tasks run C:\SWGGenesis\run_backup.cmd rather than a long inline command,
 ; because schtasks /TR with nested quotes is a classic way to end up with a task
 ; that looks fine in the list and does nothing when it fires. The wrapper is
 ; plain text you can read and double-click to test.
@@ -1671,15 +1923,15 @@ WriteBackupWrapper(keepN, runMode) {
     body .= ":: Written by the SWGGenesis control panel -- Backup Schedule.`r`n"
     body .= ":: Safe to run by hand (double-click) to test exactly what the`r`n"
     body .= ":: scheduled task does.`r`n"
-    body .= "echo.>> D:\SWGGenesis\backups\backup.log`r`n"
-    body .= "echo ==== %DATE% %TIME% ====>> D:\SWGGenesis\backups\backup.log`r`n"
+    body .= "echo.>> C:\SWGGenesis\backups\backup.log`r`n"
+    body .= "echo ==== %DATE% %TIME% ====>> C:\SWGGenesis\backups\backup.log`r`n"
     body .= 'wsl.exe -d ' . WSL_DISTRO . ' --exec bash -lc "python3 ' . WSL_PY
     body .= ' backup_all ' . argStr . ' --keep ' . keepN
-    body .= ' >> /mnt/d/SWGGenesis/backups/backup.log 2>&1"' . "`r`n"
+    body .= ' >> /mnt/c/SWGGenesis/backups/backup.log 2>&1"' . "`r`n"
 
-    try DirCreate("D:\SWGGenesis\backups")
-    try FileDelete("D:\SWGGenesis\run_backup.cmd")
-    FileAppend(body, "D:\SWGGenesis\run_backup.cmd", "UTF-8-RAW")
+    try DirCreate("C:\SWGGenesis\backups")
+    try FileDelete("C:\SWGGenesis\run_backup.cmd")
+    FileAppend(body, "C:\SWGGenesis\run_backup.cmd", "UTF-8-RAW")
 }
 
 ListBackupTasks() {
@@ -1708,7 +1960,7 @@ ListBackupTasks() {
 SchedGui := 0
 
 ShowBackupSchedule(*) {
-    global SchedGui, SchedLV, SchedMsg, SchedHour, SchedMin, SchedKeep, SchedMode, MyGui
+    global SchedGui, SchedLV, SchedMsg, SchedHour, SchedMin, SchedKeep, SchedMode, MyGui, CurrentTheme
 
     if IsObject(SchedGui) {
         try SchedGui.Destroy()
@@ -1724,7 +1976,7 @@ ShowBackupSchedule(*) {
     SchedGui.Add("Text", "w620 cGray",
         "Uses Windows Task Scheduler, not cron: WSL has no init, so a crontab inside Debian only fires`n"
       . "while the distro is already running. A Windows task starts it for you.`n`n"
-      . "Every run appends to D:\SWGGenesis\backups\backup.log.")
+      . "Every run appends to C:\SWGGenesis\backups\backup.log.")
 
     SchedLV := SchedGui.Add("ListView", "w620 h150 -Multi Grid", ["Scheduled time", "Runs"])
 
@@ -1774,11 +2026,12 @@ ShowBackupSchedule(*) {
     BtnSTest.OnEvent("Click", (*) => (
         WriteBackupWrapper(SchedKeep.Value = "" ? 6 : SchedKeep.Value, ModeToken()),
         SchedMsg.Value := "Running the wrapper now, exactly as the scheduler would."
-            . "`nWatch D:\SWGGenesis\backups\backup.log -- this can take a minute.",
-        Run('cmd.exe /c "D:\SWGGenesis\run_backup.cmd"', , "Hide")
+            . "`nWatch C:\SWGGenesis\backups\backup.log -- this can take a minute.",
+        Run('cmd.exe /c "C:\SWGGenesis\run_backup.cmd"', , "Hide")
     ))
     BtnSClose.OnEvent("Click", (*) => SchedGui.Destroy())
 
+    ApplyThemeToWindow(SchedGui, GetThemeColors(CurrentTheme))
     SchedGui.Show()
     LoadBackupSchedule()
 }
@@ -1821,7 +2074,7 @@ ApplyBackupSchedule(*) {
         tm := SchedLV.GetText(A_Index, 1)
         tn := "SWGGenesisBackup_" . StrReplace(tm, ":", "")
         out := RunCmdCapture('schtasks /Create /F /TN "' . tn . '" /SC DAILY /ST '
-            . tm . ' /TR "D:\SWGGenesis\run_backup.cmd"')
+            . tm . ' /TR "C:\SWGGenesis\run_backup.cmd"')
         if InStr(out, "SUCCESS") {
             n++
         } else {
@@ -1831,10 +2084,10 @@ ApplyBackupSchedule(*) {
 
     if (n = 0 && SchedLV.GetCount() = 0) {
         SchedMsg.Value := "Schedule cleared -- no automatic backups will run."
-            . "`nD:\SWGGenesis\run_backup.cmd is still there if you want to run it by hand."
+            . "`nC:\SWGGenesis\run_backup.cmd is still there if you want to run it by hand."
     } else {
         SchedMsg.Value := "Scheduled " . n . " daily backup(s)."
-            . "`nWrapper: D:\SWGGenesis\run_backup.cmd    Log: D:\SWGGenesis\backups\backup.log"
+            . "`nWrapper: C:\SWGGenesis\run_backup.cmd    Log: C:\SWGGenesis\backups\backup.log"
             . "`nKeeping the newest " . keepN . " backups." . msg
     }
     LoadBackupSchedule()
@@ -1990,11 +2243,11 @@ SetTimer(RefreshConsole, 4000)
 SetTimer(RefreshActivityLog, 3000)
 
 ; ACTIVITY_LOG_2026_08_07 -- local file, no wsl.exe shell-out needed (the log
-; lives on the same D: drive, at the WSL path /mnt/d/SWGGenesis/menu_activity.log
+; lives on the same D: drive, at the WSL path /mnt/c/SWGGenesis/menu_activity.log
 ; -- see swggenesis_menu.py). Tails the last ~200 lines.
 RefreshActivityLog(*) {
     global ActivityBox, ActivityAuto
-    static path := "D:\SWGGenesis\menu_activity.log"
+    static path := "C:\SWGGenesis\menu_activity.log"
 
     if !FileExist(path) {
         newText := "(no activity yet -- this fills in the first time anyone runs a rebuild, backup, restart, push, etc., either from this panel or a terminal)"

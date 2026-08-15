@@ -16,7 +16,7 @@
  *	CreatureStub
  */
 
-enum {RPC_INITIALIZETRANSIENTMEMBERS__ = 4015475806,RPC_ISCREATURE__,RPC_GETDNASTATE__,RPC_GETDNASAMPLECOUNT__,RPC_INCDNASAMPLECOUNT__,RPC_ISCAMOUFLAGED__CREATUREOBJECT_,RPC_HANDLEOBJECTMENUSELECT__CREATUREOBJECT_BYTE_,RPC_SCHEDULEDESPAWN__,RPC_HASORGANICS__,RPC_HASMILK__,RPC_HASDNA__,RPC_CANHARVESTME__CREATUREOBJECT_,RPC_CANDROIDHARVESTME__CREATUREOBJECT_CREATUREOBJECT_,RPC_HASSKILLTOHARVESTME__CREATUREOBJECT_,RPC_CANTAMEME__CREATUREOBJECT_,RPC_GETCHANCETOTAME__CREATUREOBJECT_,RPC_CANMILKME__CREATUREOBJECT_,RPC_CANCOLLECTDNA__CREATUREOBJECT_,RPC_HASSKILLTOSAMPLEME__CREATUREOBJECT_,RPC_ADDALREADYHARVESTED__CREATUREOBJECT_,RPC_SETMILKSTATE__SHORT_,RPC_SETDNASTATE__SHORT_,RPC_NOTIFYDESPAWN__ZONE_,RPC_SETPETLEVEL__INT_,RPC_ISVICIOUS__,RPC_ISBABY__,RPC_SETBABY__BOOL_,RPC_GETTAME__,RPC_GETMEATTYPE__,RPC_GETBONETYPE__,RPC_GETHIDETYPE__,RPC_GETMILKTYPE__,RPC_GETMILK__,RPC_GETHIDEMAX__,RPC_GETBONEMAX__,RPC_GETMEATMAX__,RPC_GETBASEXP__,RPC_GETCONTROLDEVICETEMPLATE__,RPC_ISMOUNT__,RPC_GETADULTLEVEL__};
+enum {RPC_INITIALIZETRANSIENTMEMBERS__ = 4015475806,RPC_ISCREATURE__,RPC_GETDNASTATE__,RPC_GETDNASAMPLECOUNT__,RPC_INCDNASAMPLECOUNT__,RPC_ISCAMOUFLAGED__CREATUREOBJECT_,RPC_HANDLEOBJECTMENUSELECT__CREATUREOBJECT_BYTE_,RPC_SCHEDULEDESPAWN__,RPC_HASORGANICS__,RPC_HASMILK__,RPC_HASDNA__,RPC_CANHARVESTME__CREATUREOBJECT_BOOL_,RPC_CANDROIDHARVESTME__CREATUREOBJECT_CREATUREOBJECT_,RPC_HASSKILLTOHARVESTME__CREATUREOBJECT_,RPC_CANTAMEME__CREATUREOBJECT_,RPC_GETCHANCETOTAME__CREATUREOBJECT_,RPC_CANMILKME__CREATUREOBJECT_,RPC_CANCOLLECTDNA__CREATUREOBJECT_,RPC_HASSKILLTOSAMPLEME__CREATUREOBJECT_,RPC_ADDALREADYHARVESTED__CREATUREOBJECT_,RPC_SETMILKSTATE__SHORT_,RPC_SETDNASTATE__SHORT_,RPC_NOTIFYDESPAWN__ZONE_,RPC_SETPETLEVEL__INT_,RPC_ISVICIOUS__,RPC_ISBABY__,RPC_SETBABY__BOOL_,RPC_GETTAME__,RPC_GETMEATTYPE__,RPC_GETBONETYPE__,RPC_GETHIDETYPE__,RPC_GETMILKTYPE__,RPC_GETMILK__,RPC_GETHIDEMAX__,RPC_GETBONEMAX__,RPC_GETMEATMAX__,RPC_GETBASEXP__,RPC_GETCONTROLDEVICETEMPLATE__,RPC_ISMOUNT__,RPC_GETADULTLEVEL__};
 
 Creature::Creature() : AiAgent(DummyConstructorParameter::instance()) {
 	CreatureImplementation* _implementation = new CreatureImplementation();
@@ -224,18 +224,19 @@ bool Creature::hasDNA() {
 	}
 }
 
-bool Creature::canHarvestMe(CreatureObject* player) {
+bool Creature::canHarvestMe(CreatureObject* player, bool requirePlayerSkill) {
 	CreatureImplementation* _implementation = static_cast<CreatureImplementation*>(_getImplementation());
 	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
-		DistributedMethod method(this, RPC_CANHARVESTME__CREATUREOBJECT_);
+		DistributedMethod method(this, RPC_CANHARVESTME__CREATUREOBJECT_BOOL_);
 		method.addObjectParameter(player);
+		method.addBooleanParameter(requirePlayerSkill);
 
 		return method.executeWithBooleanReturn();
 	} else {
-		return _implementation->canHarvestMe(player);
+		return _implementation->canHarvestMe(player, requirePlayerSkill);
 	}
 }
 
@@ -1129,11 +1130,12 @@ void CreatureAdapter::invokeMethod(uint32 methid, DistributedMethod* inv) {
 			resp->insertBoolean(_m_res);
 		}
 		break;
-	case RPC_CANHARVESTME__CREATUREOBJECT_:
+	case RPC_CANHARVESTME__CREATUREOBJECT_BOOL_:
 		{
 			CreatureObject* player = static_cast<CreatureObject*>(inv->getObjectParameter());
+			bool requirePlayerSkill = inv->getBooleanParameter();
 			
-			bool _m_res = canHarvestMe(player);
+			bool _m_res = canHarvestMe(player, requirePlayerSkill);
 			resp->insertBoolean(_m_res);
 		}
 		break;
@@ -1396,8 +1398,8 @@ bool CreatureAdapter::hasDNA() {
 	return (static_cast<Creature*>(stub))->hasDNA();
 }
 
-bool CreatureAdapter::canHarvestMe(CreatureObject* player) {
-	return (static_cast<Creature*>(stub))->canHarvestMe(player);
+bool CreatureAdapter::canHarvestMe(CreatureObject* player, bool requirePlayerSkill) {
+	return (static_cast<Creature*>(stub))->canHarvestMe(player, requirePlayerSkill);
 }
 
 bool CreatureAdapter::canDroidHarvestMe(CreatureObject* player, CreatureObject* droid) {
